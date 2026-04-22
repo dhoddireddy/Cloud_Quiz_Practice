@@ -52,7 +52,8 @@ export default function App() {
   const [learningQuizIndex, setLearningQuizIndex] = useState<number | null>(null);
   
   const [answers, setAnswers] = useState<(number | null)[]>([]);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0); // Count of correct answers
+  const [totalPoints, setTotalPoints] = useState(0); // Numeric points
   
   const [currentQuestions, setCurrentQuestions] = useState<Question[]>([]);
   const [shakingIdx, setShakingIdx] = useState<number | null>(null);
@@ -124,6 +125,7 @@ export default function App() {
     setQuizStatus('QUIZ');
     setAnswers(new Array(shuffled.length).fill(null));
     setScore(0);
+    setTotalPoints(0);
   };
 
   const handleSelectOption = (qIdx: number, optIdx: number) => {
@@ -138,6 +140,15 @@ export default function App() {
     
     if (isCorrect) {
       setScore(prev => prev + 1);
+      
+      // Calculate points
+      let pointsToAdd = 100;
+      if (activeTab === 'ASSIGNMENTS') {
+        // Speed bonus: up to 100 extra points based on time left (timeLeft * 5)
+        const speedBonus = timeLeft * 5;
+        pointsToAdd += speedBonus;
+      }
+      setTotalPoints(prev => prev + pointsToAdd);
     } else {
       setShakingIdx(qIdx);
       setTimeout(() => setShakingIdx(null), 400);
@@ -160,6 +171,7 @@ export default function App() {
     setQuizStatus('QUIZ');
     setAnswers(new Array(shuffled.length).fill(null));
     setScore(0);
+    setTotalPoints(0);
     setCurrentAssignIdx(0);
     setTimeLeft(20);
     setIsTimerPaused(false);
@@ -209,8 +221,8 @@ export default function App() {
             }}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
               activeTab === tab.id 
-                ? (theme === 'dark' ? 'bg-white text-zinc-950 shadow-lg shadow-black/50' : 'bg-zinc-900 text-white shadow-lg shadow-zinc-200') 
-                : (theme === 'dark' ? 'text-zinc-400 hover:bg-zinc-800' : 'text-zinc-500 hover:bg-zinc-100')
+                ? (theme === 'dark' ? 'bg-zinc-900 text-white shadow-lg shadow-zinc-400/30' : 'bg-zinc-900 text-white shadow-lg shadow-zinc-200') 
+                : (theme === 'dark' ? 'text-zinc-600 hover:bg-zinc-200' : 'text-zinc-500 hover:bg-zinc-100')
             }`}
           >
             <tab.icon size={16} />
@@ -221,7 +233,7 @@ export default function App() {
         <button
           onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
           className={`flex items-center justify-center p-2.5 rounded-xl transition-all ${
-            theme === 'dark' ? 'bg-zinc-800 text-amber-400 border border-zinc-700' : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200'
+            theme === 'dark' ? 'bg-zinc-200 text-zinc-800 border border-zinc-300' : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200'
           }`}
         >
           {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
@@ -271,7 +283,7 @@ export default function App() {
                 <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-xs leading-relaxed`}>
                   Deep dive into core concepts. Browse through topic-specific question sets with answers highlighted for efficient learning.
                 </p>
-                <button onClick={() => setActiveTab('LEARNING')} className={`button-primary w-full shadow-none border ${theme === 'dark' ? 'border-zinc-700 bg-transparent text-zinc-100 hover:bg-zinc-800' : 'border-zinc-200 !bg-transparent !text-zinc-900 hover:!bg-zinc-50'}`}>
+                <button onClick={() => setActiveTab('LEARNING')} className={`button-primary w-full shadow-none border ${theme === 'dark' ? 'border-zinc-300 bg-transparent text-zinc-900 hover:bg-zinc-200' : 'border-zinc-200 !bg-transparent !text-zinc-900 hover:!bg-zinc-50'}`}>
                   Enter Learning Mode
                 </button>
               </div>
@@ -339,22 +351,22 @@ export default function App() {
               </div>
             ) : (
               <div className="space-y-8 pb-32">
-                <div className={`flex items-center justify-between sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl py-6 -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-800' : 'border-zinc-200/50'} shadow-sm`}>
+                <div className={`flex items-center justify-between sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-200/90' : 'bg-zinc-50/90'} backdrop-blur-xl py-6 -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-300' : 'border-zinc-200/50'} shadow-sm`}>
                   <div className="flex items-center gap-6">
                     <button 
                       onClick={() => setLearningQuizIndex(null)}
                       className={`p-3 border rounded-2xl transition-all shadow-sm ${
-                        theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
+                        theme === 'dark' ? 'bg-zinc-100 border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
                       }`}
                     >
                       <ArrowLeft size={20} />
                     </button>
                     <div>
-                      <h2 className={`text-2xl font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>{quizzes[learningQuizIndex].title}</h2>
+                      <h2 className={`text-2xl font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-900'}`}>{quizzes[learningQuizIndex].title}</h2>
                       <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest mt-1">Study Guide • Learning Mode</p>
                     </div>
                   </div>
-                  <div className={`hidden md:flex px-4 py-2 ${theme === 'dark' ? 'bg-emerald-900/20 text-emerald-400 border-emerald-800/50' : 'bg-emerald-50 text-emerald-700 border-emerald-100'} rounded-xl text-xs font-bold items-center gap-2 border`}>
+                  <div className={`hidden md:flex px-4 py-2 ${theme === 'dark' ? 'bg-emerald-100 text-emerald-700 border-emerald-200' : 'bg-emerald-50 text-emerald-700 border-emerald-100'} rounded-xl text-xs font-bold items-center gap-2 border`}>
                     <CheckCircle2 size={16} />
                     Auto-Revealed Mode
                   </div>
@@ -374,7 +386,7 @@ export default function App() {
                         <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center text-sm font-bold mt-1">
                           {i + 1}
                         </span>
-                        <h4 className={`text-sm md:text-base font-bold pt-0.5 font-sans leading-relaxed ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-800'}`}>{q.text}</h4>
+                        <h4 className={`text-sm md:text-base font-bold pt-0.5 font-sans leading-relaxed ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-800'}`}>{q.text}</h4>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 md:pl-12">
                         {q.options.map((option, optIdx) => (
@@ -382,11 +394,11 @@ export default function App() {
                             key={optIdx}
                             className={`p-3 rounded-xl border-2 text-xs md:text-sm font-medium flex items-center gap-3 ${
                               optIdx === q.correctAnswer 
-                                ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-950/20 text-emerald-300' : 'border-emerald-500 bg-emerald-50 text-emerald-900' 
-                                : theme === 'dark' ? 'border-zinc-800 bg-zinc-900/40 text-zinc-400' : 'border-zinc-100 bg-zinc-50/30 text-zinc-400'
+                                ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-100 text-emerald-700' : 'border-emerald-500 bg-emerald-50 text-emerald-900' 
+                                : theme === 'dark' ? 'border-zinc-200 bg-zinc-50/50 text-zinc-500' : 'border-zinc-100 bg-zinc-50/30 text-zinc-400'
                             }`}
                           >
-                            <span className={`flex-shrink-0 w-5 h-5 rounded-md ${theme === 'dark' ? 'bg-zinc-900' : 'bg-white'} border border-current flex items-center justify-center text-[10px] font-black uppercase`}>
+                            <span className={`flex-shrink-0 w-5 h-5 rounded-md ${theme === 'dark' ? 'bg-zinc-200' : 'bg-white'} border border-current flex items-center justify-center text-[10px] font-black uppercase`}>
                               {String.fromCharCode(65 + optIdx)}
                             </span>
                             <span className="flex-1">{option}</span>
@@ -455,33 +467,33 @@ export default function App() {
 
             {quizStatus === 'QUIZ' && (
               <div className="w-full max-w-3xl mx-auto pb-20">
-                <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-800' : 'border-zinc-200/50'} shadow-sm mb-12`}>
+                <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-200/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-300' : 'border-zinc-200/50'} shadow-sm mb-12`}>
                    <div className="flex items-center justify-between py-6">
                     <div className="flex items-center gap-4">
                       <button 
                         onClick={resetQuiz}
                         className={`p-3 border rounded-2xl transition-all shadow-sm ${
-                          theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
+                          theme === 'dark' ? 'bg-zinc-100 border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
                         }`}
                       >
                         <ArrowLeft size={20} />
                       </button>
                       <div>
-                        <h3 className={`text-lg font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>{activeQuiz.title}</h3>
+                        <h3 className={`text-lg font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-900'}`}>{activeQuiz.title}</h3>
                         <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Test • Live Session</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-6">
                       <div className="text-right">
-                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none">Score</span>
-                        <p className={`text-xl font-display font-bold ${theme === 'dark' ? 'text-emerald-400' : 'text-emerald-600'} leading-none`}>
-                          {score}
+                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none">Points</span>
+                        <p className={`text-xl font-display font-bold ${theme === 'dark' ? 'text-amber-500' : 'text-amber-600'} leading-none`}>
+                          {totalPoints}
                         </p>
                       </div>
-                      <div className={`text-right border-l ${theme === 'dark' ? 'border-zinc-800' : 'border-zinc-200'} pl-6`}>
+                      <div className={`text-right border-l ${theme === 'dark' ? 'border-zinc-300' : 'border-zinc-200'} pl-6`}>
                         <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none">Ans</span>
-                        <p className={`text-xl font-display font-bold leading-none ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>
-                          {answeredCount}<span className={theme === 'dark' ? 'text-zinc-700 text-base' : 'text-zinc-300 font-normal'}>/{currentQuestions.length}</span>
+                        <p className={`text-xl font-display font-bold leading-none ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-900'}`}>
+                          {answeredCount}<span className={theme === 'dark' ? 'text-zinc-600 text-base' : 'text-zinc-300 font-normal'}>/{currentQuestions.length}</span>
                         </p>
                       </div>
                     </div>
@@ -493,10 +505,10 @@ export default function App() {
                       <span>Live Progress</span>
                       <span>{Math.round(progress)}% Complete</span>
                     </div>
-                    <div className={`h-1 w-full ${theme === 'dark' ? 'bg-zinc-900' : 'bg-zinc-200'} rounded-full overflow-hidden shadow-inner`}>
+                    <div className={`h-1 w-full ${theme === 'dark' ? 'bg-zinc-300' : 'bg-zinc-200'} rounded-full overflow-hidden shadow-inner`}>
                       <motion.div 
                         animate={{ width: `${progress}%` }}
-                        className={`h-full ${theme === 'dark' ? 'bg-white' : 'bg-zinc-950'} transition-all duration-500 rounded-full`}
+                        className={`h-full ${theme === 'dark' ? 'bg-zinc-900' : 'bg-zinc-950'} transition-all duration-500 rounded-full`}
                       />
                     </div>
                   </div>
@@ -587,20 +599,20 @@ export default function App() {
                     />
                   </div>
                   <h2 className="text-2xl font-sans font-bold">{activeTab === 'ASSIGNMENTS' ? 'Assignment Results' : 'Practice Results'}</h2>
-                  <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-sm`}>{activeTab === 'ASSIGNMENTS' ? 'Timed session complete.' : 'Evaluation complete.'} Here is your summary.</p>
+                  <p className={`${theme === 'dark' ? 'text-zinc-600' : 'text-zinc-500'} text-sm`}>{activeTab === 'ASSIGNMENTS' ? 'Timed session complete.' : 'Evaluation complete.'} Here is your summary.</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="glass-card p-6">
                     <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Questions Correct</p>
-                    <p className="text-5xl font-display font-black pt-2 text-zinc-900">
+                    <p className={`text-5xl font-display font-black pt-2 ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-900'}`}>
                       {score}<span className="text-xl text-zinc-300 font-normal">/{currentQuestions.length}</span>
                     </p>
                   </div>
                   <div className="glass-card p-6">
-                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Accuracy Rating</p>
-                    <p className="text-5xl font-display font-black pt-2 text-zinc-900">
-                      {currentQuestions.length > 0 ? Math.round((score / currentQuestions.length) * 100) : 0}%
+                    <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Final Score</p>
+                    <p className={`text-5xl font-display font-black pt-2 ${theme === 'dark' ? 'text-amber-500' : 'text-amber-600'}`}>
+                      {totalPoints}
                     </p>
                   </div>
                 </div>
@@ -707,27 +719,27 @@ export default function App() {
 
             {quizStatus === 'QUIZ' && (
               <div className="w-full max-w-2xl mx-auto">
-                <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-800 ml-0.5' : 'border-zinc-200/50'} shadow-sm mb-12`}>
+                <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-200/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-300 ml-0.5' : 'border-zinc-200/50'} shadow-sm mb-12`}>
                    <div className="flex items-center justify-between py-6">
                     <div className="flex items-center gap-4">
                       <button 
                         onClick={resetQuiz}
                         className={`p-3 border rounded-2xl transition-all shadow-sm ${
-                          theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
+                          theme === 'dark' ? 'bg-zinc-100 border-zinc-300 text-zinc-600 hover:text-zinc-900 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
                         }`}
                       >
                         <ArrowLeft size={20} />
                       </button>
                       <div>
-                        <h3 className={`text-lg font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>{activeQuiz.title}</h3>
+                        <h3 className={`text-lg font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-900'}`}>{activeQuiz.title}</h3>
                         <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest mt-1">Timed Assignments Challenge</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-right">
-                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none block">Score</span>
-                        <p className={`text-xl font-display font-bold ${theme === 'dark' ? 'text-emerald-400' : 'text-emerald-600'} leading-none mt-1`}>
-                          {score}
+                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none block">Points</span>
+                        <p className={`text-xl font-display font-bold ${theme === 'dark' ? 'text-amber-500' : 'text-amber-600'} leading-none mt-1`}>
+                          {totalPoints}
                         </p>
                       </div>
                     </div>
@@ -738,7 +750,7 @@ export default function App() {
                     <div className="flex items-center justify-between text-[8px] font-mono font-bold text-zinc-400 uppercase tracking-widest px-0.5">
                       <span className="flex items-center gap-1.5">
                         <Clock size={10} className={`${timeLeft < 5 ? 'text-rose-500 animate-pulse' : 'text-amber-500'}`} />
-                        Question Time: <span className={timeLeft < 5 ? 'text-rose-500' : 'text-zinc-100'}>{timeLeft}s</span>
+                        Question Time: <span className={timeLeft < 5 ? 'text-rose-500' : 'text-zinc-900'}>{timeLeft}s</span>
                       </span>
                       <span>{currentAssignIdx + 1} / {currentQuestions.length} Questions</span>
                     </div>
@@ -747,9 +759,9 @@ export default function App() {
                         const isCompleted = i < currentAssignIdx;
                         const isCurrent = i === currentAssignIdx;
                         return (
-                          <div key={i} className={`flex-1 h-full rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-900 shadow-inner`}>
+                          <div key={i} className={`flex-1 h-full rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-300 shadow-inner`}>
                              {isCompleted && (
-                               <div className={`h-full w-full ${theme === 'dark' ? 'bg-zinc-100' : 'bg-zinc-900'}`} />
+                               <div className={`h-full w-full ${theme === 'dark' ? 'bg-zinc-800' : 'bg-zinc-900'}`} />
                              )}
                              {isCurrent && (
                                <motion.div 
@@ -772,13 +784,13 @@ export default function App() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className={`glass-card p-8 md:p-12 space-y-8 transition-all ${shakingIdx === currentAssignIdx ? 'shake' : ''} shadow-xl border-2 ${theme === 'dark' ? 'border-amber-900/50' : 'border-amber-100'}`}
+                  className={`glass-card p-8 md:p-12 space-y-8 transition-all ${shakingIdx === currentAssignIdx ? 'shake' : ''} shadow-xl border-2 ${theme === 'dark' ? 'border-amber-200' : 'border-amber-100'}`}
                 >
                   <div className="flex items-start gap-4">
-                    <span className={`flex-shrink-0 w-8 h-8 rounded-lg ${theme === 'dark' ? 'bg-amber-500 text-zinc-950' : 'bg-amber-600 text-white'} flex items-center justify-center text-sm font-bold mt-1 shadow-lg shadow-amber-200 dark:shadow-amber-900/20`}>
+                    <span className={`flex-shrink-0 w-8 h-8 rounded-lg ${theme === 'dark' ? 'bg-amber-500 text-zinc-900' : 'bg-amber-600 text-white'} flex items-center justify-center text-sm font-bold mt-1 shadow-lg shadow-amber-200 dark:shadow-amber-400/20`}>
                       {currentAssignIdx + 1}
                     </span>
-                    <h2 className={`text-lg md:text-xl font-sans font-bold leading-relaxed ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-800'}`}>
+                    <h2 className={`text-lg md:text-xl font-sans font-bold leading-relaxed ${theme === 'dark' ? 'text-zinc-900' : 'text-zinc-800'}`}>
                       {currentQuestions[currentAssignIdx].text}
                     </h2>
                   </div>
@@ -798,13 +810,13 @@ export default function App() {
                           whileHover={{ x: isAnswered ? 0 : 4 }}
                           onClick={() => handleSelectOption(currentAssignIdx, optIdx)}
                           className={`answer-option py-3 px-5 transition-all !gap-4 border-2 ${
-                            isSelected ? (theme === 'dark' ? 'border-zinc-400 bg-zinc-800' : 'border-zinc-900 scale-[1.01]') : (theme === 'dark' ? 'border-zinc-800 bg-zinc-900/40' : 'border-zinc-100')
-                          } ${isCorrect ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-950/20 text-emerald-300' : 'border-emerald-500 bg-emerald-50 text-emerald-900' : ''} ${
-                            isWrong ? theme === 'dark' ? 'border-rose-500/50 bg-rose-950/20 text-rose-300' : 'border-rose-500 bg-rose-50 text-rose-900' : ''
+                            isSelected ? (theme === 'dark' ? 'border-zinc-500 bg-white' : 'border-zinc-900 scale-[1.01]') : (theme === 'dark' ? 'border-zinc-300 bg-zinc-50/50' : 'border-zinc-100')
+                          } ${isCorrect ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-100 text-emerald-700' : 'border-emerald-500 bg-emerald-50 text-emerald-900' : ''} ${
+                            isWrong ? theme === 'dark' ? 'border-rose-500/50 bg-rose-100 text-rose-700' : 'border-rose-500 bg-rose-50 text-rose-900' : ''
                           }`}
                         >
                           <span className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center text-xs font-black uppercase transition-colors ${
-                            isSelected ? (theme === 'dark' ? 'border-zinc-100 bg-zinc-100 text-zinc-950' : 'border-zinc-900 bg-zinc-900 text-white') : (theme === 'dark' ? 'border-zinc-700 text-zinc-500' : 'border-zinc-200 text-zinc-400')
+                            isSelected ? (theme === 'dark' ? 'border-zinc-900 bg-zinc-900 text-white' : 'border-zinc-900 bg-zinc-900 text-white') : (theme === 'dark' ? 'border-zinc-300 text-zinc-500' : 'border-zinc-200 text-zinc-400')
                           } ${isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' : ''} ${
                             isWrong ? 'border-rose-500 bg-rose-500 text-white' : ''
                           }`}>
