@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Trophy, 
@@ -12,7 +12,10 @@ import {
   Cpu,
   Home,
   BookOpen,
-  Send
+  Send,
+  Clock,
+  Moon,
+  Sun
 } from 'lucide-react';
 import devOpsData from './data/DevOps_MCQs.json';
 import htmlCssData from './data/HTML_CSS_mcqs.json';
@@ -38,11 +41,12 @@ interface Quiz {
   questions: Question[];
 }
 
-type AppTab = 'HOME' | 'LEARNING' | 'PRACTICE';
+type AppTab = 'HOME' | 'LEARNING' | 'PRACTICE' | 'ASSIGNMENTS';
 type QuizStatus = 'IDLE' | 'QUIZ' | 'RESULTS';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<AppTab>('HOME');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [quizStatus, setQuizStatus] = useState<QuizStatus>('IDLE');
   const [activeQuizIndex, setActiveQuizIndex] = useState(0);
   const [learningQuizIndex, setLearningQuizIndex] = useState<number | null>(null);
@@ -52,6 +56,11 @@ export default function App() {
   
   const [currentQuestions, setCurrentQuestions] = useState<Question[]>([]);
   const [shakingIdx, setShakingIdx] = useState<number | null>(null);
+  
+  // Timed Assignments State
+  const [currentAssignIdx, setCurrentAssignIdx] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(20);
+  const [isTimerPaused, setIsTimerPaused] = useState(false);
   
   const quizzes = useMemo(() => {
     const rawData = [
@@ -87,6 +96,25 @@ export default function App() {
   const answeredCount = answers.filter(a => a !== null).length;
   const progress = currentQuestions.length > 0 ? (answeredCount / currentQuestions.length) * 100 : 0;
 
+  const handleNextAssign = (skipped: boolean = false) => {
+    if (activeTab !== 'ASSIGNMENTS' || quizStatus !== 'QUIZ') return;
+    
+    if (currentAssignIdx < currentQuestions.length - 1) {
+      setCurrentAssignIdx(prev => prev + 1);
+      setTimeLeft(20);
+      setIsTimerPaused(false);
+      if (skipped) {
+        setAnswers(prev => {
+          const next = [...prev];
+          next[currentAssignIdx] = null;
+          return next;
+        });
+      }
+    } else {
+      setQuizStatus('RESULTS');
+    }
+  };
+
   const handleStartPractice = (index: number) => {
     const quiz = quizzes[index];
     const shuffled = [...quiz.questions].sort(() => Math.random() - 0.5);
@@ -114,15 +142,53 @@ export default function App() {
       setShakingIdx(qIdx);
       setTimeout(() => setShakingIdx(null), 400);
     }
+
+    if (activeTab === 'ASSIGNMENTS') {
+      setIsTimerPaused(true);
+      setTimeout(() => {
+        handleNextAssign();
+      }, 1500);
+    }
+  };
+
+  const handleStartAssignments = (index: number) => {
+    const quiz = quizzes[index];
+    const shuffled = [...quiz.questions].sort(() => Math.random() - 0.5);
+    
+    setCurrentQuestions(shuffled);
+    setActiveQuizIndex(index);
+    setQuizStatus('QUIZ');
+    setAnswers(new Array(shuffled.length).fill(null));
+    setScore(0);
+    setCurrentAssignIdx(0);
+    setTimeLeft(20);
+    setIsTimerPaused(false);
   };
 
   const resetQuiz = () => {
     setQuizStatus('IDLE');
   };
 
+  useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (activeTab === 'ASSIGNMENTS' && quizStatus === 'QUIZ' && !isTimerPaused && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0 && !isTimerPaused) {
+      handleNextAssign(true);
+    }
+
+    return () => clearInterval(timer);
+  }, [activeTab, quizStatus, timeLeft, isTimerPaused]);
+
   const NavigationBar = () => {
     // Hide navigation if inside a learning set or actively practicing
-    if (learningQuizIndex !== null || (activeTab === 'PRACTICE' && quizStatus === 'QUIZ')) {
+    if (learningQuizIndex !== null || (activeTab === 'PRACTICE' && quizStatus === 'QUIZ') || (activeTab === 'ASSIGNMENTS' && quizStatus === 'QUIZ')) {
       return null;
     }
 
@@ -132,6 +198,7 @@ export default function App() {
           { id: 'HOME', label: 'Home', icon: Home },
           { id: 'LEARNING', label: 'Learning', icon: BookOpen },
           { id: 'PRACTICE', label: 'Practice', icon: Send },
+          { id: 'ASSIGNMENTS', label: 'Assignments', icon: Clock },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -142,14 +209,23 @@ export default function App() {
             }}
             className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
               activeTab === tab.id 
-                ? 'bg-zinc-900 text-white shadow-lg shadow-zinc-200' 
-                : 'text-zinc-500 hover:bg-zinc-100'
+                ? (theme === 'dark' ? 'bg-white text-zinc-950 shadow-lg shadow-black/50' : 'bg-zinc-900 text-white shadow-lg shadow-zinc-200') 
+                : (theme === 'dark' ? 'text-zinc-400 hover:bg-zinc-800' : 'text-zinc-500 hover:bg-zinc-100')
             }`}
           >
             <tab.icon size={16} />
             {tab.label}
           </button>
         ))}
+        <div className="w-px h-6 bg-zinc-200 dark:bg-zinc-700 mx-2" />
+        <button
+          onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
+          className={`flex items-center justify-center p-2.5 rounded-xl transition-all ${
+            theme === 'dark' ? 'bg-zinc-800 text-amber-400 border border-zinc-700' : 'bg-zinc-100 text-zinc-500 hover:bg-zinc-200'
+          }`}
+        >
+          {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
       </div>
     );
   };
@@ -192,23 +268,35 @@ export default function App() {
                   <BookOpen size={24} />
                 </div>
                 <h3 className="text-lg font-sans font-bold">Concept Mastery</h3>
-                <p className="text-zinc-500 text-xs leading-relaxed">
+                <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-xs leading-relaxed`}>
                   Deep dive into core concepts. Browse through topic-specific question sets with answers highlighted for efficient learning.
                 </p>
-                <button onClick={() => setActiveTab('LEARNING')} className="button-primary w-full shadow-none border border-zinc-200 !bg-transparent !text-zinc-900 hover:!bg-zinc-50">
+                <button onClick={() => setActiveTab('LEARNING')} className={`button-primary w-full shadow-none border ${theme === 'dark' ? 'border-zinc-700 bg-transparent text-zinc-100 hover:bg-zinc-800' : 'border-zinc-200 !bg-transparent !text-zinc-900 hover:!bg-zinc-50'}`}>
                   Enter Learning Mode
                 </button>
               </div>
               <div className="glass-card p-8 space-y-4">
-                <div className="text-blue-600 bg-blue-100 w-12 h-12 rounded-2xl flex items-center justify-center">
+                <div className="text-blue-600 bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 w-12 h-12 rounded-2xl flex items-center justify-center">
                   <Send size={24} />
                 </div>
                 <h3 className="text-lg font-sans font-bold">Skills Testing</h3>
-                <p className="text-zinc-500 text-xs leading-relaxed">
+                <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-xs leading-relaxed`}>
                   Challenge yourself with timed practice runs. Get instant feedback on your answers and a complete analysis of your results.
                 </p>
                 <button onClick={() => setActiveTab('PRACTICE')} className="button-primary w-full">
                   Begin Practice
+                </button>
+              </div>
+              <div className="glass-card p-8 space-y-4 md:col-span-2">
+                <div className="text-amber-600 bg-amber-100 w-12 h-12 rounded-2xl flex items-center justify-center">
+                  <Clock size={24} />
+                </div>
+                <h3 className="text-lg font-sans font-bold">Timed Assignments</h3>
+                <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-xs leading-relaxed`}>
+                  The ultimate challenge. 20 seconds per question with automatic progression. Test your speed and accuracy under pressure.
+                </p>
+                <button onClick={() => setActiveTab('ASSIGNMENTS')} className="button-primary w-full bg-amber-600 hover:bg-amber-700">
+                  Take the Challenge
                 </button>
               </div>
             </div>
@@ -227,7 +315,7 @@ export default function App() {
               <div className="space-y-12">
                 <div className="text-center space-y-2 mb-4">
                   <h2 className="text-2xl font-sans font-bold">Browse Topics</h2>
-                  <p className="text-zinc-500 text-sm">Choose a subject to see detailed questions and answers.</p>
+                  <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-sm`}>Choose a subject to see detailed questions and answers.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {quizzes.map((quiz, idx) => (
@@ -237,12 +325,12 @@ export default function App() {
                       whileHover={{ y: -4, backgroundColor: "rgba(255, 255, 255, 0.6)" }}
                       className="glass-card p-6 cursor-pointer hover:shadow-lg transition-all border-white/40 group bg-white/40 border-2 border-transparent hover:border-zinc-200"
                     >
-                      <span className="inline-block px-2.5 py-1 bg-zinc-100 text-[10px] font-bold uppercase tracking-wider text-zinc-500 rounded-md mb-4">
+                      <span className={`inline-block px-2.5 py-1 ${theme === 'dark' ? 'bg-zinc-800 text-zinc-400' : 'bg-zinc-100 text-zinc-500'} text-[10px] font-bold uppercase tracking-wider rounded-md mb-4`}>
                         {quiz.category}
                       </span>
                       <h3 className="text-lg font-sans font-bold mb-2 group-hover:text-emerald-600 transition-colors uppercase tracking-tight">{quiz.title}</h3>
-                      <p className="text-xs text-zinc-500 mb-6 leading-relaxed">{quiz.description}</p>
-                      <div className="flex items-center text-xs font-bold text-zinc-900">
+                      <p className={`text-xs ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} mb-6 leading-relaxed`}>{quiz.description}</p>
+                      <div className={`flex items-center text-xs font-bold ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>
                         View Study Set <ChevronRight size={14} className="ml-1 transition-transform group-hover:translate-x-0.5" />
                       </div>
                     </motion.div>
@@ -251,20 +339,22 @@ export default function App() {
               </div>
             ) : (
               <div className="space-y-8 pb-32">
-                <div className="flex items-center justify-between sticky top-0 z-40 bg-zinc-50/90 backdrop-blur-xl py-6 -mx-4 px-4 border-b border-zinc-200/50 shadow-sm">
+                <div className={`flex items-center justify-between sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl py-6 -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-800' : 'border-zinc-200/50'} shadow-sm`}>
                   <div className="flex items-center gap-6">
                     <button 
                       onClick={() => setLearningQuizIndex(null)}
-                      className="p-3 bg-white border border-zinc-200 rounded-2xl text-zinc-400 hover:text-zinc-900 hover:border-zinc-900 transition-all shadow-sm"
+                      className={`p-3 border rounded-2xl transition-all shadow-sm ${
+                        theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
+                      }`}
                     >
                       <ArrowLeft size={20} />
                     </button>
                     <div>
-                      <h2 className="text-2xl font-sans font-bold leading-tight">{quizzes[learningQuizIndex].title}</h2>
+                      <h2 className={`text-2xl font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>{quizzes[learningQuizIndex].title}</h2>
                       <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest mt-1">Study Guide • Learning Mode</p>
                     </div>
                   </div>
-                  <div className="hidden md:flex px-4 py-2 bg-emerald-50 rounded-xl text-emerald-700 text-xs font-bold items-center gap-2 border border-emerald-100">
+                  <div className={`hidden md:flex px-4 py-2 ${theme === 'dark' ? 'bg-emerald-900/20 text-emerald-400 border-emerald-800/50' : 'bg-emerald-50 text-emerald-700 border-emerald-100'} rounded-xl text-xs font-bold items-center gap-2 border`}>
                     <CheckCircle2 size={16} />
                     Auto-Revealed Mode
                   </div>
@@ -284,7 +374,7 @@ export default function App() {
                         <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center text-sm font-bold mt-1">
                           {i + 1}
                         </span>
-                        <h4 className="text-sm md:text-base font-bold pt-0.5 font-sans leading-relaxed text-zinc-800">{q.text}</h4>
+                        <h4 className={`text-sm md:text-base font-bold pt-0.5 font-sans leading-relaxed ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-800'}`}>{q.text}</h4>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 md:pl-12">
                         {q.options.map((option, optIdx) => (
@@ -292,11 +382,11 @@ export default function App() {
                             key={optIdx}
                             className={`p-3 rounded-xl border-2 text-xs md:text-sm font-medium flex items-center gap-3 ${
                               optIdx === q.correctAnswer 
-                                ? 'border-emerald-500 bg-emerald-50 text-emerald-900' 
-                                : 'border-zinc-100 bg-zinc-50/30 text-zinc-400'
+                                ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-950/20 text-emerald-300' : 'border-emerald-500 bg-emerald-50 text-emerald-900' 
+                                : theme === 'dark' ? 'border-zinc-800 bg-zinc-900/40 text-zinc-400' : 'border-zinc-100 bg-zinc-50/30 text-zinc-400'
                             }`}
                           >
-                            <span className="flex-shrink-0 w-5 h-5 rounded-md bg-white border border-current flex items-center justify-center text-[10px] font-black uppercase">
+                            <span className={`flex-shrink-0 w-5 h-5 rounded-md ${theme === 'dark' ? 'bg-zinc-900' : 'bg-white'} border border-current flex items-center justify-center text-[10px] font-black uppercase`}>
                               {String.fromCharCode(65 + optIdx)}
                             </span>
                             <span className="flex-1">{option}</span>
@@ -326,7 +416,7 @@ export default function App() {
               <div className="space-y-12">
                 <div className="text-center space-y-2">
                   <h2 className="text-2xl font-sans font-bold">Challenge Your Knowledge</h2>
-                  <p className="text-zinc-500 text-sm">Pick a topic and see if you can get a perfect score.</p>
+                  <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-sm`}>Pick a topic and see if you can get a perfect score.</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {quizzes.map((quiz, idx) => (
@@ -336,11 +426,11 @@ export default function App() {
                       className="glass-card p-6 flex flex-col justify-between hover:shadow-lg transition-all border-white/40 border-2 border-transparent hover:border-zinc-200"
                     >
                       <div className="space-y-4">
-                        <span className="inline-block px-2.5 py-1 bg-zinc-100 text-[10px] font-bold uppercase tracking-wider text-zinc-500 rounded-md">
+                        <span className={`inline-block px-2.5 py-1 ${theme === 'dark' ? 'bg-zinc-800 text-zinc-400' : 'bg-zinc-100 text-zinc-500'} text-[10px] font-bold uppercase tracking-wider rounded-md`}>
                           {quiz.category}
                         </span>
                         <h3 className="text-lg font-sans font-bold leading-tight uppercase tracking-tight">{quiz.title}</h3>
-                        <p className="text-xs text-zinc-500 leading-relaxed">
+                        <p className={`text-xs ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} leading-relaxed`}>
                           {quiz.description}
                         </p>
                       </div>
@@ -364,41 +454,52 @@ export default function App() {
             )}
 
             {quizStatus === 'QUIZ' && (
-              <div className="w-full max-w-3xl mx-auto space-y-6 pb-20">
-                <div className="flex items-center justify-between sticky top-0 z-40 bg-zinc-50/90 backdrop-blur-xl py-6 -mx-4 px-4 border-b border-zinc-200/50 shadow-sm mb-4">
-                  <div className="flex items-center gap-4">
-                    <button 
-                      onClick={resetQuiz}
-                      className="p-3 bg-white border border-zinc-200 rounded-2xl text-zinc-400 hover:text-zinc-900 hover:border-zinc-900 transition-all shadow-sm"
-                    >
-                      <ArrowLeft size={20} />
-                    </button>
-                    <div>
-                      <h3 className="text-lg font-sans font-bold leading-tight">{activeQuiz.title}</h3>
-                      <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Test • Live Session</p>
+              <div className="w-full max-w-3xl mx-auto pb-20">
+                <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-800' : 'border-zinc-200/50'} shadow-sm mb-12`}>
+                   <div className="flex items-center justify-between py-6">
+                    <div className="flex items-center gap-4">
+                      <button 
+                        onClick={resetQuiz}
+                        className={`p-3 border rounded-2xl transition-all shadow-sm ${
+                          theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
+                        }`}
+                      >
+                        <ArrowLeft size={20} />
+                      </button>
+                      <div>
+                        <h3 className={`text-lg font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>{activeQuiz.title}</h3>
+                        <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Test • Live Session</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-6">
+                      <div className="text-right">
+                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none">Score</span>
+                        <p className={`text-xl font-display font-bold ${theme === 'dark' ? 'text-emerald-400' : 'text-emerald-600'} leading-none`}>
+                          {score}
+                        </p>
+                      </div>
+                      <div className={`text-right border-l ${theme === 'dark' ? 'border-zinc-800' : 'border-zinc-200'} pl-6`}>
+                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none">Ans</span>
+                        <p className={`text-xl font-display font-bold leading-none ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>
+                          {answeredCount}<span className={theme === 'dark' ? 'text-zinc-700 text-base' : 'text-zinc-300 font-normal'}>/{currentQuestions.length}</span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-6">
-                    <div className="text-right">
-                      <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Score</span>
-                      <p className="text-xl font-display font-bold text-emerald-600 leading-none">
-                        {score}
-                      </p>
+                  
+                  {/* Integrated Progress Bar */}
+                  <div className="pb-4">
+                    <div className="flex items-center justify-between text-[8px] font-mono font-bold text-zinc-400 uppercase tracking-widest mb-1.5 px-0.5">
+                      <span>Live Progress</span>
+                      <span>{Math.round(progress)}% Complete</span>
                     </div>
-                    <div className="text-right border-l border-zinc-200 pl-6">
-                      <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">Ans</span>
-                      <p className="text-xl font-display font-bold leading-none">
-                        {answeredCount}<span className="text-zinc-300 font-normal">/{currentQuestions.length}</span>
-                      </p>
+                    <div className={`h-1 w-full ${theme === 'dark' ? 'bg-zinc-900' : 'bg-zinc-200'} rounded-full overflow-hidden shadow-inner`}>
+                      <motion.div 
+                        animate={{ width: `${progress}%` }}
+                        className={`h-full ${theme === 'dark' ? 'bg-white' : 'bg-zinc-950'} transition-all duration-500 rounded-full`}
+                      />
                     </div>
                   </div>
-                </div>
-
-                <div className="h-1.5 w-full bg-zinc-200 rounded-full overflow-hidden mb-12">
-                  <motion.div 
-                    animate={{ width: `${progress}%` }}
-                    className="h-full bg-zinc-900"
-                  />
                 </div>
 
                 <div className="space-y-16">
@@ -419,7 +520,7 @@ export default function App() {
                           <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-900 text-white flex items-center justify-center text-sm font-bold mt-1">
                             {qIdx + 1}
                           </span>
-                          <h2 className="text-base md:text-lg font-sans font-bold leading-relaxed text-zinc-800">
+                          <h2 className={`text-base md:text-lg font-sans font-bold leading-relaxed ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-800'}`}>
                             {question.text}
                           </h2>
                         </div>
@@ -439,7 +540,7 @@ export default function App() {
                                 className={`answer-option py-3.5 px-5 !gap-4 ${isSelected ? 'selected' : ''} ${isCorrect ? 'correct text-emerald-900' : ''} ${isWrong ? 'incorrect text-rose-900' : ''}`}
                               >
                                 <span className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center text-xs font-black uppercase transition-colors ${
-                                  isSelected ? 'border-zinc-900 bg-zinc-900 text-white' : 'border-zinc-200 text-zinc-400'
+                                  isSelected ? (theme === 'dark' ? 'bg-white text-zinc-950 border-white' : 'border-zinc-900 bg-zinc-900 text-white') : (theme === 'dark' ? 'border-zinc-700 text-zinc-400' : 'border-zinc-200 text-zinc-400')
                                 } ${isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' : ''} ${isWrong ? 'border-rose-500 bg-rose-500 text-white' : ''}`}>
                                   {String.fromCharCode(65 + optIdx)}
                                 </span>
@@ -482,11 +583,11 @@ export default function App() {
                     <motion.div 
                       animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="absolute inset-0 bg-amber-400 blur-2xl rounded-full"
+                      className={`absolute inset-0 ${theme === 'dark' ? 'bg-zinc-700' : 'bg-amber-400'} blur-2xl rounded-full`}
                     />
                   </div>
-                  <h2 className="text-2xl font-sans font-bold">Quiz Performance</h2>
-                  <p className="text-zinc-500 text-sm">Evaluation complete. Here is your summary.</p>
+                  <h2 className="text-2xl font-sans font-bold">{activeTab === 'ASSIGNMENTS' ? 'Assignment Results' : 'Practice Results'}</h2>
+                  <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-sm`}>{activeTab === 'ASSIGNMENTS' ? 'Timed session complete.' : 'Evaluation complete.'} Here is your summary.</p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -544,11 +645,185 @@ export default function App() {
                   </button>
                   <button 
                     onClick={resetQuiz}
-                    className="px-8 py-4 rounded-2xl bg-white border border-zinc-200 text-zinc-900 font-bold hover:bg-zinc-100 transition-all flex-1"
+                    className={`px-8 py-4 rounded-2xl border font-bold transition-all flex-1 ${
+                      theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-100 hover:bg-zinc-800' : 'bg-white border-zinc-200 text-zinc-900 hover:bg-zinc-100'
+                    }`}
                   >
                     Exit to Menu
                   </button>
                 </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+        {activeTab === 'ASSIGNMENTS' && (
+          <motion.div 
+            key="assignments"
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            className="w-full max-w-4xl"
+          >
+            {quizStatus === 'IDLE' && (
+              <div className="space-y-12">
+                <div className="text-center space-y-2">
+                  <h2 className="text-2xl font-sans font-bold">Timed Assignments</h2>
+                  <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-sm`}>20 Seconds per question. No pauses. Are you ready?</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {quizzes.map((quiz, idx) => (
+                    <motion.div 
+                      key={quiz.id}
+                      whileHover={{ y: -4, backgroundColor: "rgba(255, 255, 255, 0.6)" }}
+                      className="glass-card p-6 flex flex-col justify-between hover:shadow-lg transition-all border-white/40 border-2 border-transparent hover:border-zinc-200"
+                    >
+                      <div className="space-y-4">
+                        <span className={`inline-block px-2.5 py-1 ${theme === 'dark' ? 'bg-amber-900/30 text-amber-500' : 'bg-amber-100 text-amber-700'} text-[10px] font-bold uppercase tracking-wider rounded-md`}>
+                          {quiz.category}
+                        </span>
+                        <h3 className="text-lg font-sans font-bold leading-tight uppercase tracking-tight">{quiz.title}</h3>
+                        <p className={`text-xs ${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} leading-relaxed`}>
+                          {quiz.description}
+                        </p>
+                      </div>
+                      <div className="pt-8 flex items-center justify-between border-t border-zinc-100/50 mt-4">
+                        <div className="flex items-center gap-1.5 text-zinc-400 text-xs font-medium">
+                          <Timer size={14} />
+                          {quiz.questions.length} questions
+                        </div>
+                        <button 
+                          onClick={() => handleStartAssignments(idx)}
+                          className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-xl text-xs font-bold hover:bg-amber-700 transition-colors"
+                        >
+                          Start Challenge
+                          <ChevronRight size={14} />
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {quizStatus === 'QUIZ' && (
+              <div className="w-full max-w-2xl mx-auto">
+                <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-zinc-800 ml-0.5' : 'border-zinc-200/50'} shadow-sm mb-12`}>
+                   <div className="flex items-center justify-between py-6">
+                    <div className="flex items-center gap-4">
+                      <button 
+                        onClick={resetQuiz}
+                        className={`p-3 border rounded-2xl transition-all shadow-sm ${
+                          theme === 'dark' ? 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:text-zinc-100 hover:border-zinc-500' : 'bg-white border-zinc-200 text-zinc-400 hover:text-zinc-900 hover:border-zinc-900'
+                        }`}
+                      >
+                        <ArrowLeft size={20} />
+                      </button>
+                      <div>
+                        <h3 className={`text-lg font-sans font-bold leading-tight ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-900'}`}>{activeQuiz.title}</h3>
+                        <p className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest mt-1">Timed Assignments Challenge</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-right">
+                        <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest leading-none block">Score</span>
+                        <p className={`text-xl font-display font-bold ${theme === 'dark' ? 'text-emerald-400' : 'text-emerald-600'} leading-none mt-1`}>
+                          {score}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Segmented Progress Bar with Integrated Timer */}
+                  <div className="pb-4 space-y-2.5">
+                    <div className="flex items-center justify-between text-[8px] font-mono font-bold text-zinc-400 uppercase tracking-widest px-0.5">
+                      <span className="flex items-center gap-1.5">
+                        <Clock size={10} className={`${timeLeft < 5 ? 'text-rose-500 animate-pulse' : 'text-amber-500'}`} />
+                        Question Time: <span className={timeLeft < 5 ? 'text-rose-500' : 'text-zinc-100'}>{timeLeft}s</span>
+                      </span>
+                      <span>{currentAssignIdx + 1} / {currentQuestions.length} Questions</span>
+                    </div>
+                    <div className="flex gap-1.5 h-1.5 w-full">
+                      {currentQuestions.map((_, i) => {
+                        const isCompleted = i < currentAssignIdx;
+                        const isCurrent = i === currentAssignIdx;
+                        return (
+                          <div key={i} className={`flex-1 h-full rounded-full overflow-hidden bg-zinc-200 dark:bg-zinc-900 shadow-inner`}>
+                             {isCompleted && (
+                               <div className={`h-full w-full ${theme === 'dark' ? 'bg-zinc-100' : 'bg-zinc-900'}`} />
+                             )}
+                             {isCurrent && (
+                               <motion.div 
+                                 className={`h-full ${timeLeft < 5 ? 'bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]' : 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.3)]'}`}
+                                 initial={{ width: '100%' }}
+                                 animate={{ width: `${(timeLeft / 20) * 100}%` }}
+                                 transition={{ duration: 1, ease: "linear" }}
+                               />
+                             )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Question Area */}
+                <motion.div 
+                  key={currentAssignIdx}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className={`glass-card p-8 md:p-12 space-y-8 transition-all ${shakingIdx === currentAssignIdx ? 'shake' : ''} shadow-xl border-2 ${theme === 'dark' ? 'border-amber-900/50' : 'border-amber-100'}`}
+                >
+                  <div className="flex items-start gap-4">
+                    <span className={`flex-shrink-0 w-8 h-8 rounded-lg ${theme === 'dark' ? 'bg-amber-500 text-zinc-950' : 'bg-amber-600 text-white'} flex items-center justify-center text-sm font-bold mt-1 shadow-lg shadow-amber-200 dark:shadow-amber-900/20`}>
+                      {currentAssignIdx + 1}
+                    </span>
+                    <h2 className={`text-lg md:text-xl font-sans font-bold leading-relaxed ${theme === 'dark' ? 'text-zinc-100' : 'text-zinc-800'}`}>
+                      {currentQuestions[currentAssignIdx].text}
+                    </h2>
+                  </div>
+
+                  <div className="space-y-3">
+                    {currentQuestions[currentAssignIdx].options.map((option, optIdx) => {
+                      const userAnswer = answers[currentAssignIdx];
+                      const isAnswered = userAnswer !== null;
+                      const isSelected = userAnswer === optIdx;
+                      const isCorrect = isAnswered && optIdx === currentQuestions[currentAssignIdx].correctAnswer;
+                      const isWrong = isAnswered && isSelected && optIdx !== currentQuestions[currentAssignIdx].correctAnswer;
+                      
+                      return (
+                        <motion.button
+                          key={optIdx}
+                          disabled={isAnswered}
+                          whileHover={{ x: isAnswered ? 0 : 4 }}
+                          onClick={() => handleSelectOption(currentAssignIdx, optIdx)}
+                          className={`answer-option py-3 px-5 transition-all !gap-4 border-2 ${
+                            isSelected ? (theme === 'dark' ? 'border-zinc-400 bg-zinc-800' : 'border-zinc-900 scale-[1.01]') : (theme === 'dark' ? 'border-zinc-800 bg-zinc-900/40' : 'border-zinc-100')
+                          } ${isCorrect ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-950/20 text-emerald-300' : 'border-emerald-500 bg-emerald-50 text-emerald-900' : ''} ${
+                            isWrong ? theme === 'dark' ? 'border-rose-500/50 bg-rose-950/20 text-rose-300' : 'border-rose-500 bg-rose-50 text-rose-900' : ''
+                          }`}
+                        >
+                          <span className={`flex-shrink-0 w-6 h-6 rounded-lg border-2 flex items-center justify-center text-xs font-black uppercase transition-colors ${
+                            isSelected ? (theme === 'dark' ? 'border-zinc-100 bg-zinc-100 text-zinc-950' : 'border-zinc-900 bg-zinc-900 text-white') : (theme === 'dark' ? 'border-zinc-700 text-zinc-500' : 'border-zinc-200 text-zinc-400')
+                          } ${isCorrect ? 'border-emerald-500 bg-emerald-500 text-white' : ''} ${
+                            isWrong ? 'border-rose-500 bg-rose-500 text-white' : ''
+                          }`}>
+                            {String.fromCharCode(65 + optIdx)}
+                          </span>
+                          <span className="flex-1 text-xs md:text-sm font-semibold">{option}</span>
+                          {isCorrect && <CheckCircle2 className="text-emerald-500" size={18} />}
+                          {isWrong && <XCircle className="text-rose-500" size={18} />}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+
+                  {timeLeft < 5 && !isTimerPaused && (
+                    <p className="text-center text-[10px] font-black text-rose-500 uppercase tracking-widest animate-pulse">
+                      Hurry! Time is almost up
+                    </p>
+                  )}
+                </motion.div>
               </div>
             )}
           </motion.div>
