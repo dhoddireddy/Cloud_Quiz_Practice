@@ -6,7 +6,7 @@ import { useAppContext } from '../../context/AppContext';
 import MoreDropdown from './MoreDropdown';
 
 export const NavigationBar = () => {
-  const { theme, setTheme, isImmersive, setAuth } = useAppContext();
+  const { theme, setTheme, isImmersive } = useAppContext();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -18,13 +18,6 @@ export const NavigationBar = () => {
     { path: '/practice', label: 'Practice', icon: Send },
     { path: '/assessment', label: 'Assessment', icon: Clock },
   ];
-
-  const handleLogout = () => {
-    setAuth(false);
-    localStorage.removeItem('pta_team_auth');
-    localStorage.removeItem('pta_last_activity');
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200 dark:border-amber-500/20 px-4">
@@ -71,18 +64,6 @@ export const NavigationBar = () => {
             title="Toggle Theme"
           >
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
-
-          <button
-            onClick={handleLogout}
-            className={`flex items-center justify-center w-10 h-10 rounded-xl transition-all ${
-              theme === 'dark' 
-                ? 'bg-rose-500/10 text-rose-500 border border-rose-500/20 hover:bg-rose-500/20' 
-                : 'bg-rose-50 text-rose-600 border border-rose-100 hover:bg-rose-100'
-            }`}
-            title="Sign Out"
-          >
-            <LogOut size={18} />
           </button>
         </div>
 
@@ -147,16 +128,6 @@ export const NavigationBar = () => {
                 <Zap size={18} />
                 2025 Questions Bank
               </Link>
-
-              <button
-                onClick={handleLogout}
-                className={`w-full flex items-center gap-4 p-4 rounded-2xl text-sm font-bold transition-all border-t mt-2 ${
-                  theme === 'dark' ? 'text-rose-500 border-zinc-800 hover:bg-rose-500/10' : 'text-rose-600 border-zinc-100 hover:bg-rose-50'
-                }`}
-              >
-                <LogOut size={18} />
-                Sign Out Team Account
-              </button>
             </div>
           </motion.div>
         )}

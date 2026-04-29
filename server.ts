@@ -11,25 +11,6 @@ async function startServer() {
 
   app.use(express.json());
 
-  // API Routes - Private Logic
-  app.post("/api/login", (req, res) => {
-    const { username, password } = req.body;
-
-    const validUsername = process.env.TEAM_USERNAME;
-    const validPassword = process.env.TEAM_PASSWORD;
-
-    if (!validUsername || !validPassword) {
-      return res.status(500).json({ error: "Server credentials not configured" });
-    }
-
-    if (username === validUsername && password === validPassword) {
-      // In a real app, you'd set a secure cookie or JWT here
-      return res.json({ success: true, message: "Login successful" });
-    }
-
-    res.status(401).json({ success: false, message: "Invalid credentials" });
-  });
-
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

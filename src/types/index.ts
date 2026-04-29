@@ -33,6 +33,4 @@ export interface AppContextType {
   isImmersive: boolean;
   setIsImmersive: React.Dispatch<React.SetStateAction<boolean>>;
   quizzes: Quiz[];
-  isAuth: boolean;
-  setAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }

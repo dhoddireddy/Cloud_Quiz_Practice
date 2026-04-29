@@ -13,7 +13,6 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [isImmersive, setIsImmersive] = useState(false);
-  const [isAuth, setAuth] = useState(false);
   const [userStats, setUserStats] = useState<UserStats>({
     highScore: 0,
     quizzesCompleted: 0,
@@ -25,10 +24,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Load from localStorage
   useEffect(() => {
-    const savedAuth = localStorage.getItem('pta_team_auth');
-    if (savedAuth === 'true') {
-      setAuth(true);
-    }
     const saved = localStorage.getItem('quizwise_user_stats');
     if (saved) {
       try {
@@ -122,47 +117,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     })) as Quiz[];
   }, []);
 
-  // Activity Tracking for 30min timeout
-  useEffect(() => {
-    if (!isAuth) return;
-
-    const timeoutDuration = 30 * 60 * 1000; // 30 minutes
-    
-    const checkTimeout = () => {
-      const lastActivity = localStorage.getItem('pta_last_activity');
-      if (lastActivity) {
-        const diff = Date.now() - parseInt(lastActivity, 10);
-        if (diff > timeoutDuration) {
-          setAuth(false);
-          localStorage.removeItem('pta_team_auth');
-          localStorage.removeItem('pta_last_activity');
-        }
-      }
-    };
-
-    const updateActivity = () => {
-      localStorage.setItem('pta_last_activity', Date.now().toString());
-    };
-
-    // Initialize activity on mount/auth
-    updateActivity();
-
-    // Event listeners for activity
-    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-    events.forEach(event => window.addEventListener(event, updateActivity));
-
-    // Check timeout every minute
-    const interval = setInterval(checkTimeout, 60000);
-
-    return () => {
-      events.forEach(event => window.removeEventListener(event, updateActivity));
-      clearInterval(interval);
-    };
-  }, [isAuth]);
-
   return (
     <AppContext.Provider value={{ 
-      theme, setTheme, userStats, setUserStats, resetStats, isImmersive, setIsImmersive, quizzes, isAuth, setAuth 
+      theme, setTheme, userStats, setUserStats, resetStats, isImmersive, setIsImmersive, quizzes 
     }}>
       {children}
     </AppContext.Provider>

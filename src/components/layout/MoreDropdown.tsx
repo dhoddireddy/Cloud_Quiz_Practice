@@ -6,15 +6,8 @@ import { useAppContext } from '../../context/AppContext';
 
 const MoreDropdown: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, setAuth } = useAppContext();
+  const { theme } = useAppContext();
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const handleLogout = () => {
-    setAuth(false);
-    localStorage.removeItem('pta_team_auth');
-    localStorage.removeItem('pta_last_activity');
-    setIsOpen(false);
-  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -76,20 +69,6 @@ const MoreDropdown: React.FC = () => {
               </div>
               <span>2025 Questions</span>
             </Link>
-
-            <button
-              onClick={handleLogout}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-xs font-bold transition-all hover:translate-x-1 border-t mt-1 pt-2 ${
-                theme === 'dark' 
-                  ? 'text-rose-400 border-zinc-800 hover:bg-rose-500/10' 
-                  : 'text-rose-500 border-zinc-100 hover:bg-rose-50'
-              }`}
-            >
-              <div className={`p-1.5 rounded-md ${theme === 'dark' ? 'bg-rose-500/10' : 'bg-rose-50'}`}>
-                <LogOut size={14} className="text-rose-500" />
-              </div>
-              <span>Sign Out Team</span>
-            </button>
           </motion.div>
         )}
       </AnimatePresence>
