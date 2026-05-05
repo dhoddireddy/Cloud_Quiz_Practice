@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, LogOut, Menu, X } from 'lucide-react';
+import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
-import MoreDropdown from './MoreDropdown';
 
 export const NavigationBar = () => {
   const { theme, setTheme, isImmersive } = useAppContext();
@@ -17,6 +16,7 @@ export const NavigationBar = () => {
     { path: '/learning', label: 'Learning', icon: BookOpen },
     { path: '/practice', label: 'Practice', icon: Send },
     { path: '/assessment', label: 'Assessment', icon: Clock },
+    { path: '/questions-2025', label: '2025 Questions', icon: Zap },
   ];
 
   return (
@@ -50,8 +50,6 @@ export const NavigationBar = () => {
               <span>{item.label}</span>
             </Link>
           ))}
-          <div className="mx-1 h-4 w-px bg-zinc-200 dark:bg-zinc-800" />
-          <MoreDropdown />
         </nav>
 
         {/* Desktop Actions */}
@@ -115,19 +113,6 @@ export const NavigationBar = () => {
                   {item.label}
                 </Link>
               ))}
-              
-              <Link
-                to="/questions-2025"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`flex items-center gap-4 p-4 rounded-2xl text-sm font-bold transition-all ${
-                  location.pathname === '/questions-2025'
-                    ? 'bg-amber-500 text-zinc-950'
-                    : theme === 'dark' ? 'text-zinc-400 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
-                }`}
-              >
-                <Zap size={18} />
-                2025 Questions Bank
-              </Link>
             </div>
           </motion.div>
         )}
