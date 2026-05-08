@@ -18,9 +18,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       
       <NavigationBar />
       
-      <main className={`flex-1 w-full flex flex-col items-center transition-all duration-700 ${
-        isImmersive ? 'pt-4 md:pt-8' : 'pt-24 md:pt-32'
-      }`}>
+      <main className="flex-1 w-full flex flex-col items-center pt-24 md:pt-28 transition-all duration-700">
         {children}
       </main>
 

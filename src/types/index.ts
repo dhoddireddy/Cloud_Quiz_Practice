@@ -33,4 +33,6 @@ export interface AppContextType {
   isImmersive: boolean;
   setIsImmersive: React.Dispatch<React.SetStateAction<boolean>>;
   quizzes: Quiz[];
+  activeDownloadQuizId: string | null;
+  setActiveDownloadQuizId: React.Dispatch<React.SetStateAction<string | null>>;
 }

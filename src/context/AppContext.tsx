@@ -4,8 +4,11 @@ import htmlCssData from '../data/HTML_CSS_mcqs.json';
 import javaData from '../data/Java_MCQs.json';
 import jsNodeData from '../data/JavaScript_NodeJS_MCQs.json';
 import mongoData from '../data/MongoDB_MCQs.json';
+import nodeData from '../data/NodeJS_MCQs.json';
+import reactData from '../data/React_MCQs.json';
 import springData from '../data/Spring_Core_Spring_Boot_MCQs.json';
 import tsData from '../data/TypeScript_MCQs.json';
+import angularData from '../data/Angular_MCQs.json';
 import { Quiz, UserStats, AppContextType } from '../types';
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -13,6 +16,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [isImmersive, setIsImmersive] = useState(false);
+  const [activeDownloadQuizId, setActiveDownloadQuizId] = useState<string | null>(null);
   const [userStats, setUserStats] = useState<UserStats>({
     highScore: 0,
     quizzesCompleted: 0,
@@ -79,7 +83,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         highScore: 0,
         quizzesCompleted: 0,
         categoryPerformance: {},
-        totalPoints: 0
+        totalPoints: 0,
+        streak: 0,
+        lastActiveDate: null
       };
       setUserStats(empty);
       localStorage.setItem('quizwise_user_stats', JSON.stringify(empty));
@@ -91,7 +97,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       { id: 'java', title: 'Java Mastery', description: 'Advanced Java concepts, JVM, and OOP.', category: 'Backend', data: javaData },
       { id: 'js-node', title: 'JS & Node.js', description: 'Fullstack JavaScript from frontend to server.', category: 'Fullstack', data: jsNodeData },
       { id: 'ts', title: 'TypeScript', description: 'Type safety, interfaces, and advanced TS features.', category: 'Frontend', data: tsData },
+      { id: 'react', title: 'React', description: 'Components, hooks, state, and UI architecture.', category: 'Frontend', data: reactData },
+      { id: 'angular', title: 'Angular', description: 'Components, services, modules, and templates.', category: 'Frontend', data: angularData },
       { id: 'html-css', title: 'HTML & CSS', description: 'Modern layout techniques and semantic web.', category: 'Frontend', data: htmlCssData },
+      { id: 'nodejs', title: 'NodeJS', description: 'Runtime, APIs, modules, and backend JavaScript.', category: 'Backend', data: nodeData },
       { id: 'mongo', title: 'MongoDB', description: 'NoSQL databases and document orchestration.', category: 'Database', data: mongoData },
       { id: 'spring', title: 'Spring Boot', description: 'Enterprise Java with Spring framework.', category: 'Backend', data: springData },
       { id: 'devops', title: 'DevOps & Git', description: 'Pipelines, git workflows, and automation.', category: 'DevOps', data: devOpsData },
@@ -119,7 +128,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   return (
     <AppContext.Provider value={{ 
-      theme, setTheme, userStats, setUserStats, resetStats, isImmersive, setIsImmersive, quizzes 
+      theme, setTheme, userStats, setUserStats, resetStats, isImmersive, setIsImmersive, quizzes, activeDownloadQuizId, setActiveDownloadQuizId 
     }}>
       {children}
     </AppContext.Provider>

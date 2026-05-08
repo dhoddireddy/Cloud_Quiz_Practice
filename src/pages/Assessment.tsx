@@ -11,7 +11,7 @@ import { Question } from '../types';
 type QuizStatus = 'IDLE' | 'QUIZ' | 'RESULTS';
 
 const Assessment: React.FC = () => {
-  const { theme, quizzes, userStats, setUserStats, resetStats, setIsImmersive } = useAppContext();
+  const { theme, quizzes, userStats, setUserStats, resetStats, setIsImmersive, setActiveDownloadQuizId } = useAppContext();
   
   const [quizStatus, setQuizStatus] = useState<QuizStatus>('IDLE');
   const [activeQuizIndex, setActiveQuizIndex] = useState(0);
@@ -27,13 +27,18 @@ const Assessment: React.FC = () => {
   const [questionStartTime, setQuestionStartTime] = useState<number>(0);
   const [questionResults, setQuestionResults] = useState<{ id: number, isCorrect: boolean, timeSpent: number, category: string }[]>([]);
 
+  const activeQuiz = quizzes[activeQuizIndex];
+  const answeredCount = answers.filter(a => a !== null).length;
+  
   React.useEffect(() => {
     setIsImmersive(quizStatus === 'QUIZ');
-    return () => setIsImmersive(false);
-  }, [quizStatus, setIsImmersive]);
+    setActiveDownloadQuizId(quizStatus === 'IDLE' ? null : activeQuiz?.id ?? null);
+    return () => {
+      setIsImmersive(false);
+      setActiveDownloadQuizId(null);
+    };
+  }, [activeQuiz, quizStatus, setActiveDownloadQuizId, setIsImmersive]);
 
-  const activeQuiz = quizzes[activeQuizIndex];
-  
   // Timer logic
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -165,7 +170,7 @@ const Assessment: React.FC = () => {
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
-      className="w-full max-w-4xl py-12"
+      className="w-full max-w-7xl px-4 py-8"
     >
       {quizStatus === 'IDLE' && (
         <div className="space-y-12">
@@ -173,7 +178,7 @@ const Assessment: React.FC = () => {
             <h2 className="text-2xl font-sans font-bold">Timed Assessment</h2>
             <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-sm`}>20 Seconds per question. No pauses. Are you ready?</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {quizzes.map((quiz, idx) => (
               <motion.div 
                 key={quiz.id}
@@ -210,7 +215,58 @@ const Assessment: React.FC = () => {
 
       {quizStatus === 'QUIZ' && (
         <div className="w-full max-w-2xl mx-auto">
-          <div className={`sticky top-0 z-40 ${theme === 'dark' ? 'bg-zinc-950/90' : 'bg-zinc-50/90'} backdrop-blur-xl -mx-4 px-4 border-b ${theme === 'dark' ? 'border-amber-500/20 ml-0.5' : 'border-zinc-200/50'} shadow-sm mb-12`}>
+          <button 
+            onClick={resetQuiz}
+            className={`fixed left-4 top-24 z-40 h-12 px-4 border rounded-2xl transition-all shadow-lg flex items-center gap-2 group ${
+              theme === 'dark' ? 'bg-zinc-900 border-amber-500/30 text-amber-500 hover:text-amber-400 hover:border-amber-500' : 'bg-white border-zinc-200 text-zinc-500 hover:text-zinc-900 hover:border-zinc-900'
+            }`}
+            aria-label="Back to assessment topics"
+          >
+            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-xs font-black uppercase tracking-widest">Back</span>
+          </button>
+          <aside className={`hidden lg:block fixed right-4 top-24 z-40 w-60 overflow-hidden rounded-2xl border shadow-xl backdrop-blur-xl ${
+            theme === 'dark' ? 'bg-zinc-900/95 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-300 text-zinc-950'
+          }`}>
+            <div className="border-t-4 border-rose-400 bg-zinc-950 p-4 text-white">
+              <p className="text-[10px] font-black uppercase tracking-widest text-rose-300">Assessment Topic</p>
+              <h3 className="mt-1 text-base font-black leading-snug">{activeQuiz.title}</h3>
+              <span className="mt-3 inline-flex rounded-full bg-rose-400 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-950">
+                {activeQuiz.category}
+              </span>
+            </div>
+            <div className="space-y-4 p-4">
+              <div className="grid grid-cols-2 gap-3 text-xs">
+                <div className="rounded-xl border-2 border-fuchsia-500 bg-white p-3 text-zinc-950 shadow-sm dark:border-fuchsia-400/40 dark:bg-zinc-950 dark:text-fuchsia-50">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-fuchsia-700 dark:text-fuchsia-300">Question</p>
+                  <p className="mt-1 text-xl font-black">{currentAssignIdx + 1}/{currentQuestions.length}</p>
+                </div>
+                <div className="rounded-xl border-2 border-amber-500 bg-white p-3 text-zinc-950 shadow-sm dark:border-amber-400/40 dark:bg-zinc-950 dark:text-amber-50">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-amber-700 dark:text-amber-300">Answered</p>
+                  <p className="mt-1 text-xl font-black">{answeredCount}</p>
+                </div>
+              </div>
+              <div className={`flex items-center justify-between rounded-xl px-3 py-2 text-xs font-black ${
+                timeLeft < 5
+                  ? 'bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300'
+                  : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300'
+              }`}>
+                <span>{timeLeft}s left</span>
+                <span>{totalPoints} pts</span>
+              </div>
+
+              <button 
+                onClick={resetQuiz}
+                className={`w-full py-3 rounded-xl border-2 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all mt-2 ${
+                  theme === 'dark' ? 'border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-amber-500 hover:border-amber-500/50' : 'border-zinc-100 bg-zinc-50 text-zinc-500 hover:text-zinc-900 hover:border-zinc-200'
+                }`}
+              >
+                <ArrowLeft size={14} />
+                Exit Assessment
+              </button>
+            </div>
+          </aside>
+          <div className="hidden">
              <div className="flex items-center justify-between py-6">
               <div className="flex items-center gap-4">
                 <button 
@@ -277,6 +333,19 @@ const Assessment: React.FC = () => {
             exit={{ opacity: 0, x: -20 }}
             className={`glass-card p-8 md:p-12 space-y-8 transition-all ${shakingIdx === currentAssignIdx ? 'shake' : ''} shadow-xl border-2 ${theme === 'dark' ? 'border-amber-200' : 'border-amber-100'}`}
           >
+            <div className="flex items-center justify-between gap-4">
+              <div className={`inline-flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-black uppercase tracking-widest ${
+                timeLeft < 5
+                  ? 'bg-rose-100 text-rose-700 dark:bg-rose-950/40 dark:text-rose-300'
+                  : 'bg-amber-100 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300'
+              }`}>
+                <Clock size={14} className={timeLeft < 5 ? 'animate-pulse' : ''} />
+                {timeLeft}s
+              </div>
+              <div className="text-right text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                {currentAssignIdx + 1} / {currentQuestions.length}
+              </div>
+            </div>
             <div className="flex items-start gap-4">
               <span className={`flex-shrink-0 w-8 h-8 rounded-lg ${theme === 'dark' ? 'bg-amber-500 text-zinc-950' : 'bg-amber-600 text-white'} flex items-center justify-center text-sm font-bold mt-1 shadow-lg shadow-amber-200 dark:shadow-amber-400/20`}>
                 {currentAssignIdx + 1}
@@ -332,6 +401,44 @@ const Assessment: React.FC = () => {
 
       {quizStatus === 'RESULTS' && (
         <div className="w-full max-w-4xl mx-auto text-center space-y-12">
+          <button 
+            onClick={resetQuiz}
+            className={`fixed left-4 top-24 z-40 h-12 px-4 border rounded-2xl transition-all shadow-lg flex items-center gap-2 group ${
+              theme === 'dark' ? 'bg-zinc-900 border-amber-500/30 text-amber-500 hover:text-amber-400 hover:border-amber-500' : 'bg-white border-zinc-200 text-zinc-500 hover:text-zinc-900 hover:border-zinc-900'
+            }`}
+            aria-label="Back to assessment topics"
+          >
+            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+            <span className="text-xs font-black uppercase tracking-widest">Back</span>
+          </button>
+          <aside className={`hidden lg:block fixed right-4 top-24 z-40 w-60 overflow-hidden rounded-2xl border text-left shadow-xl backdrop-blur-xl ${
+            theme === 'dark' ? 'bg-zinc-900/95 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-300 text-zinc-950'
+          }`}>
+            <div className="border-t-4 border-emerald-400 bg-zinc-950 p-4 text-white">
+              <p className="text-[10px] font-black uppercase tracking-widest text-emerald-300">Assessment Result</p>
+              <h3 className="mt-1 text-base font-black leading-snug">{activeQuiz.title}</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3 p-4 text-xs">
+              <div className="rounded-xl border-2 border-amber-500 bg-white p-3 text-zinc-950 shadow-sm dark:border-amber-400/40 dark:bg-zinc-950 dark:text-amber-50">
+                <p className="text-[9px] font-black uppercase tracking-widest text-amber-700 dark:text-amber-300">Answered</p>
+                <p className="mt-1 text-xl font-black">{answeredCount}/{currentQuestions.length}</p>
+              </div>
+              <div className="rounded-xl border-2 border-emerald-500 bg-white p-3 text-zinc-950 shadow-sm dark:border-emerald-400/40 dark:bg-zinc-950 dark:text-emerald-50">
+                <p className="text-[9px] font-black uppercase tracking-widest text-emerald-700 dark:text-emerald-300">Correct</p>
+                <p className="mt-1 text-xl font-black">{score}</p>
+              </div>
+
+              <button 
+                onClick={resetQuiz}
+                className={`w-full py-3 rounded-xl border-2 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all mt-4 ${
+                  theme === 'dark' ? 'border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-amber-500 hover:border-amber-500/50' : 'border-zinc-100 bg-zinc-50 text-zinc-500 hover:text-zinc-900 hover:border-zinc-200'
+                }`}
+              >
+                <ArrowLeft size={14} />
+                Exit Results
+              </button>
+            </div>
+          </aside>
           {/* Reuse RESULTS rendering from Practice or factor it out? Let's keep it here for now for simplicity as per refactor request. */}
           {/* I'll use a simplified version or copy it, but best is to have it consistent. */}
           <div className="space-y-4">
