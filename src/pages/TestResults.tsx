@@ -126,19 +126,39 @@ const TestResults: React.FC = () => {
                     {question.options.map((option, optionIndex) => {
                       const isSelected = answer?.selectedIndex === optionIndex;
                       const isCorrectOption = optionIndex === question.correctIndex;
+                      const isWrongSelected = isSelected && !isCorrectOption;
+                      const optionClass = isCorrectOption
+                        ? 'border-emerald-400 bg-emerald-50 text-emerald-700'
+                        : isWrongSelected
+                        ? 'border-rose-400 bg-rose-50 text-rose-700'
+                        : 'border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-300';
+
                       return (
                         <div
                           key={`${question.id}-option-${optionIndex}`}
-                          className={`rounded-2xl border px-4 py-3 text-sm ${
-                            isCorrectOption
-                              ? 'border-emerald-400 bg-emerald-50 text-emerald-700'
-                              : isSelected
-                              ? 'border-rose-400 bg-rose-50 text-rose-700'
-                              : 'border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-300'
-                          }`}
+                          className={`rounded-2xl border px-4 py-3 text-sm ${optionClass}`}
                         >
-                          <span className="font-semibold mr-2">{String.fromCharCode(65 + optionIndex)}.</span>
-                          {option}
+                          <div className="flex flex-wrap items-center justify-between gap-3">
+                            <span className="font-semibold mr-2">{String.fromCharCode(65 + optionIndex)}.</span>
+                            <div className="flex flex-wrap gap-2">
+                              {isCorrectOption && (
+                                <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                                  Correct Answer
+                                </span>
+                              )}
+                              {isWrongSelected && (
+                                <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold bg-rose-100 text-rose-800">
+                                  Your Answer
+                                </span>
+                              )}
+                              {isSelected && isCorrectOption && !isWrongSelected && (
+                                <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                                  Your Answer
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="mt-2">{option}</div>
                         </div>
                       );
                     })}

@@ -15,18 +15,29 @@ interface TestAnswer {
 
 const RESULT_STORAGE_KEY = 'latestTestResult';
 
+const TEST_DURATION_SECONDS = 60 * 60;
+
 const getTimerColor = (seconds: number) => {
-  if (seconds >= 15) return 'text-emerald-600';
-  if (seconds >= 8) return 'text-amber-500';
+  if (seconds >= 1200) return 'text-emerald-600';
+  if (seconds >= 300) return 'text-amber-500';
   return 'text-rose-500';
 };
 
-const formatTime = (seconds: number) => `${seconds}s`;
+const formatTime = (seconds: number) => {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+  return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+};
 
 const buildResult = (
   questions: TestQuestion[],
   answers: TestAnswer[],
   tabSwitchCount: number,
+  startedAt: number,
   terminatedReason?: string
 ): TestResult => {
   const completeAnswers = questions.map(question => {
@@ -89,7 +100,7 @@ const buildResult = (
     tabSwitchCount,
     timeTakenSeconds,
     perTopic,
-    startedAt: Date.now(),
+    startedAt,
     endedAt: Date.now(),
     terminatedReason,
   };
@@ -101,10 +112,13 @@ const Test: React.FC = () => {
   const [questions, setQuestions] = useState<TestQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<TestAnswer[]>([]);
-  const [timeRemaining, setTimeRemaining] = useState(30);
+  const [timeRemaining, setTimeRemaining] = useState(TEST_DURATION_SECONDS);
+  const [startedAt, setStartedAt] = useState<number | null>(null);
   const [phase, setPhase] = useState<'intro' | 'running' | 'submitting'>('intro');
   const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [warningOpen, setWarningOpen] = useState(false);
+  const [terminationOpen, setTerminationOpen] = useState(false);
+  const [violationMessage, setViolationMessage] = useState('');
   const [showHistoryPanel, setShowHistoryPanel] = useState(false);
   const [allowAnswer, setAllowAnswer] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
@@ -112,6 +126,7 @@ const Test: React.FC = () => {
 
   const currentQuestion = questions[currentIndex];
   const activeAnswer = currentQuestion ? answers.find(answer => answer.questionId === currentQuestion.id) : undefined;
+  const lastAnswerTimestampRef = useRef<number>(Date.now());
 
   const startTimer = () => {
     stopTimer();
@@ -127,9 +142,40 @@ const Test: React.FC = () => {
     }
   };
 
-  const finishTest = (reason?: string) => {
+  const resetTestToIntro = () => {
     stopTimer();
-    const result = buildResult(questions, answers, tabSwitchCount, reason);
+    setPhase('intro');
+    setQuestions([]);
+    setCurrentIndex(0);
+    setAnswers([]);
+    setTimeRemaining(TEST_DURATION_SECONDS);
+    setStartedAt(null);
+    setTabSwitchCount(0);
+    setAllowAnswer(true);
+    setIsPaused(false);
+    setWarningOpen(false);
+    setTerminationOpen(false);
+    setViolationMessage('');
+  };
+
+  const finishTest = (reason?: string, skipResults = false) => {
+    stopTimer();
+    if (skipResults) {
+      setViolationMessage(reason ?? 'Test ended.');
+      setTerminationOpen(true);
+      setPhase('intro');
+      setQuestions([]);
+      setCurrentIndex(0);
+      setAnswers([]);
+      setTimeRemaining(TEST_DURATION_SECONDS);
+      setStartedAt(null);
+      setTabSwitchCount(0);
+      setAllowAnswer(true);
+      setIsPaused(false);
+      setWarningOpen(false);
+      return;
+    }
+    const result = buildResult(questions, answers, tabSwitchCount, startedAt ?? Date.now(), reason);
     localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(result));
     // Save to test history with incremental id like TEST-1
     try {
@@ -166,24 +212,26 @@ const Test: React.FC = () => {
       return;
     }
     setCurrentIndex(prev => prev + 1);
-    setTimeRemaining(30);
     setAllowAnswer(true);
   };
 
   const recordAnswer = (selectedIndex: number | null, timedOut = false) => {
     if (!currentQuestion || !allowAnswer) return;
 
+    const now = Date.now();
+    const answerTime = Math.max(1, Math.round((now - lastAnswerTimestampRef.current) / 1000));
+    lastAnswerTimestampRef.current = now;
+
     const answerRecord: TestAnswer = {
       questionId: currentQuestion.id,
       selectedIndex,
       correct: selectedIndex !== null && selectedIndex === currentQuestion.correctIndex,
       timedOut,
-      timeTaken: 30 - timeRemaining,
+      timeTaken: answerTime,
     };
 
     setAnswers(prev => [...prev, answerRecord]);
     setAllowAnswer(false);
-    stopTimer();
     setTimeout(advanceQuestion, 500);
   };
 
@@ -192,7 +240,10 @@ const Test: React.FC = () => {
     setQuestions(newQuestions);
     setCurrentIndex(0);
     setAnswers([]);
-    setTimeRemaining(30);
+    setTimeRemaining(TEST_DURATION_SECONDS);
+    const start = Date.now();
+    setStartedAt(start);
+    lastAnswerTimestampRef.current = start;
     setPhase('running');
     setTabSwitchCount(0);
     setAllowAnswer(true);
@@ -215,9 +266,15 @@ const Test: React.FC = () => {
       if (next === 1) {
         setIsPaused(true);
         stopTimer();
+        setViolationMessage('You left the test by switching tabs. Return to the test to continue. One more switch will end the test.');
+        setWarningOpen(true);
+      } else if (next === 2) {
+        setIsPaused(true);
+        stopTimer();
+        setViolationMessage('This is your final warning. One more tab switch will end the test and return you to the test start screen.');
         setWarningOpen(true);
       } else {
-        finishTest('Test terminated due to tab switching.');
+        finishTest('You came out of the test because you switched tabs too many times. The session has ended.', true);
       }
       return next;
     });
@@ -228,11 +285,11 @@ const Test: React.FC = () => {
       startTimer();
     }
     return stopTimer;
-  }, [phase, isPaused, currentIndex]);
+  }, [phase, isPaused]);
 
   useEffect(() => {
     if (phase === 'running' && timeRemaining === 0) {
-      recordAnswer(null, true);
+      finishTest('Test session time ended.');
     }
   }, [timeRemaining, phase]);
 
@@ -325,9 +382,9 @@ const Test: React.FC = () => {
             <div>
               <h1 className="text-4xl font-heading font-black text-zinc-950 dark:text-amber-50">Timed Test Challenge</h1>
               <p className="mt-4 max-w-3xl text-sm text-zinc-600 dark:text-zinc-400 leading-7">
-                Complete 60 shuffled questions generated from every topic bank. Each question has exactly 30 seconds, no going back, and anti-cheat monitoring enabled.
-              </p>
-            </div>
+                  Complete 60 shuffled questions generated from every topic bank. The full session runs for 1 hour, with no per-question timer and strong anti-cheat monitoring.
+                </p>
+              </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -335,26 +392,25 @@ const Test: React.FC = () => {
                 <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">60</p>
               </div>
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
-                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Time per question</p>
-                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">30s</p>
+                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Session duration</p>
+                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">1 hr</p>
               </div>
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
                 <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Estimated time</p>
-                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">30 min</p>
+                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">1 hr</p>
               </div>
             </div>
 
             <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-6 shadow-sm">
               <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Rules</h2>
               <ul className="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-400 leading-7 list-disc list-inside">
-                <li>No tab switching; first switch warns, second ends the test.</li>
+                <li>No tab switching; first switch warns, second warns again, and the third switch ends the test.</li>
                 <li>No back navigation. Previous questions are locked forever.</li>
-                <li>30-second countdown per question; unanswered questions auto-advance.</li>
+                <li>One hour session countdown; questions do not auto-advance unless answered.</li>
                 <li>Right-click, copy, and select are disabled while the test is running.</li>
-                <li>The test ends after 60 questions or if a second tab switch occurs.</li>
+                <li>The test ends after 60 questions or when the session time reaches zero.</li>
               </ul>
             </div>
-
             <button
               type="button"
               onClick={startTest}
@@ -440,20 +496,17 @@ const Test: React.FC = () => {
                 <span className="inline-flex items-center rounded-full bg-amber-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-amber-600">
                   {currentQuestion.topic}
                 </span>
+                {startedAt && (
+                  <span className="inline-flex items-center rounded-full bg-zinc-100 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-700">
+                    Started at {new Date(startedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                )}
                 <span className={`inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${getTimerColor(timeRemaining)}`}>
                   {formatTime(timeRemaining)}
                 </span>
               </div>
             </div>
-
-            <div className="mt-5 h-3 w-full overflow-hidden rounded-full bg-zinc-200">
-              <div
-                className="h-full rounded-full bg-amber-500 transition-all duration-300"
-                style={{ width: `${Math.max(0, (timeRemaining / 30) * 100)}%` }}
-              />
-            </div>
           </div>
-
           <div className="rounded-[32px] border border-zinc-200 bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-semibold text-zinc-950 leading-tight">
               {currentQuestion.question}
@@ -510,7 +563,7 @@ const Test: React.FC = () => {
               <h3 className="text-xl font-semibold">Warning</h3>
             </div>
             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300 leading-7">
-              Switching tabs is not allowed during the test. One more violation will end the test immediately.
+              {violationMessage || 'Switching tabs is not allowed during the test. One more violation will end the test immediately.'}
             </p>
             <button
               type="button"
@@ -518,6 +571,27 @@ const Test: React.FC = () => {
               className="mt-6 inline-flex items-center justify-center rounded-3xl bg-amber-500 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-zinc-950"
             >
               Continue test
+            </button>
+          </div>
+        </div>
+      )}
+
+      {terminationOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 test-page-warning-backdrop">
+          <div className="w-full max-w-xl rounded-3xl bg-white dark:bg-zinc-900 p-8 shadow-2xl border border-zinc-200 dark:border-zinc-700">
+            <div className="flex items-center gap-3 text-rose-500">
+              <ShieldAlert size={24} />
+              <h3 className="text-xl font-semibold">Test Ended</h3>
+            </div>
+            <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300 leading-7">
+              {violationMessage || 'You left the test and the session has been terminated.'}
+            </p>
+            <button
+              type="button"
+              onClick={() => setTerminationOpen(false)}
+              className="mt-6 inline-flex items-center justify-center rounded-3xl bg-amber-500 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-zinc-950"
+            >
+              Return to test start
             </button>
           </div>
         </div>
