@@ -1,0 +1,32 @@
+[
+  {
+    "id": "react-basics",
+    "title": "React Basics",
+    "file": "react-basics.md",
+    "category": "Frontend Development"
+  },
+  {
+    "id": "javascript-fundamentals",
+    "title": "JavaScript Fundamentals",
+    "file": "javascript-fundamentals.md",
+    "category": "Programming Languages"
+  },
+  {
+    "id": "node-js-intro",
+    "title": "Node.js Introduction",
+    "file": "node-js-intro.md",
+    "category": "Backend Development"
+  },
+  {
+    "id": "angular-discussion",
+    "title": "Angular 21 Discussion",
+    "file": "angular-discussion.md",
+    "category": "Frontend Development"
+  },
+  {
+    "id": "reactjs-discussion",
+    "title": "ReactJS Discussion",
+    "file": "reactjs-discussion.md",
+    "category": "Frontend Development"
+  }
+]

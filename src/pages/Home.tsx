@@ -89,6 +89,36 @@ const Home: React.FC = () => {
 
           {/* Quick Stats Widget */}
           <div className="w-full md:w-[400px]">
+              <div className="mb-6 relative">
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                  className="pointer-events-none absolute -inset-1 rounded-[34px] border border-amber-400/40"
+                />
+                <div className={`relative rounded-[32px] border border-amber-500 bg-amber-50 p-6 shadow-xl ${theme === 'dark' ? 'backdrop-blur-sm' : ''}`}>
+                  <div className="space-y-4">
+                    <div className="inline-flex items-center rounded-full bg-amber-500 px-3 py-1 text-[10px] font-black uppercase tracking-[0.22em] text-white shadow-sm">
+                      New Feature
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-zinc-950">TEST Mode</h3>
+                      <p className="mt-2 text-sm text-zinc-700 leading-6">
+                        Experience the new timed exam simulator with anti-cheat monitoring, instant scoring, and clear progress tracking.
+                      </p>
+                    </div>
+                    <div className="rounded-3xl border border-amber-500 bg-white p-3 text-sm font-semibold text-amber-700 shadow-sm">
+                      Use the Test tab in the nav to launch your first full simulation.
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => navigate('/test')}
+                      className="w-full rounded-3xl bg-amber-500 px-4 py-3 text-sm font-black uppercase tracking-[0.16em] text-zinc-950 hover:bg-amber-600 transition"
+                    >
+                      Try Test Now
+                    </button>
+                  </div>
+                </div>
+              </div>
             <motion.div 
               whileHover={{ y: -5 }}
               className={`p-8 rounded-[40px] border shadow-2xl relative overflow-hidden group ${
@@ -175,7 +205,24 @@ const Home: React.FC = () => {
                 )}
               </div>
             </motion.div>
-          </div>
+              {/* Test History Mini Card */}
+              <div className="mt-6">
+                <div className={`p-4 rounded-2xl border ${theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-100'}`}>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs font-semibold text-zinc-500">Recent Test</p>
+                      <p className={`text-sm font-medium ${theme === 'dark' ? 'text-amber-200' : 'text-zinc-900'}`}>
+                        {(function(){ try { const raw = localStorage.getItem('pta_tests'); const list = raw ? JSON.parse(raw) as any[] : []; return list && list.length > 0 ? list[0].id : 'No tests'; } catch { return 'No tests'; } })()}
+                      </p>
+                    </div>
+                    <div>
+                      <button onClick={() => { const raw = localStorage.getItem('pta_tests'); const list = raw ? JSON.parse(raw) as any[] : []; if (list && list.length>0) window.open(`/test/history/${list[0].id}`, '_blank'); }} className="px-3 py-1 rounded bg-amber-500 text-white text-xs">Open</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
         </div>
       </section>
 

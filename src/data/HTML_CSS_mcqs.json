@@ -957,7 +957,7 @@
             "Links will have an underline that disappears on hover",
             "No underline will ever show because text-decoration: none overrides hover"
         ],
-        "correct": "Links will show no underline by default and show an underline only when hover"
+        "correct": "Links will show no underline by default and show an underline only when hovered"
     },
     {
         "question": "What is the HTML5 <figure> element typically paired with, and what is its purpose?",

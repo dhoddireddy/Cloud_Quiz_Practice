@@ -10,9 +10,11 @@ interface MainLayoutProps {
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const { isImmersive } = useAppContext();
+  const location = useLocation();
+  const hideFooter = isImmersive || location.pathname === '/test';
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center">
+    <div className="relative min-h-screen w-[90vw] max-w-[90vw] mx-auto flex flex-col items-center">
       {/* Background Atmosphere */}
       <div className={`atmosphere transition-opacity duration-1000 ${isImmersive ? 'opacity-20 translate-y-10' : 'opacity-100'}`} />
       
@@ -22,7 +24,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         {children}
       </main>
 
-      {!isImmersive && <Footer />}
+      {!hideFooter && <Footer />}
     </div>
   );
 };

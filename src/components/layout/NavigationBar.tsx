@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X, Target, UserCircle, Download } from 'lucide-react';
+import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X, Target, UserCircle, Download, GraduationCap } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 
@@ -26,6 +26,7 @@ export const NavigationBar = () => {
     { path: '/learning', label: 'Learning', icon: BookOpen },
     { path: '/practice', label: 'Practice', icon: Send },
     { path: '/assessment', label: 'Assessment', icon: Clock },
+    { path: '/test', label: 'Test', icon: Target },
     { path: '/questions-2025', label: '2025 Questions', icon: Zap },
   ];
 
@@ -128,7 +129,7 @@ export const NavigationBar = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-zinc-200 dark:border-amber-500/20 px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200 dark:border-amber-500/20 px-4">
       <div className="max-w-7xl mx-auto h-16 flex items-center justify-between gap-4">
         {/* Logo */}
         <Link 
@@ -143,7 +144,7 @@ export const NavigationBar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 bg-zinc-100/50 dark:bg-zinc-900/50 p-1 rounded-xl">
+        <nav className="hidden md:flex items-center gap-1 bg-zinc-100/50 dark:bg-zinc-800/50 p-1 rounded-xl">
           {navItems.map((item) => (
             <Link
               key={item.path}
@@ -151,7 +152,7 @@ export const NavigationBar = () => {
               className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 location.pathname === item.path 
                   ? 'bg-white dark:bg-amber-500 text-zinc-900 dark:text-zinc-950 shadow-sm' 
-                  : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-amber-400'
+                  : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-amber-400'
               }`}
             >
               <item.icon size={14} />
@@ -168,7 +169,7 @@ export const NavigationBar = () => {
               className={`flex h-10 items-center gap-2 rounded-xl border px-3 text-xs font-black transition-all ${
                 activeDownloadQuiz
                   ? theme === 'dark' ? 'bg-zinc-900 text-emerald-400 border-emerald-500/20 hover:border-emerald-500/50' : 'bg-white text-emerald-700 border-emerald-200 hover:bg-emerald-50'
-                  : theme === 'dark' ? 'bg-zinc-900/60 text-zinc-600 border-zinc-800 cursor-not-allowed' : 'bg-zinc-50 text-zinc-400 border-zinc-200 cursor-not-allowed'
+                  : theme === 'dark' ? 'bg-zinc-900/60 text-zinc-400 border-zinc-800 cursor-not-allowed' : 'bg-zinc-50 text-zinc-400 border-zinc-200 cursor-not-allowed'
               }`}
               title={activeDownloadQuiz ? `Download ${activeDownloadQuiz.title} as PDF` : 'Open a topic to download'}
             >
@@ -221,7 +222,7 @@ export const NavigationBar = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.98 }}
                   className={`absolute right-0 top-12 w-[450px] rounded-2xl border p-6 shadow-2xl z-[60] ${
-                    theme === 'dark' ? 'bg-zinc-950 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-200 text-zinc-900'
+                    theme === 'dark' ? 'bg-zinc-900 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-200 text-zinc-900'
                   }`}
                 >
                   <div className="flex items-center justify-between border-b border-zinc-100 pb-4 dark:border-zinc-800">
@@ -231,7 +232,7 @@ export const NavigationBar = () => {
                       </div>
                       <div>
                         <p className="text-sm font-black">2025 Success Strategy</p>
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Mastery Roadmap</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-300">Mastery Roadmap</p>
                       </div>
                     </div>
                     <button 
@@ -256,7 +257,7 @@ export const NavigationBar = () => {
                         </div>
                         <div className="space-y-1">
                           <p className="text-xs font-black uppercase tracking-tight text-zinc-900 dark:text-amber-400">{item.title}</p>
-                          <p className="text-[11px] font-semibold leading-relaxed text-zinc-500 dark:text-zinc-400">{item.body}</p>
+                          <p className="text-[11px] font-semibold leading-relaxed text-zinc-500 dark:text-zinc-300">{item.body}</p>
                         </div>
                       </div>
                     ))}
@@ -281,7 +282,7 @@ export const NavigationBar = () => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.98 }}
                   className={`absolute right-0 top-12 w-80 overflow-hidden rounded-2xl border shadow-2xl z-[60] ${
-                    theme === 'dark' ? 'bg-zinc-950 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-200 text-zinc-900'
+                    theme === 'dark' ? 'bg-zinc-900 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-200 text-zinc-900'
                   }`}
                 >
                   <div className="bg-zinc-950 p-5 text-white flex items-start justify-between">
@@ -347,7 +348,7 @@ export const NavigationBar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className={`md:hidden overflow-hidden border-t ${
-              theme === 'dark' ? 'bg-zinc-950 border-zinc-800' : 'bg-white border-zinc-100'
+              theme === 'dark' ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-100'
             }`}
           >
             <div className="p-4 space-y-2">
@@ -359,7 +360,7 @@ export const NavigationBar = () => {
                   className={`flex items-center gap-4 p-4 rounded-2xl text-sm font-bold transition-all ${
                     location.pathname === item.path 
                       ? 'bg-amber-500 text-zinc-950' 
-                      : theme === 'dark' ? 'text-zinc-400 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
+                      : theme === 'dark' ? 'text-zinc-300 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
                   }`}
                 >
                   <item.icon size={18} />
@@ -375,7 +376,7 @@ export const NavigationBar = () => {
                   className={`flex w-full items-center gap-4 p-4 rounded-2xl text-sm font-bold transition-all ${
                     activeDownloadQuiz
                       ? theme === 'dark' ? 'text-emerald-400 hover:bg-zinc-900' : 'text-emerald-700 hover:bg-emerald-50'
-                      : theme === 'dark' ? 'text-zinc-600' : 'text-zinc-400'
+                      : theme === 'dark' ? 'text-zinc-500' : 'text-zinc-400'
                   }`}
                 >
                   <Download size={18} />
@@ -389,7 +390,7 @@ export const NavigationBar = () => {
                   setIsMobileMenuOpen(false);
                 }}
                 className={`flex w-full items-center gap-4 p-4 rounded-2xl text-sm font-bold transition-all ${
-                  theme === 'dark' ? 'text-zinc-400 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
+                  theme === 'dark' ? 'text-zinc-300 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
                 }`}
               >
                 <Target size={18} />
@@ -407,7 +408,7 @@ export const NavigationBar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             className={`md:hidden fixed inset-4 z-[70] overflow-y-auto rounded-3xl border p-6 shadow-2xl flex flex-col ${
-              theme === 'dark' ? 'bg-zinc-950 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-200 text-zinc-900'
+              theme === 'dark' ? 'bg-zinc-900 border-amber-500/20 text-amber-50' : 'bg-white border-zinc-200 text-zinc-900'
             }`}
           >
             <div className="flex items-center justify-between border-b border-zinc-100 pb-4 dark:border-zinc-800">
@@ -417,7 +418,7 @@ export const NavigationBar = () => {
                 </div>
                 <div>
                   <p className="text-sm font-black">2025 Success Strategy</p>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Mastery Roadmap</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-300">Mastery Roadmap</p>
                 </div>
               </div>
               <button 
@@ -442,7 +443,7 @@ export const NavigationBar = () => {
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm font-black uppercase tracking-tight text-zinc-900 dark:text-amber-400">{item.title}</p>
-                    <p className="text-xs font-semibold leading-relaxed text-zinc-500 dark:text-zinc-400">{item.body}</p>
+                    <p className="text-xs font-semibold leading-relaxed text-zinc-500 dark:text-zinc-300">{item.body}</p>
                   </div>
                 </div>
               ))}

@@ -1,0 +1,26 @@
+.test-page-root,
+.test-page-root * {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.test-page-root ::selection {
+  background: transparent;
+}
+
+.test-page-warning-backdrop {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.option-button {
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+.option-button:hover {
+  transform: none; /* disable hover lift */
+}
+.option-selected {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.12);
+}

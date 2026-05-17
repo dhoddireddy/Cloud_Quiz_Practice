@@ -1,17 +1,41 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
-import { AppProvider, useAppContext } from './context/AppContext';
+import { AppProvider } from './context/AppContext';
 import Home from './pages/Home';
 import Learning from './pages/Learning';
 import Practice from './pages/Practice';
 import Assessment from './pages/Assessment';
 import Questions2025 from './pages/Questions2025';
+import Test from './pages/Test';
+import Results from './pages/Results';
+import TestHistory from './pages/TestHistory';
+import TestResults from './pages/TestResults';
 
 import MainLayout from './layouts/MainLayout';
 
+const quotes = [
+  { text: 'Arise, awake, and stop not until the goal is reached.', author: 'Swami Vivekananda' },
+  { text: 'Let us sacrifice our today so that our children can have a better tomorrow.', author: 'A. P. J. Abdul Kalam' },
+  { text: 'You can never cross the ocean until you have the courage to lose sight of the shore.', author: 'Rabindranath Tagore' },
+  { text: 'If you want to shine like a sun, first burn like a sun.', author: 'A. P. J. Abdul Kalam' },
+  { text: 'The world is won by those who let it go.', author: 'Indira Gandhi' },
+  { text: 'Education is the manifestation of the perfection already in man.', author: 'Swami Vivekananda' },
+  { text: 'Learn as if you were to live forever.', author: 'Mahatma Gandhi' },
+  { text: 'The future depends on what you do today.', author: 'Mahatma Gandhi' },
+  { text: 'Do not wait; the time will never be just right. Start where you stand.', author: 'Swami Vivekananda' },
+  { text: 'Success is not a destination, it is a journey.', author: 'Zakir Hussain' }
+];
+
 const AppContent: React.FC = () => {
   const [showSplash, setShowSplash] = React.useState(false);
+  const [quote, setQuote] = React.useState(() => {
+    const storedQuote = sessionStorage.getItem('pta_quote');
+    if (storedQuote) return JSON.parse(storedQuote);
+    const selected = quotes[Math.floor(Math.random() * quotes.length)];
+    sessionStorage.setItem('pta_quote', JSON.stringify(selected));
+    return selected;
+  });
   const location = useLocation();
 
   React.useEffect(() => {
@@ -38,7 +62,10 @@ const AppContent: React.FC = () => {
             <Route path="/learning" element={<Learning />} />
             <Route path="/practice" element={<Practice />} />
             <Route path="/assessment" element={<Assessment />} />
-            <Route path="/questions-2025" element={<Questions2025 />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="/test/history/:id" element={<TestHistory />} />
+            <Route path="/results" element={<TestResults />} />
           </Routes>
         </motion.div>
       </AnimatePresence>
@@ -65,11 +92,11 @@ const AppContent: React.FC = () => {
               <div className="space-y-4">
                 <h2 className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500">Daily Inspiration</h2>
                 <p className="text-2xl md:text-3xl font-heading font-black tracking-tight leading-tight dark:text-amber-50">
-                  "Arise, awake, and stop not until the goal is reached."
+                  "{quote.text}"
                 </p>
                 <div className="h-0.5 w-12 bg-zinc-100 dark:bg-zinc-800 mx-auto" />
                 <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest">
-                  — Swami Vivekananda
+                  — {quote.author}
                 </p>
               </div>
 
