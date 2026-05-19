@@ -66,8 +66,8 @@ const TestResults: React.FC = () => {
               <ShieldCheck size={20} />
               Test Results
             </div>
-            <h1 className="mt-4 text-4xl font-black text-zinc-950 dark:text-amber-50">You scored {result.totalCorrect} / {result.totalQuestions}</h1>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{result.percentage}% accuracy across all topics</p>
+            <h1 className="mt-4 text-4xl font-black text-zinc-950 dark:text-amber-50">Score: {result.totalCorrect} / {result.totalQuestions}</h1>
+            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{result.percentage}% out of 100</p>
           </div>
           <div className={`inline-flex items-center gap-3 rounded-3xl px-5 py-3 text-sm font-black ${grade.className}`}>
             <span>Grade</span>

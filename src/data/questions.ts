@@ -78,16 +78,14 @@ const sourceBanks: SourceBank[] = [
 ];
 
 const distribution: Record<string, number> = {
-  'Java Mastery': 8,
-  'JS & Node.js': 8,
-  TypeScript: 5,
-  React: 6,
-  Angular: 6,
-  'HTML & CSS': 7,
-  'Node.js': 6,
-  MongoDB: 5,
-  'Spring Boot': 6,
-  'DevOps & Git': 3,
+  java: 8,          // Cloud Microservices - Java
+  'html-css': 6,    // Cloud Microservices - HTML5 CSS and Bootstrap
+  'js-node': 7,     // Cloud Microservices - JavaScript
+  angular: 8,       // Cloud Microservices - Angular
+  react: 7,         // Cloud Microservices - React
+  mongo: 7,         // Cloud Microservices - MongoDB
+  spring: 15,       // Cloud Microservices - Spring Core/AOP/Testing + DAO/Hibernate/JPA + Boot/REST + Microservices
+  devops: 2,        // Cloud Microservices - DevOps
 };
 
 const shuffleArray = <T,>(items: T[]) => {
@@ -150,7 +148,7 @@ export const createTestQuestionSet = (): TestQuestion[] => {
   }
 
   buildQuestionBanks.forEach(bank => {
-    const count = distribution[bank.topic] || 0;
+    const count = distribution[bank.topicId] || 0;
     const available = bank.questions.filter(q => !attemptedIds.has(q.id));
     const bankQuestions = shuffleArray(available).slice(0, count).map(shuffleQuestionWithOptions);
     selected.push(...bankQuestions);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X, Target, UserCircle, Download, GraduationCap } from 'lucide-react';
+import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X, Target, UserCircle, Download, GraduationCap, FileText } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 

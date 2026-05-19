@@ -29,11 +29,27 @@ const TestHistory: React.FC = () => {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-10">
       <div className="rounded-lg border p-6 bg-white">
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <h1 className="text-2xl font-bold">{test.id} — Review</h1>
             <p className="text-sm text-zinc-600 mt-2">Taken: {new Date(test.createdAt).toLocaleString()}</p>
           </div>
+          {result && (
+            <div className="grid gap-3 sm:grid-cols-3">
+              <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-700">
+                <div className="font-semibold text-zinc-950">Score</div>
+                <div className="mt-2 text-xl font-black">{result.totalCorrect} / {result.totalQuestions}</div>
+              </div>
+              <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-700">
+                <div className="font-semibold text-zinc-950">Percentage</div>
+                <div className="mt-2 text-xl font-black">{result.percentage}%</div>
+              </div>
+              <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-700">
+                <div className="font-semibold text-zinc-950">Wrong</div>
+                <div className="mt-2 text-xl font-black">{result.totalQuestions - result.totalCorrect - result.timedOutCount}</div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="mt-6 space-y-6">

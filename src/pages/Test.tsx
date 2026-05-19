@@ -124,6 +124,25 @@ const Test: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<number | null>(null);
 
+  const savedTests = (() => {
+    try {
+      const raw = localStorage.getItem('pta_tests');
+      return raw ? (JSON.parse(raw) as any[]) : [];
+    } catch {
+      return [];
+    }
+  })();
+
+  const totalTestsTaken = savedTests.length;
+  const bestScore = totalTestsTaken > 0 ? Math.max(...savedTests.map(test => test.result?.percentage ?? 0)) : 0;
+  const averageScore = totalTestsTaken > 0
+    ? Math.round(savedTests.reduce((sum, test) => sum + (test.result?.percentage ?? 0), 0) / totalTestsTaken)
+    : 0;
+  const lastScore = totalTestsTaken > 0 ? savedTests[0].result?.percentage ?? 0 : 0;
+  const lastScoreText = totalTestsTaken > 0
+    ? `${savedTests[0].result?.totalCorrect ?? 0} / ${savedTests[0].result?.totalQuestions ?? 0}`
+    : '—';
+
   const currentQuestion = questions[currentIndex];
   const activeAnswer = currentQuestion ? answers.find(answer => answer.questionId === currentQuestion.id) : undefined;
   const lastAnswerTimestampRef = useRef<number>(Date.now());
@@ -445,36 +464,53 @@ const Test: React.FC = () => {
                     Close
                   </button>
                 </div>
-                {(function() {
-                  try {
-                    const raw = localStorage.getItem('pta_tests');
-                    const list = raw ? JSON.parse(raw) as any[] : [];
-                    if (list && list.length > 0) {
-                      return (
-                        <div className="space-y-3 max-h-[65vh] overflow-y-auto pr-1">
-                          {list.map((t, index) => (
-                            <div key={t.id || index} className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
-                              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                <div>
-                                  <div className="font-medium">{t.id}</div>
-                                  <div className="text-xs text-zinc-500">{t.createdAt ? new Date(t.createdAt).toLocaleString() : 'Saved test'}</div>
-                                </div>
-                                <button
-                                  type="button"
-                                  onClick={() => window.open(`/test/history/${t.id}`, '_blank')}
-                                  className="text-xs px-3 py-1 rounded bg-amber-500 text-white"
-                                >
-                                  Open
-                                </button>
-                              </div>
+                {totalTestsTaken > 0 ? (
+                  <>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
+                        <div className="font-semibold text-zinc-900">Total tests taken</div>
+                        <div className="mt-2 text-2xl font-black text-amber-600">{totalTestsTaken}</div>
+                      </div>
+                      <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
+                        <div className="font-semibold text-zinc-900">Best score</div>
+                        <div className="mt-2 text-2xl font-black text-emerald-600">{bestScore}%</div>
+                      </div>
+                      <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
+                        <div className="font-semibold text-zinc-900">Average score</div>
+                        <div className="mt-2 text-2xl font-black text-sky-600">{averageScore}%</div>
+                      </div>
+                      <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
+                        <div className="font-semibold text-zinc-900">Last score</div>
+                        <div className="mt-2 text-2xl font-black text-violet-600">{lastScore}%</div>
+                        <div className="text-xs text-zinc-500 mt-1">{lastScoreText}</div>
+                      </div>
+                    </div>
+                    <div className="space-y-3 max-h-[55vh] overflow-y-auto pr-1 mt-4">
+                      {savedTests.map((t, index) => (
+                        <div key={t.id || index} className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
+                          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <div className="font-medium">{t.id}</div>
+                              <div className="text-xs text-zinc-500">{t.createdAt ? new Date(t.createdAt).toLocaleString() : 'Saved test'}</div>
+                              {t.result?.percentage !== undefined && (
+                                <div className="text-xs text-zinc-500 mt-1">Score: {t.result.totalCorrect} / {t.result.totalQuestions} • {t.result.percentage}%</div>
+                              )}
                             </div>
-                          ))}
+                            <button
+                              type="button"
+                              onClick={() => window.open(`/test/history/${t.id}`, '_blank')}
+                              className="text-xs px-3 py-1 rounded bg-amber-500 text-white"
+                            >
+                              Open
+                            </button>
+                          </div>
                         </div>
-                      );
-                    }
-                  } catch {}
-                  return <div className="text-sm text-zinc-500">No tests taken</div>;
-                })()}
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-sm text-zinc-500">No tests taken</div>
+                )}
               </div>
             </div>
           )}
