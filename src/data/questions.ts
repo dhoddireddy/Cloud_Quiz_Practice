@@ -161,11 +161,11 @@ export const createTestQuestionSet = (): TestQuestion[] => {
   const attemptedIds = getAttemptedQuestionIds();
   const bankStates = buildQuestionBanks.map(bank => ({
     bank,
-    unused: shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id))),
+    unused: shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id)) ),
     reuseIndex: 0,
+    exhausted: false,
   }));
 
-  // Desired order: Java, Spring, Node, then other topics
   const order = [
     'java',
     'spring',
@@ -179,31 +179,34 @@ export const createTestQuestionSet = (): TestQuestion[] => {
     'devops',
   ];
 
-  // Fill by topic blocks (grouped) following the desired order.
-  for (const topicId of order) {
-    if (selected.length >= 60) break;
-    const state = bankStates.find(s => s.bank.topicId === topicId);
-    if (!state) continue;
+  while (selected.length < 60 && bankStates.some(state => !state.exhausted)) {
+    for (const topicId of order) {
+      if (selected.length >= 60) break;
+      const state = bankStates.find(s => s.bank.topicId === topicId);
+      if (!state || state.exhausted) continue;
 
-    // Take all unused first
-    while (selected.length < 60 && state.unused.length > 0) {
-      const nextQuestion = state.unused.shift();
-      if (!nextQuestion) break;
-      if (selectedIds.has(nextQuestion.id)) continue;
-      selected.push(shuffleQuestionWithOptions(nextQuestion));
-      selectedIds.add(nextQuestion.id);
-    }
-
-    // If still room, reuse from bank sequentially
-    while (selected.length < 60) {
-      while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
-        state.reuseIndex += 1;
+      let nextQuestion: TestQuestion | undefined;
+      if (state.unused.length > 0) {
+        nextQuestion = state.unused.shift();
+      } else {
+        while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
+          state.reuseIndex += 1;
+        }
+        if (state.reuseIndex < state.bank.questions.length) {
+          nextQuestion = state.bank.questions[state.reuseIndex];
+          state.reuseIndex += 1;
+        }
       }
-      if (state.reuseIndex >= state.bank.questions.length) break;
-      const nextQuestion = state.bank.questions[state.reuseIndex];
-      state.reuseIndex += 1;
-      if (!nextQuestion) break;
-      if (selectedIds.has(nextQuestion.id)) continue;
+
+      if (!nextQuestion) {
+        state.exhausted = true;
+        continue;
+      }
+
+      if (selectedIds.has(nextQuestion.id)) {
+        continue;
+      }
+
       selected.push(shuffleQuestionWithOptions(nextQuestion));
       selectedIds.add(nextQuestion.id);
     }
