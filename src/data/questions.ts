@@ -112,8 +112,8 @@ const shuffleArray = <T,>(items: T[]) => {
 
 const normalizeQuestions = (bank: SourceBank): TestQuestion[] => {
   return bank.source.map((item, index) => {
-    const options = Array.isArray(item.options) ? [...item.options] : [];
-    const correctIndex = options.findIndex(opt => String(opt).trim() === String(item.correct).trim());
+    const options = Array.isArray(item.options) ? item.options.map(o => String(o).trim()) : [];
+    const correctIndex = options.findIndex(opt => opt === String(item.correct).trim());
 
     return {
       id: `${bank.topicId}-${index}`,
@@ -146,8 +146,8 @@ const getAttemptedQuestionIds = (): Set<string> => {
 
 const shuffleQuestionWithOptions = (question: TestQuestion): TestQuestion => {
   const shuffledOptions = shuffleArray(question.options);
-  const correctText = question.options[question.correctIndex];
-  const correctIndex = shuffledOptions.findIndex(option => option === correctText);
+  const correctText = String(question.options[question.correctIndex]).trim();
+  const correctIndex = shuffledOptions.findIndex(option => String(option).trim() === correctText);
   return {
     ...question,
     options: shuffledOptions,
@@ -179,34 +179,33 @@ export const createTestQuestionSet = (): TestQuestion[] => {
     'devops',
   ];
 
-  let anyAdded = true;
-  while (selected.length < 60 && anyAdded) {
-    anyAdded = false;
-    for (const topicId of order) {
-      if (selected.length >= 60) break;
-      const state = bankStates.find(s => s.bank.topicId === topicId);
-      if (!state) continue;
+  // Fill by topic blocks (grouped) following the desired order.
+  for (const topicId of order) {
+    if (selected.length >= 60) break;
+    const state = bankStates.find(s => s.bank.topicId === topicId);
+    if (!state) continue;
 
-      let nextQuestion: TestQuestion | undefined;
-      if (state.unused.length > 0) {
-        nextQuestion = state.unused.shift();
-      } else {
-        while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
-          state.reuseIndex += 1;
-        }
-        if (state.reuseIndex < state.bank.questions.length) {
-          nextQuestion = state.bank.questions[state.reuseIndex];
-          state.reuseIndex += 1;
-        }
-      }
-
-      if (!nextQuestion) {
-        continue;
-      }
-
+    // Take all unused first
+    while (selected.length < 60 && state.unused.length > 0) {
+      const nextQuestion = state.unused.shift();
+      if (!nextQuestion) break;
+      if (selectedIds.has(nextQuestion.id)) continue;
       selected.push(shuffleQuestionWithOptions(nextQuestion));
       selectedIds.add(nextQuestion.id);
-      anyAdded = true;
+    }
+
+    // If still room, reuse from bank sequentially
+    while (selected.length < 60) {
+      while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
+        state.reuseIndex += 1;
+      }
+      if (state.reuseIndex >= state.bank.questions.length) break;
+      const nextQuestion = state.bank.questions[state.reuseIndex];
+      state.reuseIndex += 1;
+      if (!nextQuestion) break;
+      if (selectedIds.has(nextQuestion.id)) continue;
+      selected.push(shuffleQuestionWithOptions(nextQuestion));
+      selectedIds.add(nextQuestion.id);
     }
   }
 
