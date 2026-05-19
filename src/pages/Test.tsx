@@ -433,17 +433,7 @@ const Test: React.FC = () => {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Topic distribution</h2>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {Object.entries(testDistribution).map(([key, value]) => (
-                  <div key={key} className="rounded-3xl border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700">
-                    <div className="font-semibold text-zinc-900">{topicNameMap[key] ?? key.replace(/-/g, ' ').toUpperCase()}</div>
-                    <div className="mt-2 text-2xl font-black text-amber-600">{value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Topic distribution removed — tests always pull 60 questions across banks */}
             <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-6 shadow-sm">
               <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Rules</h2>
               <ul className="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-400 leading-7 list-disc list-inside">
