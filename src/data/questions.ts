@@ -77,7 +77,20 @@ const sourceBanks: SourceBank[] = [
   { topicId: 'devops', topic: 'DevOps & Git', category: 'DevOps', source: devOpsData },
 ];
 
-const distribution: Record<string, number> = {
+export const testDistribution: Record<string, number> = {
+  java: 6,
+  'js-node': 6,
+  ts: 6,
+  react: 6,
+  angular: 6,
+  'html-css': 6,
+  nodejs: 6,
+  mongo: 6,
+  spring: 6,
+  devops: 6,
+};
+
+export const testPlusDistribution: Record<string, number> = {
   java: 8,          // Cloud Microservices - Java
   'html-css': 6,    // Cloud Microservices - HTML5 CSS and Bootstrap
   'js-node': 7,     // Cloud Microservices - JavaScript
@@ -122,6 +135,15 @@ const buildQuestionBanks = sourceBanks.map(bank => ({
   questions: normalizeQuestions(bank),
 }));
 
+const getAttemptedQuestionIds = (): Set<string> => {
+  try {
+    const raw = localStorage.getItem('pta_attempted_questions');
+    return raw ? new Set(JSON.parse(raw) as string[]) : new Set();
+  } catch {
+    return new Set();
+  }
+};
+
 const shuffleQuestionWithOptions = (question: TestQuestion): TestQuestion => {
   const shuffledOptions = shuffleArray(question.options);
   const correctText = question.options[question.correctIndex];
@@ -135,25 +157,87 @@ const shuffleQuestionWithOptions = (question: TestQuestion): TestQuestion => {
 
 export const createTestQuestionSet = (): TestQuestion[] => {
   const selected: TestQuestion[] = [];
-  // Exclude questions that have been attempted in previous tests
-  let attemptedIds: Set<string> = new Set();
-  try {
-    const raw = localStorage.getItem('pta_attempted_questions');
-    if (raw) {
-      const parsed = JSON.parse(raw) as string[];
-      attemptedIds = new Set(parsed);
+  const selectedIds = new Set<string>();
+  const attemptedIds = getAttemptedQuestionIds();
+
+  const bankStates = buildQuestionBanks.map(bank => ({
+    bank,
+    unused: shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id))),
+    reuseIndex: 0,
+  }));
+
+  let bankIndex = 0;
+  while (selected.length < 60 && bankStates.length > 0) {
+    const state = bankStates[bankIndex % bankStates.length];
+    bankIndex += 1;
+
+    let nextQuestion: TestQuestion | undefined;
+
+    if (state.unused.length > 0) {
+      nextQuestion = state.unused.shift();
+      if (nextQuestion && selectedIds.has(nextQuestion.id)) {
+        nextQuestion = undefined;
+      }
     }
-  } catch {
-    attemptedIds = new Set();
+
+    if (!nextQuestion) {
+      while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
+        state.reuseIndex += 1;
+      }
+      if (state.reuseIndex < state.bank.questions.length) {
+        nextQuestion = state.bank.questions[state.reuseIndex];
+        state.reuseIndex += 1;
+      }
+    }
+
+    if (!nextQuestion) {
+      continue;
+    }
+
+    selected.push(shuffleQuestionWithOptions(nextQuestion));
+    selectedIds.add(nextQuestion.id);
   }
 
+  return selected.slice(0, 60);
+};
+
+export const createTestPlusQuestionSet = (): TestQuestion[] => {
+  const selected: TestQuestion[] = [];
+  const selectedIds = new Set<string>();
+  const attemptedIds = getAttemptedQuestionIds();
+
   buildQuestionBanks.forEach(bank => {
-    const count = distribution[bank.topicId] || 0;
-    const available = bank.questions.filter(q => !attemptedIds.has(q.id));
-    const bankQuestions = shuffleArray(available).slice(0, count).map(shuffleQuestionWithOptions);
-    selected.push(...bankQuestions);
+    const count = testPlusDistribution[bank.topicId] || 0;
+    if (count <= 0) return;
+
+    const bankSelected: TestQuestion[] = [];
+    const unused = shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id)));
+    let reuseIndex = 0;
+
+    while (bankSelected.length < count) {
+      let next: TestQuestion | undefined;
+      if (unused.length > 0) {
+        next = unused.shift();
+      } else {
+        while (reuseIndex < bank.questions.length && selectedIds.has(bank.questions[reuseIndex].id)) {
+          reuseIndex += 1;
+        }
+        if (reuseIndex < bank.questions.length) {
+          next = bank.questions[reuseIndex];
+          reuseIndex += 1;
+        }
+      }
+
+      if (!next) {
+        break;
+      }
+
+      bankSelected.push(next);
+      selectedIds.add(next.id);
+    }
+
+    selected.push(...bankSelected.map(shuffleQuestionWithOptions));
   });
 
-  // Keep topic-wise grouping (no overall shuffle) and cap to 60
   return selected.slice(0, 60);
 };

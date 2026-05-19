@@ -27,6 +27,7 @@ export const NavigationBar = () => {
     { path: '/practice', label: 'Practice', icon: Send },
     { path: '/assessment', label: 'Assessment', icon: Clock },
     { path: '/test', label: 'Test', icon: Target },
+    { path: '/test-plus', label: 'Test+', icon: GraduationCap },
     { path: '/questions-2025', label: '2025 Questions', icon: Zap },
   ];
 

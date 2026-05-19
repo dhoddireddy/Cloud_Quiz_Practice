@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, ShieldAlert, Clock3, XCircle } from 'lucide-react';
-import { createTestQuestionSet, testDistribution, TestQuestion, TestResult } from '../data/questions';
+import { createTestPlusQuestionSet, testPlusDistribution, TestQuestion, TestResult } from '../data/questions';
 import '../pages/TestPage.css';
 import { useAppContext } from '../context/AppContext';
 
@@ -106,7 +106,7 @@ const buildResult = (
   };
 };
 
-const Test: React.FC = () => {
+const TestPlus: React.FC = () => {
   const navigate = useNavigate();
   const { theme } = useAppContext();
   const [questions, setQuestions] = useState<TestQuestion[]>([]);
@@ -209,7 +209,6 @@ const Test: React.FC = () => {
     }
     const result = buildResult(questions, answers, tabSwitchCount, startedAt ?? Date.now(), reason);
     localStorage.setItem(RESULT_STORAGE_KEY, JSON.stringify(result));
-    // Save to test history with incremental id like TEST-1
     try {
       const raw = localStorage.getItem('pta_tests');
       const list = raw ? JSON.parse(raw) as any[] : [];
@@ -219,12 +218,11 @@ const Test: React.FC = () => {
         createdAt: Date.now(),
         totalQuestions: result.totalQuestions,
         questions: result.questions.map(q => ({ id: q.id, topic: q.topic, question: q.question })),
-        result, // store full result for later review
+        result,
       };
       list.unshift(mini);
       localStorage.setItem('pta_tests', JSON.stringify(list));
 
-      // Record attempted question ids to exclude from future tests
       const attemptedRaw = localStorage.getItem('pta_attempted_questions');
       const attemptedList = attemptedRaw ? JSON.parse(attemptedRaw) as string[] : [];
       const newAttempted = Array.from(new Set([...attemptedList, ...result.questions.map(q => q.id)]));
@@ -268,7 +266,7 @@ const Test: React.FC = () => {
   };
 
   const startTest = async () => {
-    const newQuestions = createTestQuestionSet();
+    const newQuestions = createTestPlusQuestionSet();
     setQuestions(newQuestions);
     setCurrentIndex(0);
     setAnswers([]);
@@ -409,14 +407,14 @@ const Test: React.FC = () => {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-amber-500">
               <Play size={18} />
-              Test Launchpad
+              Test+ Launchpad
             </div>
             <div>
-              <h1 className="text-4xl font-heading font-black text-zinc-950 dark:text-amber-50">Timed Test Challenge</h1>
+              <h1 className="text-4xl font-heading font-black text-zinc-950 dark:text-amber-50">Timed Test+ Challenge</h1>
               <p className="mt-4 max-w-3xl text-sm text-zinc-600 dark:text-zinc-400 leading-7">
-                  Complete 60 shuffled questions generated from every topic bank. The full session runs for 1 hour, with no per-question timer and strong anti-cheat monitoring.
-                </p>
-              </div>
+                Complete 60 questions selected with the Test+ topic distribution, including exact section counts and topic coverage.
+              </p>
+            </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -428,15 +426,15 @@ const Test: React.FC = () => {
                 <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">1 hr</p>
               </div>
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
-                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Estimated time</p>
-                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">1 hr</p>
+                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Test type</p>
+                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">Test+</p>
               </div>
             </div>
 
             <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-6 shadow-sm">
               <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Topic distribution</h2>
               <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {Object.entries(testDistribution).map(([key, value]) => (
+                {Object.entries(testPlusDistribution).map(([key, value]) => (
                   <div key={key} className="rounded-3xl border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700">
                     <div className="font-semibold text-zinc-900">{topicNameMap[key] ?? key.replace(/-/g, ' ').toUpperCase()}</div>
                     <div className="mt-2 text-2xl font-black text-amber-600">{value}</div>
@@ -459,7 +457,7 @@ const Test: React.FC = () => {
               onClick={startTest}
               className="mt-6 inline-flex items-center justify-center gap-3 rounded-3xl bg-amber-500 px-8 py-4 text-sm font-black uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-amber-400"
             >
-              Begin Test
+              Begin Test+
             </button>
           </div>
         </div>
@@ -660,4 +658,4 @@ const Test: React.FC = () => {
   );
 };
 
-export default Test;
+export default TestPlus;
