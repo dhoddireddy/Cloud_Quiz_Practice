@@ -161,9 +161,8 @@ export const createTestQuestionSet = (): TestQuestion[] => {
   const attemptedIds = getAttemptedQuestionIds();
   const bankStates = buildQuestionBanks.map(bank => ({
     bank,
-    unused: shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id)) ),
+    unused: bank.questions.filter(q => !attemptedIds.has(q.id)),
     reuseIndex: 0,
-    exhausted: false,
   }));
 
   const order = [
@@ -179,12 +178,12 @@ export const createTestQuestionSet = (): TestQuestion[] => {
     'devops',
   ];
 
-  while (selected.length < 60 && bankStates.some(state => !state.exhausted)) {
-    for (const topicId of order) {
-      if (selected.length >= 60) break;
-      const state = bankStates.find(s => s.bank.topicId === topicId);
-      if (!state || state.exhausted) continue;
+  for (const topicId of order) {
+    if (selected.length >= 60) break;
+    const state = bankStates.find(s => s.bank.topicId === topicId);
+    if (!state) continue;
 
+    while (selected.length < 60) {
       let nextQuestion: TestQuestion | undefined;
       if (state.unused.length > 0) {
         nextQuestion = state.unused.shift();
@@ -199,8 +198,7 @@ export const createTestQuestionSet = (): TestQuestion[] => {
       }
 
       if (!nextQuestion) {
-        state.exhausted = true;
-        continue;
+        break;
       }
 
       if (selectedIds.has(nextQuestion.id)) {
