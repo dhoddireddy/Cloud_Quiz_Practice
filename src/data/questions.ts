@@ -159,43 +159,55 @@ export const createTestQuestionSet = (): TestQuestion[] => {
   const selected: TestQuestion[] = [];
   const selectedIds = new Set<string>();
   const attemptedIds = getAttemptedQuestionIds();
-
   const bankStates = buildQuestionBanks.map(bank => ({
     bank,
     unused: shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id))),
     reuseIndex: 0,
   }));
 
-  let bankIndex = 0;
-  while (selected.length < 60 && bankStates.length > 0) {
-    const state = bankStates[bankIndex % bankStates.length];
-    bankIndex += 1;
+  // Desired order: Java, Spring, Node, then other topics
+  const order = [
+    'java',
+    'spring',
+    'nodejs',
+    'js-node',
+    'ts',
+    'react',
+    'angular',
+    'html-css',
+    'mongo',
+    'devops',
+  ];
 
-    let nextQuestion: TestQuestion | undefined;
+  let anyAdded = true;
+  while (selected.length < 60 && anyAdded) {
+    anyAdded = false;
+    for (const topicId of order) {
+      if (selected.length >= 60) break;
+      const state = bankStates.find(s => s.bank.topicId === topicId);
+      if (!state) continue;
 
-    if (state.unused.length > 0) {
-      nextQuestion = state.unused.shift();
-      if (nextQuestion && selectedIds.has(nextQuestion.id)) {
-        nextQuestion = undefined;
+      let nextQuestion: TestQuestion | undefined;
+      if (state.unused.length > 0) {
+        nextQuestion = state.unused.shift();
+      } else {
+        while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
+          state.reuseIndex += 1;
+        }
+        if (state.reuseIndex < state.bank.questions.length) {
+          nextQuestion = state.bank.questions[state.reuseIndex];
+          state.reuseIndex += 1;
+        }
       }
-    }
 
-    if (!nextQuestion) {
-      while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
-        state.reuseIndex += 1;
+      if (!nextQuestion) {
+        continue;
       }
-      if (state.reuseIndex < state.bank.questions.length) {
-        nextQuestion = state.bank.questions[state.reuseIndex];
-        state.reuseIndex += 1;
-      }
-    }
 
-    if (!nextQuestion) {
-      continue;
+      selected.push(shuffleQuestionWithOptions(nextQuestion));
+      selectedIds.add(nextQuestion.id);
+      anyAdded = true;
     }
-
-    selected.push(shuffleQuestionWithOptions(nextQuestion));
-    selectedIds.add(nextQuestion.id);
   }
 
   return selected.slice(0, 60);

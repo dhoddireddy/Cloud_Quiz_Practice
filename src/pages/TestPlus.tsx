@@ -87,7 +87,7 @@ const buildResult = (
   });
 
   Object.values(perTopic).forEach(item => {
-    item.percentage = item.total === 0 ? 0 : Math.round((item.correct / item.total) * 100);
+    item.percentage = item.total === 0 ? 0 : parseFloat(((item.correct / item.total) * 100).toFixed(2));
   });
 
   return {
@@ -95,7 +95,7 @@ const buildResult = (
     answers: completeAnswers,
     totalCorrect,
     totalQuestions: questions.length,
-    percentage: Math.round((totalCorrect / questions.length) * 100),
+    percentage: parseFloat(((totalCorrect / questions.length) * 100).toFixed(2)),
     timedOutCount,
     tabSwitchCount,
     timeTakenSeconds,
