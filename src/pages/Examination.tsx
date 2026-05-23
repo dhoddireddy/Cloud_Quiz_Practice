@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Play, ShieldAlert, Clock3, XCircle } from 'lucide-react';
-import { createTestPlusQuestionSet, testPlusDistribution, TestQuestion, TestResult } from '../data/questions';
+import { TestQuestion, TestResult } from '../data/questions';
 import '../pages/TestPage.css';
 import { useAppContext } from '../context/AppContext';
+import dumpCloudFSD from '../previous_year_dumps_json/Cloud FSD Questions.json';
 
 interface TestAnswer {
   questionId: string;
@@ -14,7 +15,6 @@ interface TestAnswer {
 }
 
 const RESULT_STORAGE_KEY = 'latestTestResult';
-
 const TEST_DURATION_SECONDS = 60 * 60;
 
 const getTimerColor = (seconds: number) => {
@@ -31,6 +31,245 @@ const formatTime = (seconds: number) => {
     return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
   return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+};
+
+const parseCorrectAnswer = (options: string[], answerStr: string): number => {
+  if (!options || options.length === 0 || !answerStr) return -1;
+
+  const cleanAns = answerStr.trim().toLowerCase();
+  let baseAns = cleanAns;
+  if (baseAns.startsWith('-')) {
+    baseAns = baseAns.substring(1).trim();
+  }
+
+  let match = baseAns.match(/^(?:ans:\s*|option\s*)?([a-e])(?:\.|\)|$|\s)/i);
+  if (match) {
+    const letter = match[1].toLowerCase();
+    const index = letter.charCodeAt(0) - 97;
+    if (index >= 0 && index < options.length) {
+      return index;
+    }
+  }
+
+  for (let i = 0; i < options.length; i++) {
+    const optClean = options[i].trim().toLowerCase();
+    const optLetterMatch = optClean.match(/^([a-e])(?:\.|\)|\s)/i);
+    if (optLetterMatch) {
+      const optLetter = optLetterMatch[1];
+      if (baseAns === optLetter || baseAns.startsWith(optLetter + ' ') || baseAns === optLetter + '.' || baseAns === optLetter + ')') {
+        return i;
+      }
+      const afterPrefix = optClean.substring(optLetterMatch[0].length).trim();
+      if (baseAns === afterPrefix || afterPrefix.includes(baseAns) || baseAns.includes(afterPrefix)) {
+        if (baseAns.length > 2 && afterPrefix.length > 2) {
+          return i;
+        }
+      }
+    }
+    if (optClean === baseAns || optClean.includes(baseAns) || baseAns.includes(optClean)) {
+      if (baseAns.length > 1 && optClean.length > 1) {
+        return i;
+      }
+    }
+  }
+
+  if (baseAns.length === 1) {
+    const code = baseAns.charCodeAt(0) - 97;
+    if (code >= 0 && code < options.length) {
+      return code;
+    }
+  }
+
+  return -1;
+};
+
+const cleanOption = (option: string): string => {
+  if (!option) return '';
+  return option.replace(/^[A-Ea-e](?:\.|\))\s*/, '').trim();
+};
+
+const shuffleArray = <T,>(items: T[]) => {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+};
+
+const shuffleQuestionWithOptions = (question: TestQuestion): TestQuestion => {
+  const shuffledOptions = shuffleArray(question.options);
+  const correctText = String(question.options[question.correctIndex]).trim();
+  const correctIndex = shuffledOptions.findIndex(option => String(option).trim() === correctText);
+  return {
+    ...question,
+    options: shuffledOptions,
+    correctIndex: correctIndex !== -1 ? correctIndex : 0,
+  };
+};
+
+const normalizeQuestion = (q: any, index: number, topicName: string, category: string): TestQuestion => {
+  const rawOptions = Array.isArray(q.options) ? q.options.map((o: any) => String(o).trim()) : [];
+  const rawAnswer = String(q.answer || q.correctAnswer || '').trim();
+  
+  const correctIndex = parseCorrectAnswer(rawOptions, rawAnswer);
+  const cleanedOptions = rawOptions.map(cleanOption);
+  
+  return {
+    id: `EXAM-Q-${q.id || index}`,
+    topic: topicName,
+    topicId: topicName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    category: category,
+    question: q.question || 'Question text is missing',
+    options: cleanedOptions,
+    correctIndex: correctIndex !== -1 ? correctIndex : 0,
+    explanation: q.explanation || `Correct answer: ${rawAnswer}. Revisit this topic if needed.`
+  };
+};
+
+const getAttemptedQuestionIds = (): Set<string> => {
+  try {
+    const raw = localStorage.getItem('pta_attempted_questions');
+    return raw ? new Set(JSON.parse(raw) as string[]) : new Set();
+  } catch {
+    return new Set();
+  }
+};
+
+const createExamQuestionSet = (): TestQuestion[] => {
+  const allQs = (dumpCloudFSD as any[]).map(q => {
+    const hasOptions = q.options && q.options.length > 0;
+    const ansStr = String(q.answer || q.correctAnswer || '').trim();
+    const hasAnswer = ansStr !== '' && ansStr.toLowerCase() !== 'n/a';
+    if (!hasOptions || !hasAnswer) {
+      return {
+        ...q,
+        options: ["No answer refer to main PDF"],
+        answer: "No answer refer to main PDF"
+      };
+    }
+    return q;
+  });
+  
+  const groups: Record<string, { name: string; category: string; questions: any[] }> = {
+    java: { name: 'Java Core', category: 'Backend', questions: [] },
+    html_css_bootstrap: { name: 'HTML5, CSS & Bootstrap', category: 'Frontend', questions: [] },
+    javascript: { name: 'JavaScript', category: 'Frontend', questions: [] },
+    angular: { name: 'Angular', category: 'Frontend', questions: [] },
+    react: { name: 'React', category: 'Frontend', questions: [] },
+    mongodb: { name: 'MongoDB', category: 'Database', questions: [] },
+    spring_core_aop_testing: { name: 'Spring Core, AOP & Testing', category: 'Backend', questions: [] },
+    spring_dao_hibernate_jpa: { name: 'Spring DAO, Hibernate & JPA', category: 'Backend', questions: [] },
+    spring_boot_rest: { name: 'Spring Boot & REST Services', category: 'Backend', questions: [] },
+    microservices: { name: 'Microservices', category: 'Backend', questions: [] },
+    devops: { name: 'DevOps', category: 'DevOps', questions: [] },
+  };
+
+  allQs.forEach((q: any) => {
+    const text = ((q.question || '') + ' ' + (q.section || '')).toLowerCase();
+    const sec = (q.section || '').toUpperCase();
+
+    if (sec === 'JAVA CORE') {
+      groups.java.questions.push(q);
+    } else if (sec === 'HTML & CSS') {
+      groups.html_css_bootstrap.questions.push(q);
+    } else if (sec === 'JAVASCRIPT') {
+      groups.javascript.questions.push(q);
+    } else if (sec === 'ANGULAR') {
+      groups.angular.questions.push(q);
+    } else if (sec === 'REACT') {
+      groups.react.questions.push(q);
+    } else if (sec === 'MONGODB') {
+      groups.mongodb.questions.push(q);
+    } else if (sec === 'DOCKER & DEVOPS') {
+      groups.devops.questions.push(q);
+    } else if (sec === 'SPRING AOP') {
+      groups.spring_core_aop_testing.questions.push(q);
+    } else if (sec === 'JAVA SPRING') {
+      if (text.includes('microservice') || text.includes('eureka') || text.includes('gateway') || text.includes('resilience') || text.includes('circuit')) {
+        groups.microservices.questions.push(q);
+      } else if (text.includes('boot') || text.includes('rest') || text.includes('controller') || text.includes('mapping')) {
+        groups.spring_boot_rest.questions.push(q);
+      } else if (text.includes('dao') || text.includes('hibernate') || text.includes('jpa') || text.includes('entity') || text.includes('transaction') || text.includes('repository')) {
+        groups.spring_dao_hibernate_jpa.questions.push(q);
+      } else {
+        groups.spring_core_aop_testing.questions.push(q);
+      }
+    } else {
+      if (text.includes('eureka') || text.includes('gateway') || text.includes('microservice') || text.includes('feign')) {
+        groups.microservices.questions.push(q);
+      } else if (text.includes('docker') || text.includes('devops') || text.includes('git') || text.includes('pipeline') || text.includes('jenkins') || text.includes('kubernetes')) {
+        groups.devops.questions.push(q);
+      } else if (text.includes('hibernate') || text.includes('jpa') || text.includes('repository') || text.includes('jdbc') || text.includes('template') || text.includes('session')) {
+        groups.spring_dao_hibernate_jpa.questions.push(q);
+      } else if (text.includes('boot') || text.includes('rest') || text.includes('controller')) {
+        groups.spring_boot_rest.questions.push(q);
+      } else if (text.includes('spring') || text.includes('bean') || text.includes('aop') || text.includes('wire') || text.includes('autowir')) {
+        groups.spring_core_aop_testing.questions.push(q);
+      } else if (sec === 'TYPESCRIPT') {
+        groups.javascript.questions.push(q);
+      } else {
+        groups.java.questions.push(q);
+      }
+    }
+  });
+
+  const requestedDistribution = [
+    { key: 'java', count: 8 },
+    { key: 'html_css_bootstrap', count: 6 },
+    { key: 'javascript', count: 7 },
+    { key: 'angular', count: 8 },
+    { key: 'react', count: 7 },
+    { key: 'mongodb', count: 7 },
+    { key: 'spring_core_aop_testing', count: 5 },
+    { key: 'spring_dao_hibernate_jpa', count: 3 },
+    { key: 'spring_boot_rest', count: 4 },
+    { key: 'microservices', count: 3 },
+    { key: 'devops', count: 2 },
+  ];
+
+  const selected: TestQuestion[] = [];
+  const selectedGlobalIds = new Set<string>();
+  const attemptedIds = getAttemptedQuestionIds();
+
+  requestedDistribution.forEach(({ key, count }) => {
+    const group = groups[key];
+    const pool = group.questions;
+    
+    const unattempted = shuffleArray(pool.filter((q: any) => !attemptedIds.has(`EXAM-Q-${q.id}`)));
+    const attempted = shuffleArray(pool.filter((q: any) => attemptedIds.has(`EXAM-Q-${q.id}`)));
+    const combined = [...unattempted, ...attempted];
+
+    let picked = 0;
+    for (const q of combined) {
+      if (picked >= count) break;
+      const qId = `EXAM-Q-${q.id}`;
+      if (selectedGlobalIds.has(qId)) continue;
+
+      const normQ = normalizeQuestion(q, selected.length, group.name, group.category);
+      normQ.id = qId;
+      selected.push(shuffleQuestionWithOptions(normQ));
+      selectedGlobalIds.add(qId);
+      picked++;
+    }
+
+    if (picked < count) {
+      const allShuffled = shuffleArray(allQs);
+      for (const q of allShuffled) {
+        if (picked >= count) break;
+        const qId = `EXAM-Q-${q.id}`;
+        if (selectedGlobalIds.has(qId)) continue;
+        
+        const normQ = normalizeQuestion(q, selected.length, group.name, group.category);
+        normQ.id = qId;
+        selected.push(shuffleQuestionWithOptions(normQ));
+        selectedGlobalIds.add(qId);
+        picked++;
+      }
+    }
+  });
+
+  return selected.slice(0, 60);
 };
 
 const buildResult = (
@@ -106,7 +345,7 @@ const buildResult = (
   };
 };
 
-const TestPlus: React.FC = () => {
+const Examination: React.FC = () => {
   const navigate = useNavigate();
   const { theme } = useAppContext();
   const [questions, setQuestions] = useState<TestQuestion[]>([]);
@@ -127,7 +366,8 @@ const TestPlus: React.FC = () => {
   const savedTests = (() => {
     try {
       const raw = localStorage.getItem('pta_tests');
-      return raw ? (JSON.parse(raw) as any[]) : [];
+      const all = raw ? (JSON.parse(raw) as any[]) : [];
+      return all.filter(test => test.id && String(test.id).startsWith('EXAM-'));
     } catch {
       return [];
     }
@@ -142,19 +382,6 @@ const TestPlus: React.FC = () => {
   const lastScoreText = totalTestsTaken > 0
     ? `${savedTests[0].result?.totalCorrect ?? 0} / ${savedTests[0].result?.totalQuestions ?? 0}`
     : '—';
-
-  const topicNameMap: Record<string, string> = {
-    java: 'Java',
-    'js-node': 'JavaScript & Node',
-    ts: 'TypeScript',
-    react: 'React',
-    angular: 'Angular',
-    'html-css': 'HTML5 & CSS',
-    nodejs: 'Node.js',
-    mongo: 'MongoDB',
-    spring: 'Spring Boot',
-    devops: 'DevOps & Git',
-  };
 
   const currentQuestion = questions[currentIndex];
   const activeAnswer = currentQuestion ? answers.find(answer => answer.questionId === currentQuestion.id) : undefined;
@@ -174,26 +401,10 @@ const TestPlus: React.FC = () => {
     }
   };
 
-  const resetTestToIntro = () => {
-    stopTimer();
-    setPhase('intro');
-    setQuestions([]);
-    setCurrentIndex(0);
-    setAnswers([]);
-    setTimeRemaining(TEST_DURATION_SECONDS);
-    setStartedAt(null);
-    setTabSwitchCount(0);
-    setAllowAnswer(true);
-    setIsPaused(false);
-    setWarningOpen(false);
-    setTerminationOpen(false);
-    setViolationMessage('');
-  };
-
   const finishTest = (reason?: string, skipResults = false) => {
     stopTimer();
     if (skipResults) {
-      setViolationMessage(reason ?? 'Test ended.');
+      setViolationMessage(reason ?? 'Examination ended.');
       setTerminationOpen(true);
       setPhase('intro');
       setQuestions([]);
@@ -212,7 +423,7 @@ const TestPlus: React.FC = () => {
     try {
       const raw = localStorage.getItem('pta_tests');
       const list = raw ? JSON.parse(raw) as any[] : [];
-      const nextId = `TEST-${list.length + 1}`;
+      const nextId = `EXAM-${list.length + 1}`;
       const mini = {
         id: nextId,
         createdAt: Date.now(),
@@ -228,7 +439,7 @@ const TestPlus: React.FC = () => {
       const newAttempted = Array.from(new Set([...attemptedList, ...result.questions.map(q => q.id)]));
       localStorage.setItem('pta_attempted_questions', JSON.stringify(newAttempted));
     } catch (e) {
-      console.error('Failed to save test history', e);
+      console.error('Failed to save examination history', e);
     }
     setPhase('submitting');
     setTimeout(() => {
@@ -262,11 +473,11 @@ const TestPlus: React.FC = () => {
 
     setAnswers(prev => [...prev, answerRecord]);
     setAllowAnswer(false);
-    setTimeout(advanceQuestion, 500);
+    setTimeout(advanceQuestion, 550);
   };
 
   const startTest = async () => {
-    const newQuestions = createTestPlusQuestionSet();
+    const newQuestions = createExamQuestionSet();
     setQuestions(newQuestions);
     setCurrentIndex(0);
     setAnswers([]);
@@ -285,7 +496,7 @@ const TestPlus: React.FC = () => {
         await document.documentElement.requestFullscreen();
       }
     } catch {
-      // optional fullscreen failure; ignore.
+      // Optional fullscreen failure; ignore
     }
   };
 
@@ -296,15 +507,15 @@ const TestPlus: React.FC = () => {
       if (next === 1) {
         setIsPaused(true);
         stopTimer();
-        setViolationMessage('You left the test by switching tabs. Return to the test to continue. One more switch will end the test.');
+        setViolationMessage('You left the examination by switching tabs. Return to the exam to continue. One more switch will end the test.');
         setWarningOpen(true);
       } else if (next === 2) {
         setIsPaused(true);
         stopTimer();
-        setViolationMessage('This is your final warning. One more tab switch will end the test and return you to the test start screen.');
+        setViolationMessage('This is your final warning. One more tab switch will end the examination and return you to the launchpad.');
         setWarningOpen(true);
       } else {
-        finishTest('You came out of the test because you switched tabs too many times. The session has ended.', true);
+        finishTest('You came out of the examination because you switched tabs too many times. The session has ended.', true);
       }
       return next;
     });
@@ -319,7 +530,7 @@ const TestPlus: React.FC = () => {
 
   useEffect(() => {
     if (phase === 'running' && timeRemaining === 0) {
-      finishTest('Test session time ended.');
+      finishTest('Examination time ended.');
     }
   }, [timeRemaining, phase]);
 
@@ -360,17 +571,17 @@ const TestPlus: React.FC = () => {
     const onBeforeUnload = (event: BeforeUnloadEvent) => {
       if (phase === 'running') {
         event.preventDefault();
-        event.returnValue = 'You are currently taking a test. Are you sure you want to leave?';
+        event.returnValue = 'You are currently taking an examination. Are you sure you want to leave?';
       }
     };
 
     const onPopState = () => {
       if (phase === 'running') {
-        const leave = window.confirm('Leaving now will end the test. Do you want to continue?');
+        const leave = window.confirm('Leaving now will end the examination. Do you want to continue?');
         if (!leave) {
           window.history.pushState(null, '', window.location.href);
         } else {
-          finishTest('Test terminated due to navigation away.');
+          finishTest('Examination terminated due to navigation away.');
         }
       }
     };
@@ -407,18 +618,18 @@ const TestPlus: React.FC = () => {
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.3em] text-amber-500">
               <Play size={18} />
-              Test+ Launchpad
+              Examination Hall
             </div>
             <div>
-              <h1 className="text-4xl font-heading font-black text-zinc-950 dark:text-amber-50">Timed Test+ Challenge</h1>
+              <h1 className="text-4xl font-heading font-black text-zinc-950 dark:text-amber-50">Examination Environment</h1>
               <p className="mt-4 max-w-3xl text-sm text-zinc-600 dark:text-zinc-400 leading-7">
-                Complete 60 questions selected with the Test+ topic distribution, including exact section counts and topic coverage.
+                Complete exactly 60 shuffled questions pulled dynamically from all subject banks. The examination runs for exactly 1 hour, with a unified session timer, no pauses, and rigorous browser anti-cheat monitoring.
               </p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
-                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Questions</p>
+                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Total Questions</p>
                 <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">60</p>
               </div>
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
@@ -426,38 +637,27 @@ const TestPlus: React.FC = () => {
                 <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">1 hr</p>
               </div>
               <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-950 p-6">
-                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Test type</p>
-                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">Test+</p>
+                <p className="text-sm uppercase tracking-[0.24em] text-zinc-500">Anti-Cheat</p>
+                <p className="mt-3 text-4xl font-black text-zinc-950 dark:text-amber-50">Active</p>
               </div>
             </div>
 
             <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Topic distribution</h2>
-              <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                {Object.entries(testPlusDistribution).map(([key, value]) => (
-                  <div key={key} className="rounded-3xl border border-zinc-200 bg-zinc-50 p-3 text-sm text-zinc-700">
-                    <div className="font-semibold text-zinc-900">{topicNameMap[key] ?? key.replace(/-/g, ' ').toUpperCase()}</div>
-                    <div className="mt-2 text-2xl font-black text-amber-600">{value}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="rounded-3xl border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Rules</h2>
+              <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Official Exam Rules</h2>
               <ul className="mt-4 space-y-3 text-sm text-zinc-600 dark:text-zinc-400 leading-7 list-disc list-inside">
-                <li>No tab switching; first switch warns, second warns again, and the third switch ends the test.</li>
-                <li>No back navigation. Previous questions are locked forever.</li>
-                <li>One hour session countdown; questions do not auto-advance unless answered.</li>
-                <li>Right-click, copy, and select are disabled while the test is running.</li>
-                <li>The test ends after 60 questions or when the session time reaches zero.</li>
+                <li>Strict anti-cheat: switching browser tabs or leaving the screen will be flagged. Third switch terminates the session immediately.</li>
+                <li>No backward navigation. Once a question is answered, it is locked.</li>
+                <li>One hour session timer. The exam auto-submits when the timer reaches zero.</li>
+                <li>Browser copy, paste, text selection, and right-click actions are completely disabled.</li>
               </ul>
             </div>
+            
             <button
               type="button"
               onClick={startTest}
               className="mt-6 inline-flex items-center justify-center gap-3 rounded-3xl bg-amber-500 px-8 py-4 text-sm font-black uppercase tracking-[0.2em] text-zinc-950 transition hover:bg-amber-400"
             >
-              Begin Test+
+              Begin Examination
             </button>
           </div>
         </div>
@@ -470,14 +670,14 @@ const TestPlus: React.FC = () => {
             onClick={() => setShowHistoryPanel(true)}
             className="fixed right-6 top-28 z-50 rounded-full border border-amber-500 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-700 shadow-lg shadow-amber-500/20 hover:bg-amber-100"
           >
-            Test History
+            Exam History
           </button>
 
           {showHistoryPanel && (
             <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/40 p-4">
               <div className="w-full max-w-3xl rounded-3xl bg-white p-6 shadow-2xl">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold">Test History</h3>
+                  <h3 className="text-lg font-semibold">Examination History</h3>
                   <button
                     type="button"
                     onClick={() => setShowHistoryPanel(false)}
@@ -490,7 +690,7 @@ const TestPlus: React.FC = () => {
                   <>
                     <div className="grid gap-3 sm:grid-cols-2">
                       <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
-                        <div className="font-semibold text-zinc-900">Total tests taken</div>
+                        <div className="font-semibold text-zinc-900">Total exams taken</div>
                         <div className="mt-2 text-2xl font-black text-amber-600">{totalTestsTaken}</div>
                       </div>
                       <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 text-sm">
@@ -513,7 +713,7 @@ const TestPlus: React.FC = () => {
                           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                               <div className="font-medium">{t.id}</div>
-                              <div className="text-xs text-zinc-500">{t.createdAt ? new Date(t.createdAt).toLocaleString() : 'Saved test'}</div>
+                              <div className="text-xs text-zinc-500">{t.createdAt ? new Date(t.createdAt).toLocaleString() : 'Saved exam'}</div>
                               {t.result?.percentage !== undefined && (
                                 <div className="text-xs text-zinc-500 mt-1">Score: {t.result.totalCorrect} / {t.result.totalQuestions} • {t.result.percentage}%</div>
                               )}
@@ -531,7 +731,7 @@ const TestPlus: React.FC = () => {
                     </div>
                   </>
                 ) : (
-                  <div className="text-sm text-zinc-500">No tests taken</div>
+                  <div className="text-sm text-zinc-500">No exams taken yet</div>
                 )}
               </div>
             </div>
@@ -556,7 +756,7 @@ const TestPlus: React.FC = () => {
                 </span>
                 {startedAt && (
                   <span className="inline-flex items-center rounded-full bg-zinc-100 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-zinc-700">
-                    Started at {new Date(startedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    Started {new Date(startedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 )}
                 <span className={`inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] ${getTimerColor(timeRemaining)}`}>
@@ -565,6 +765,7 @@ const TestPlus: React.FC = () => {
               </div>
             </div>
           </div>
+
           <div className="rounded-[32px] border border-zinc-200 bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-semibold text-zinc-950 leading-tight">
               {currentQuestion.question}
@@ -572,35 +773,35 @@ const TestPlus: React.FC = () => {
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {currentQuestion.options.map((option, index) => {
-                  const isSelected = activeAnswer?.selectedIndex === index;
-                  return (
-                    <button
-                      key={`${currentQuestion.id}-${index}`}
-                      type="button"
-                      disabled={!allowAnswer || !!activeAnswer}
-                      onClick={() => recordAnswer(index, false)}
-                      className={`option-button rounded-3xl border px-5 py-4 text-left text-sm font-medium ${
-                        isSelected
-                          ? 'option-selected border-yellow-400 ring-2 ring-yellow-100 text-yellow-800'
-                          : 'border-zinc-200 bg-zinc-50 text-zinc-800'
-                      }`}
-                      style={{ cursor: allowAnswer ? 'pointer' : 'default' }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-100 text-xs font-black text-zinc-700">
-                          {String.fromCharCode(65 + index)}
-                        </span>
-                        <span style={{ userSelect: 'none' }}>{option}</span>
-                      </div>
-                    </button>
-                  );
-                })}
+                const isSelected = activeAnswer?.selectedIndex === index;
+                return (
+                  <button
+                    key={`${currentQuestion.id}-${index}`}
+                    type="button"
+                    disabled={!allowAnswer || !!activeAnswer}
+                    onClick={() => recordAnswer(index, false)}
+                    className={`option-button rounded-3xl border px-5 py-4 text-left text-sm font-medium ${
+                      isSelected
+                        ? 'option-selected border-yellow-400 ring-2 ring-yellow-100 text-yellow-800'
+                        : 'border-zinc-200 bg-zinc-50 text-zinc-800'
+                    }`}
+                    style={{ cursor: allowAnswer ? 'pointer' : 'default' }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-100 text-xs font-black text-zinc-700">
+                        {String.fromCharCode(65 + index)}
+                      </span>
+                      <span style={{ userSelect: 'none' }}>{option}</span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <div className="flex flex-col gap-3 rounded-[32px] border border-zinc-200 bg-white p-6 shadow-sm sm:flex-row sm:justify-between sm:items-center">
             <div className="text-sm text-zinc-500">Progress: {currentIndex + 1} / {questions.length}</div>
-            <div className="text-sm text-zinc-500">Tab switches: {tabSwitchCount}</div>
+            <div className="text-sm text-zinc-500 font-bold text-rose-500">Flags/Switches: {tabSwitchCount}</div>
           </div>
         </div>
       )}
@@ -608,8 +809,8 @@ const TestPlus: React.FC = () => {
       {phase === 'submitting' && (
         <div className="rounded-[32px] border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-14 text-center shadow-sm">
           <XCircle size={48} className="mx-auto text-amber-500" />
-          <h2 className="mt-6 text-3xl font-semibold text-zinc-950 dark:text-amber-50">Submitting your test</h2>
-          <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">Calculating results, scoring questions, and preparing your detailed review.</p>
+          <h2 className="mt-6 text-3xl font-semibold text-zinc-950 dark:text-amber-50">Submitting your examination</h2>
+          <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">Processing scores, validating anti-cheat locks, and generating review logs.</p>
         </div>
       )}
 
@@ -618,17 +819,17 @@ const TestPlus: React.FC = () => {
           <div className="w-full max-w-xl rounded-3xl bg-white dark:bg-zinc-900 p-8 shadow-2xl border border-zinc-200 dark:border-zinc-700">
             <div className="flex items-center gap-3 text-amber-500">
               <ShieldAlert size={24} />
-              <h3 className="text-xl font-semibold">Warning</h3>
+              <h3 className="text-xl font-semibold">Anti-Cheat Flag</h3>
             </div>
             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300 leading-7">
-              {violationMessage || 'Switching tabs is not allowed during the test. One more violation will end the test immediately.'}
+              {violationMessage || 'Switching tabs or leaving the screen is strictly monitored. Continuing violations will end your exam.'}
             </p>
             <button
               type="button"
               onClick={closeWarning}
               className="mt-6 inline-flex items-center justify-center rounded-3xl bg-amber-500 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-zinc-950"
             >
-              Continue test
+              Continue examination
             </button>
           </div>
         </div>
@@ -639,17 +840,17 @@ const TestPlus: React.FC = () => {
           <div className="w-full max-w-xl rounded-3xl bg-white dark:bg-zinc-900 p-8 shadow-2xl border border-zinc-200 dark:border-zinc-700">
             <div className="flex items-center gap-3 text-rose-500">
               <ShieldAlert size={24} />
-              <h3 className="text-xl font-semibold">Test Ended</h3>
+              <h3 className="text-xl font-semibold">Session Terminated</h3>
             </div>
             <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300 leading-7">
-              {violationMessage || 'You left the test and the session has been terminated.'}
+              {violationMessage || 'Your examination session has been terminated due to security violations.'}
             </p>
             <button
               type="button"
               onClick={() => setTerminationOpen(false)}
               className="mt-6 inline-flex items-center justify-center rounded-3xl bg-amber-500 px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-zinc-950"
             >
-              Return to test start
+              Return to launchpad
             </button>
           </div>
         </div>
@@ -658,4 +859,4 @@ const TestPlus: React.FC = () => {
   );
 };
 
-export default TestPlus;
+export default Examination;

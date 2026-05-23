@@ -90,16 +90,6 @@ export const testDistribution: Record<string, number> = {
   devops: 6,
 };
 
-export const testPlusDistribution: Record<string, number> = {
-  java: 8,          // Cloud Microservices - Java
-  'html-css': 6,    // Cloud Microservices - HTML5 CSS and Bootstrap
-  'js-node': 7,     // Cloud Microservices - JavaScript
-  angular: 8,       // Cloud Microservices - Angular
-  react: 7,         // Cloud Microservices - React
-  mongo: 7,         // Cloud Microservices - MongoDB
-  spring: 15,       // Cloud Microservices - Spring Core/AOP/Testing + DAO/Hibernate/JPA + Boot/REST + Microservices
-  devops: 2,        // Cloud Microservices - DevOps
-};
 
 const shuffleArray = <T,>(items: T[]) => {
   const copy = [...items];
@@ -159,11 +149,6 @@ export const createTestQuestionSet = (): TestQuestion[] => {
   const selected: TestQuestion[] = [];
   const selectedIds = new Set<string>();
   const attemptedIds = getAttemptedQuestionIds();
-  const bankStates = buildQuestionBanks.map(bank => ({
-    bank,
-    unused: bank.questions.filter(q => !attemptedIds.has(q.id)),
-    reuseIndex: 0,
-  }));
 
   const order = [
     'java',
@@ -180,20 +165,27 @@ export const createTestQuestionSet = (): TestQuestion[] => {
 
   for (const topicId of order) {
     if (selected.length >= 60) break;
-    const state = bankStates.find(s => s.bank.topicId === topicId);
-    if (!state) continue;
+    const bank = buildQuestionBanks.find(bankItem => bankItem.topicId === topicId);
+    if (!bank) continue;
 
-    while (selected.length < 60) {
+    const count = testDistribution[topicId] || 0;
+    if (count <= 0) continue;
+
+    const unused = shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id)));
+    let reuseIndex = 0;
+    let picked = 0;
+
+    while (picked < count) {
       let nextQuestion: TestQuestion | undefined;
-      if (state.unused.length > 0) {
-        nextQuestion = state.unused.shift();
+      if (unused.length > 0) {
+        nextQuestion = unused.shift();
       } else {
-        while (state.reuseIndex < state.bank.questions.length && selectedIds.has(state.bank.questions[state.reuseIndex].id)) {
-          state.reuseIndex += 1;
+        while (reuseIndex < bank.questions.length && selectedIds.has(bank.questions[reuseIndex].id)) {
+          reuseIndex += 1;
         }
-        if (state.reuseIndex < state.bank.questions.length) {
-          nextQuestion = state.bank.questions[state.reuseIndex];
-          state.reuseIndex += 1;
+        if (reuseIndex < bank.questions.length) {
+          nextQuestion = bank.questions[reuseIndex];
+          reuseIndex += 1;
         }
       }
 
@@ -207,49 +199,10 @@ export const createTestQuestionSet = (): TestQuestion[] => {
 
       selected.push(shuffleQuestionWithOptions(nextQuestion));
       selectedIds.add(nextQuestion.id);
+      picked += 1;
     }
   }
 
   return selected.slice(0, 60);
 };
 
-export const createTestPlusQuestionSet = (): TestQuestion[] => {
-  const selected: TestQuestion[] = [];
-  const selectedIds = new Set<string>();
-  const attemptedIds = getAttemptedQuestionIds();
-
-  buildQuestionBanks.forEach(bank => {
-    const count = testPlusDistribution[bank.topicId] || 0;
-    if (count <= 0) return;
-
-    const bankSelected: TestQuestion[] = [];
-    const unused = shuffleArray(bank.questions.filter(q => !attemptedIds.has(q.id)));
-    let reuseIndex = 0;
-
-    while (bankSelected.length < count) {
-      let next: TestQuestion | undefined;
-      if (unused.length > 0) {
-        next = unused.shift();
-      } else {
-        while (reuseIndex < bank.questions.length && selectedIds.has(bank.questions[reuseIndex].id)) {
-          reuseIndex += 1;
-        }
-        if (reuseIndex < bank.questions.length) {
-          next = bank.questions[reuseIndex];
-          reuseIndex += 1;
-        }
-      }
-
-      if (!next) {
-        break;
-      }
-
-      bankSelected.push(next);
-      selectedIds.add(next.id);
-    }
-
-    selected.push(...bankSelected.map(shuffleQuestionWithOptions));
-  });
-
-  return selected.slice(0, 60);
-};

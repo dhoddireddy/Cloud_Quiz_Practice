@@ -1,0 +1,6384 @@
+[
+  {
+    "id": 1,
+    "section": "HTML & CSS",
+    "question": "Whenever you are assigning two classes to a tag , you must separate them with a",
+    "options": [
+      "A.Space",
+      "B.Comma",
+      "C.Dash"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 2,
+    "section": "HTML & CSS",
+    "question": "____________ contains the navigation menu, or other navigation functionality for the page",
+    "options": [
+      "A.section",
+      "B.header",
+      "C.nav",
+      "D.aside"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 3,
+    "section": "HTML & CSS",
+    "question": "The main purpose of the placeholder attribute in input controls is:",
+    "options": [
+      "A.Allow the end-user to remember the location in form",
+      "B.There is no such attribute known as \"placeholder\"",
+      "C.Allow the end-user to replace the data control with another",
+      "D.Display \"watermark\" data to assist the end-user"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 4,
+    "section": "HTML & CSS",
+    "question": "Which of the following values are accepted by the float Property?a) leftb) rightc) noned) all of the mentioned",
+    "options": [
+      "A.left",
+      "B.right",
+      "C.none",
+      "D.all of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 5,
+    "section": "HTML & CSS",
+    "question": "Which of the following CSS Property controls how an element is positioned?",
+    "options": [
+      "A.position",
+      "B.set",
+      "C.static",
+      "D.fix"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 6,
+    "section": "HTML & CSS",
+    "question": "If You are designing a column to occupy 3 of the 12 columns in your desktop designWhat is the width in CSS",
+    "options": [
+      "A.Width:25%",
+      "B.Width:33.3333%",
+      "C.Width:21%"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 7,
+    "section": "HTML & CSS",
+    "question": "In what direction does float will work? img { float: right; }",
+    "options": [
+      "left",
+      "top",
+      "bottom",
+      "right"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 8,
+    "section": "HTML & CSS",
+    "question": "Which of the following CSS Property sets the stacking order of positioned elements?",
+    "options": [
+      "A.x-index",
+      "B.y-index",
+      "C.z-index"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 9,
+    "section": "HTML & CSS",
+    "question": "You indicate a class selector with",
+    "options": [
+      "A.the hash (#) symboL",
+      "B.the dot (.)",
+      "C.the tag"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 10,
+    "section": "HTML & CSS",
+    "question": "Which of the following media queries would apply to a tabletreporting a screen width of 768px?",
+    "options": [
+      "A.@media only screen and (min-width: 1140px){}",
+      "B.@media only screen and (min-width: 641px){}",
+      "C.@media only screen and (max-width: 1140px){}"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 11,
+    "section": "HTML & CSS",
+    "question": "To get the first or nth child you use",
+    "options": [
+      "A.the nested selector",
+      "B.A pseudo-class"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 12,
+    "section": "HTML & CSS",
+    "question": "Which of the following rules allows users to import style rules from other style sheets?",
+    "options": [
+      "A.@media",
+      "B.@important",
+      "C.@import",
+      "D.@style"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 13,
+    "section": "HTML & CSS",
+    "question": "I have a <p> which is the child of a <div> which is the child of a <section>, does the style in the section affect the p tag?",
+    "options": [
+      "A.Yes, inheritance accumulates",
+      "B.No, only the immediate parent's style is inherited"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 14,
+    "section": "HTML & CSS",
+    "question": "Which HTML tag allows styling from an external .css file?",
+    "options": [
+      "A.link",
+      "B.css",
+      "C.style"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 15,
+    "section": "HTML & CSS",
+    "question": "Which of the following properties sets the distance between an element’s right border and the rightmost edge of its content?",
+    "options": [
+      "A.auto",
+      "B.padding-left",
+      "C.padding-right",
+      "D.Padding-top"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 16,
+    "section": "JAVASCRIPT",
+    "question": "What built-in functions allows you to convert a string into an integer?",
+    "options": [
+      "A.toInt()",
+      "B.parseInt()",
+      "C.toInteger()",
+      "D.parseString()"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 17,
+    "section": "JAVASCRIPT",
+    "question": "What is the catch method for a promise?",
+    "options": [
+      "A.To compose two promises",
+      "B.To listen to the result of a promise",
+      "C.To listen only for a rejected promise",
+      "D.There is no catch method on a promise"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 18,
+    "section": "JAVASCRIPT",
+    "question": "What is the effect of using await?",
+    "options": [
+      "A.The awaited function runs in parallel",
+      "B.A promise is returned from a function instead of a value",
+      "C.A value is returned from a function instead of a promise"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 19,
+    "section": "JAVASCRIPT",
+    "question": "What is a function in JavaScript?",
+    "options": [
+      "A.An instance of a class",
+      "B.A statement that evaluates an expression",
+      "C.A block of organized, reusable code that performs a single action",
+      "D.Code that allows us to write loops"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 20,
+    "section": "JAVASCRIPT",
+    "question": "What does an async function return?",
+    "options": [
+      "A. A promise in a promise",
+      "B. The value returned from the function",
+      "C. A promise"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 21,
+    "section": "JAVASCRIPT",
+    "question": "What is dependency injection?",
+    "options": [
+      "A. A coding technique in which all dependencies are defined with import statements",
+      "B. A coding technique for registering services",
+      "C. A coding pattern in which a class receives the instances of objects it needs from an external source"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 22,
+    "section": "JAVASCRIPT",
+    "question": "Which is the proper syntax to make sessionTemplate available by name from a JavaScript module?",
+    "options": [
+      "A.export function sessionTemplate(sessions) {...}",
+      "B.export default function sessionTemplate(sessions) {...}",
+      "C.module.exports = function sessionTemplate(sessions) {...}",
+      "D.require function sessionTemplate(sessions) {...}"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 23,
+    "section": "JAVASCRIPT",
+    "question": "What is a callback?",
+    "options": [
+      "A.A function that is called when a parallel operation is done",
+      "B.A boolean that is set to true when a parallel operation is done",
+      "C.A function that can be used with the 'await' keyword"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 24,
+    "section": "JAVASCRIPT",
+    "question": "There is no catch method on a promise",
+    "options": [
+      "A.true",
+      "B.false"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 25,
+    "section": "JAVASCRIPT",
+    "question": "What is blog.name?var blog = { name: 'Ski Utah'};var updatedBlog = blog;updatedBlog.name = 'Rocky Mountain Skiing' }",
+    "options": [
+      "A.Ski Utah",
+      "B.undefined",
+      "C.blog",
+      "D.Rocky Mountain Skiing"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 26,
+    "section": "JAVASCRIPT",
+    "question": "What is the output of the following?greet = function(...months){ months.forEach(month => console.log('Month: ' + month));}greet([ 'Jan', 'Feb']);",
+    "options": [
+      "A. Jan Feb",
+      "B. ReferenceError",
+      "C. Month: Jan,Feb",
+      "D. Month: Jan",
+      "E. Month: Feb"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 27,
+    "section": "JAVASCRIPT",
+    "question": "What is the relationship between JavaScript and ECMAScript?",
+    "options": [
+      "A.ECMAScript is a standard that JavaScript implements.",
+      "B.They are different terms for the same thing.",
+      "C.JavaScript is a standard that ECMAScript implements.",
+      "D.JavaScript is an old term for what is now called ECMAScript."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 28,
+    "section": "JAVASCRIPT",
+    "question": "What will show in the console when this code runs?var value = \"no value\";console.log(!!value );",
+    "options": [
+      "A.false",
+      "B.(an empty string)",
+      "C.true",
+      "D.no value"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 29,
+    "section": "JAVASCRIPT",
+    "question": "What is the output of the following?function display(num1, num2) { console.log(num1, num2);}let nums = \"12345\";display(...nums);",
+    "options": [
+      "A.1 2",
+      "B.21",
+      "C.12345",
+      "D.45"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 30,
+    "section": "JAVASCRIPT",
+    "question": "What is the console output of the following code block:function printName() { name = \"Mary\"; name = \"John\"; console.log(name);}",
+    "options": [
+      "A.Empty",
+      "B.None",
+      "C.John",
+      "D.Mary"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 31,
+    "section": "JAVASCRIPT",
+    "question": "Where is the correct place to insert a Javascript ?",
+    "options": [
+      "A. The <head> section",
+      "B. Both the <head> section and the <body> section are correct.",
+      "C. The <body> section.",
+      "D. The <footer> section."
+    ],
+    "answer": "B."
+  },
+  {
+    "id": 32,
+    "section": "JAVASCRIPT",
+    "question": "What syntax allows for a variable number of arguments to a function where the arguments are passed as an array?",
+    "options": [
+      "1. function([]numbers) { }",
+      "2. function(*numbers) { }",
+      "3. function(...numbers) { }",
+      "4. function(numbers[]) { }"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 33,
+    "section": "JAVASCRIPT",
+    "question": "What statement will load a module from a script named employee.js?",
+    "options": [
+      "1. reference \"employee\";",
+      "2. import \"employee\";",
+      "3. import \"employee.js\";",
+      "4. reference \"employee.js\";"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 34,
+    "section": "JAVASCRIPT",
+    "question": "Which flags are required to run nodes with ES6?",
+    "options": [
+      "1. harmony and strict-mode",
+      "2. experimental and strict-mode",
+      "3. harmony and block-binding",
+      "4. harmony and experimental"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 35,
+    "section": "JAVASCRIPT",
+    "question": "What contextual keyword is used in a class definition to identify a function containing initialization logic for an object?",
+    "options": [
+      "1. ctor",
+      "2. new",
+      "3. constructor",
+      "4. class"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 36,
+    "section": "JAVASCRIPT",
+    "question": "What syntax will create the array [1, 2, 3, 4, 5, 6] ?",
+    "options": [
+      "1. [1, 2, [3, 4]..., 5, 6];",
+      "2. [1, 2, ...[3, 4], 5, 6];",
+      "3. [1, 2, [3, 4], 5, 6];",
+      "4. [1, 2, {3, 4}, 5, 6];"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 37,
+    "section": "JAVASCRIPT",
+    "question": "Q 6. What symbol identifies a generator function?",
+    "options": [
+      "1. &",
+      "2. @",
+      "3. $",
+      "4. *"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 38,
+    "section": "JAVASCRIPT",
+    "question": "By default, if you load a module that's not a JavaScript file, what will SystemJS do?",
+    "options": [
+      "1. Raise an error when loading the module.",
+      "2. Attempt to load the module as if it were a JavaScript file.",
+      "3. Look for a plugin with the name of the file extension to load the file."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 39,
+    "section": "JAVASCRIPT",
+    "question": "Babel compiles the JavaScript code you write into",
+    "options": [
+      "1. ECMAScript 5",
+      "2. ECMAScript 7",
+      "3. ECMAScript 3",
+      "4. ECMAScript 6"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 40,
+    "section": "JAVASCRIPT",
+    "question": "Which of these phrases describes Babel?",
+    "options": [
+      "A. JavaScript compiler B, Requires a runtime",
+      "B. A programming language",
+      "C. Experimental"
+    ],
+    "answer": "A."
+  },
+  {
+    "id": 41,
+    "section": "REACT",
+    "question": "The string \"api/route\" in Express is an example of a...",
+    "options": [
+      "A. Middleware B .Route",
+      "C. Error Handler"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 42,
+    "section": "REACT",
+    "question": "Which library allows the use of the \"require\" keyword in front-end code?",
+    "options": [
+      "A. guid",
+      "B. Browserify",
+      "C. React",
+      "D. jQuery"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 43,
+    "section": "REACT",
+    "question": "The ______ attribute of a React form is called when the main action button inside the form is pressed.",
+    "options": [
+      "A. onSubmit",
+      "B. onChange",
+      "C. onComplete"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 44,
+    "section": "REACT",
+    "question": "Which of the following are automation tools?",
+    "options": [
+      "A. Gulp",
+      "B. JSX",
+      "C. Express"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 45,
+    "section": "REACT",
+    "question": "Which of the following is not a method of a dispatcher?",
+    "options": [
+      "A. register",
+      "B. vector",
+      "C. dispatch"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 46,
+    "section": "REACT",
+    "question": "What React function is used to define a new element tag?",
+    "options": [
+      "A. renderComponent",
+      "B. createClass",
+      "C. setInnerHTML"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 47,
+    "section": "REACT",
+    "question": "Isomorphic means to focus exclusively on an app's back-end.",
+    "options": [
+      "A. True",
+      "B. False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 48,
+    "section": "REACT",
+    "question": "React's abstraction of the document object model is often called...",
+    "options": [
+      "A. Virtual DOM",
+      "B. Meta DOM",
+      "C. Virtualized Model"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 49,
+    "section": "REACT",
+    "question": "True or false : The only thing that can change the data inside a store is the store itself.",
+    "options": [
+      "A. false",
+      "B. true"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 50,
+    "section": "REACT",
+    "question": "The Gulp task which takes a stream and outputs a file is...",
+    "options": [
+      "A. src",
+      "B. task",
+      "C. dest"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 51,
+    "section": "REACT",
+    "question": "The best way to detect when a user has completed a form is",
+    "options": [
+      "A. to handle the onClick event on the form's submit element",
+      "B. to handle the onBlur event of the last form element",
+      "C. to handle the form's onSubmit event",
+      "D. to accumulate the onChange events for each form element"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 52,
+    "section": "REACT",
+    "question": "React is",
+    "options": [
+      "A A library that represents asynchronous data streams with observables",
+      "B A comprehensive client-side application framework",
+      "C An optimizing compiler for JavaScript",
+      "D A client-side library providing rendering and event handling"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 53,
+    "section": "REACT",
+    "question": "Routing can be added to a React application by",
+    "options": [
+      "A. adding an HTML5 or hash fragment based routing library",
+      "B. rendering the application on the server using react-page",
+      "C. handling the window.onLocationChanged event",
+      "D. using the React.route function"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 54,
+    "section": "REACT",
+    "question": "Behavior is shared between components using",
+    "options": [
+      "A. propTypes",
+      "B. state",
+      "C. mixins",
+      "D. props"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 55,
+    "section": "REACT",
+    "question": "An advantage of React is",
+    "options": [
+      "A. jQuery syntax",
+      "B. static type checking",
+      "C. speed",
+      "D. easy integration with other JavaScript libraries"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 56,
+    "section": "REACT",
+    "question": "The JSX pre-processor is packaged as a",
+    "options": [
+      "A. dynamic link library",
+      "B. Nuget package",
+      "C. Gem",
+      "D. npm module"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 57,
+    "section": "REACT",
+    "question": "The just-in-time JSX transformer is good for",
+    "options": [
+      "A. integrating with JavaScript tools",
+      "B. simple development workflow",
+      "C. reusing behavior",
+      "D. performance"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 58,
+    "section": "REACT",
+    "question": "The function that creates React components is",
+    "options": [
+      "A. React.component.extend",
+      "B. React.createComponent",
+      "C. React.renderComponent",
+      "D. React.createClass"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 59,
+    "section": "REACT",
+    "question": "How does React Router make URL params accessible to components?",
+    "options": [
+      "A. parseUrlParams",
+      "B. State",
+      "C. getUrlParams",
+      "D. Props"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 60,
+    "section": "REACT",
+    "question": "Why is the Link component useful?",
+    "options": [
+      "A. It allows you to hyperlink to routes by name",
+      "B. It enhances page load performance",
+      "C. It removes invalid characters from the URL",
+      "D. It provides faster navigation than hyperlinks"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 61,
+    "section": "REACT",
+    "question": "How do Flux stores find out about Flux actions?",
+    "options": [
+      "A. They query the server via AJAX",
+      "B. They poll HTML5 localstorage",
+      "C. They register a callback with the dispatcher.",
+      "D. They call action creators directly"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 62,
+    "section": "REACT",
+    "question": "Where should mutable data for React components be stored?",
+    "options": [
+      "A. props",
+      "B. reactData",
+      "C. state",
+      "D. React.cookie"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 63,
+    "section": "REACT",
+    "question": "What mechanism is recommended for passing data down to child components in React?",
+    "options": [
+      "A. props",
+      "B. sendChildData",
+      "C. getDefaultProps",
+      "D. state"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 64,
+    "section": "REACT",
+    "question": "What is JSX?",
+    "options": [
+      "A. A language that looks like JavaScript that compiles to HTML.",
+      "B. A styling language that compiles down to CSS.",
+      "C. A language for querying RESTful web services.",
+      "D. A language that looks like HTML that compiles down to JavaScript."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 65,
+    "section": "REACT",
+    "question": "What function should all your JSX be placed in?",
+    "options": [
+      "A. render",
+      "B. compile",
+      "C. jsx",
+      "D. emit"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 66,
+    "section": "REACT",
+    "question": "What does the “webpack” command do ?",
+    "options": [
+      "A. Runs React Local Development Server.",
+      "B. Transpiles all the Javascript down into one file.",
+      "C. Both A and B."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 67,
+    "section": "REACT",
+    "question": "Which of the following API is a MUST for every React Component ?",
+    "options": [
+      "A. getInitialState.",
+      "B. render",
+      "C.renderComponent."
+    ],
+    "answer": "C."
+  },
+  {
+    "id": 68,
+    "section": "REACT",
+    "question": "What are the advantages of React ?",
+    "options": [
+      "A. React can be used on client as well as server side.",
+      "B. Using React increases readability and makes maintainability easier. Component and Data patterns improve readability and thus make it easier for maintaining larger props.",
+      "C. React can be used with any other framework (Backbone.js, Angular.js) as it is just a View Layer.",
+      "D. All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 69,
+    "section": "REACT",
+    "question": "How does React handle the Web Accessibility Initiative - Accessible Rich Internet Applications (WAI-ARIA) standard ?",
+    "options": [
+      "A. aria -* HTML attributes are fully supported in JSX where most DOM properties and attributes in React are camelCased , these attributes should be lowercase.",
+      "B. React processes aria - * attributes separately and updates the DOM for accessibility if the user requires it.",
+      "C. aria-* attributes should be converted to camelCase like other attributes; For example: className, onChange and so on.",
+      "D. React is yet to support the WAI-ARIA standard."
+    ],
+    "answer": "D."
+  },
+  {
+    "id": 70,
+    "section": "REACT",
+    "question": "What is React in MVC ?",
+    "options": [
+      "A. Controller",
+      "B. Middleware",
+      "C. Model",
+      "D. Router"
+    ],
+    "answer": "None of these. Updated ans is Controller. Option A"
+  },
+  {
+    "id": 71,
+    "section": "REACT",
+    "question": "What is React?",
+    "options": [
+      "Just a server-side framework",
+      "Just a user-interface framework",
+      "Both a server-side framework as well as a user-interface framework"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 72,
+    "section": "REACT",
+    "question": "What are the limitations of React?",
+    "options": [
+      "React is only for the view layer of the app so we still need the help of other technologies to get a complete tooling set for development.",
+      "React uses inline templating and JSX. This can seem awkward to some developers.",
+      "The library of React is too large.",
+      "All of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 73,
+    "section": "REACT",
+    "question": "How can you access the state of a component from inside of a member function in React?",
+    "options": [
+      "this.getState()",
+      "this.prototype.stateValue",
+      "this.state",
+      "this.values"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 74,
+    "section": "REACT",
+    "question": "You can also use an ES6 class to define a component in React.",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 75,
+    "section": "REACT",
+    "question": "Which of the following API is a MUST for every React component?",
+    "options": [
+      "getInitialState",
+      "render",
+      "renderComponent"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 76,
+    "section": "REACT",
+    "question": "At the highest level, React components have lifecycle events that fall into _______.",
+    "options": [
+      "Initialization",
+      "State/Property updates",
+      "Destruction",
+      "All of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 77,
+    "section": "REACT",
+    "question": "What are the advantages of React?",
+    "options": [
+      "React can be used on client as well as server side.",
+      "Using React increases readability and makes maintainability easier. Component and Data patterns improve readability and thus make it easier for maintaining larger apps.",
+      "React can be used with any other framework (Backbone.js, Angular.js), as it is just a view layer.",
+      "All of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 78,
+    "section": "REACT",
+    "question": "How does React handle the Web Accessibility Initiative - Accessible Rich Internet Applications (WAI-ARIA) standard?",
+    "options": [
+      "aria-* HTML attributes are fully supported in JSX where most DOM properties and attributes in React are camelCased, these attributes should be lowercase.",
+      "React processes aria-* attributes separately and updates the DOM for accessibility if the user requires it.",
+      "aria-* attributes should be converted to camelCase like other attributes. For example: className, onChange, and so on",
+      "React is yet to support the WAI-ARIA standard."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 79,
+    "section": "REACT",
+    "question": "What does the \"webpack\" command do?",
+    "options": [
+      "Transpiles all the Javascript down into one file",
+      "Runs react local development server",
+      "Both A and B"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 80,
+    "section": "REACT",
+    "question": "What is React in MVC?",
+    "options": [
+      "Controller",
+      "Middleware",
+      "Model",
+      "Router"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 81,
+    "section": "TYPESCRIPT",
+    "question": "Which features does TypeScript support natively?",
+    "options": [
+      "A.Support for standard JavaScript code",
+      "B.Classes and modules",
+      "C.Static typing",
+      "D.Interfaces",
+      "E.Constructors",
+      "F. All of the above"
+    ],
+    "answer": "F"
+  },
+  {
+    "id": 82,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following is not a type keyword in TypeScript?",
+    "options": [
+      "1.float",
+      "2.bool",
+      "3.all are valid types in TypeScript",
+      "4.number",
+      "5.string"
+    ],
+    "answer": "float"
+  },
+  {
+    "id": 83,
+    "section": "TYPESCRIPT",
+    "question": "Interfaces defined in TypeScript are included in the JavaScript that is generated?",
+    "options": [
+      "True",
+      "False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 84,
+    "section": "TYPESCRIPT",
+    "question": "How do you extend an interface in TypeScript?",
+    "options": [
+      "A.interface ITruckOptions extends IAutoOptions",
+      "B.interface ITruckOptions => IAutoOptions",
+      "C.interface ITruckOptions : IAutoOptions",
+      "D.interface ITruckOptions implements IAutoOptions"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 85,
+    "section": "TYPESCRIPT",
+    "question": "Benefits offered by TypeScript include:",
+    "options": [
+      "A.Code encapsulation",
+      "B.All of these",
+      "C.More maintainable code",
+      "D.Strongly-typed code"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 86,
+    "section": "TYPESCRIPT",
+    "question": "How do you automatically generate fields in a TypeScript class?",
+    "options": [
+      "A.Add the public keyword to a constructor parameter",
+      "B.None of these",
+      "C.Use the auto keyword",
+      "D.TypeScript doesn't support automatically generated fields"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 87,
+    "section": "TYPESCRIPT",
+    "question": "Which TypeScript function will accept 2 parameters that must be numbers and return their product?",
+    "options": [
+      "A.var func = (x: number, y: number) => x * y;",
+      "B.var func = (x, y) => x * y;",
+      "C.None of these",
+      "D.var func = function(x, y) => x * y;",
+      "E.All of these"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 88,
+    "section": "TYPESCRIPT",
+    "question": "Which statement will allow your code to reference an internal module in a file named shapes.ts using TypeScript?",
+    "options": [
+      "A./// <reference=\"shapes.ts\" />",
+      "B./// <reference path=\"shapes.ts\" />",
+      "C.import \"shapes\"",
+      "D./// shapes.ts"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 89,
+    "section": "TYPESCRIPT",
+    "question": "Which TypeScript statement will import an external module in a file named viewmodels.ts that is in the same folder as your code?",
+    "options": [
+      "A.import vm = module(viewmodels);",
+      "B.import vm = module('../viewmodels');",
+      "C.import module('viewmodels');",
+      "D.import vm = module('viewmodels');"
+    ],
+    "answer": "DC"
+  },
+  {
+    "id": 90,
+    "section": "TYPESCRIPT",
+    "question": "Which TypeScript compiler parameter will emit JavaScript that is AMD compliant?",
+    "options": [
+      "--AMD",
+      "--module AMD",
+      "Neither of these"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 91,
+    "section": "TYPESCRIPT",
+    "question": "What keyword is used to apply all of the properties on one interface to another interface? implements extends class furthers references ANS B Q 12.What value will be output at the end of the following code block? enum Color { Red = 5, Green = 10, Blue = 15 };",
+    "options": [
+      "A.console.log(Color.Green);",
+      "B.2",
+      "C.Color.Green",
+      "D.1",
+      "E.Green",
+      "F.10"
+    ],
+    "answer": "F"
+  },
+  {
+    "id": 92,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following best defines a \"class\"?",
+    "options": [
+      "A.Objects with no implementation details",
+      "B.Object with no properties or methods",
+      "C.JSON objects with methods",
+      "D.Collection of private, reusable functions",
+      "E.Template for creating objects"
+    ],
+    "answer": "E"
+  },
+  {
+    "id": 93,
+    "section": "TYPESCRIPT",
+    "question": "What term describes the concept of treating an object as if it were a particular type, even if it weren't declared as that type?",
+    "options": [
+      "A.Extension Typing",
+      "B.Duck Typing",
+      "C.Interface Typing",
+      "D.Generic Typing",
+      "E.Ruby Typing"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 94,
+    "section": "TYPESCRIPT",
+    "question": "What access modifier limits the accessibility of a class member to its own class and subclasses?",
+    "options": [
+      "A.export",
+      "B.internal",
+      "C.protected",
+      "D.private",
+      "E.sensitive"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 95,
+    "section": "TYPESCRIPT",
+    "question": "What is the primary difference between a generic class and a non-generic class?",
+    "options": [
+      "A.Generic classes do not accept constructor parameters.",
+      "B.Generic classes are always declared abstract.",
+      "C.Generic classes may not implement interfaces.",
+      "D.Generic classes accept a type parameter.",
+      "E.Generic classes must inherit from a base class."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 96,
+    "section": "TYPESCRIPT",
+    "question": "Which TypeScript compiler options lets you specify the location of the tsconfig.json file to be used for the compilation?",
+    "options": [
+      "A.--project",
+      "B.--json",
+      "C.--outDir",
+      "D.--input",
+      "E.--source"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 97,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following symbols is used to denote that a function parameter is a rest parameter?",
+    "options": [
+      "A. <>",
+      "B. >>>",
+      "C. !!",
+      "D. ...",
+      "E. ||"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 98,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following will correctly import the items exported by this export statement? export { GetUser as GetLibraryUser, GetBook as GetLibraryBook };",
+    "options": [
+      "A.import TypeScript from './library';",
+      "B.import namespace from './library';",
+      "C.import { GetLibraryUser, GetLibraryBook } from './library';",
+      "D.import { GetUser, GetBook } from './library';",
+      "E.import all from './library';"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 99,
+    "section": "TYPESCRIPT",
+    "question": "Which are the different Data Types supported by Typescript?",
+    "options": [
+      "A. Boolean var bValue: boolean = false",
+      "B. Number var age: number = 16",
+      "C. String var name: string = \"join\"",
+      "D. All of the above mentioned"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 100,
+    "section": "TYPESCRIPT",
+    "question": "What are the variable scopes available in TypeScript?",
+    "options": [
+      "A. Global Scope",
+      "B. Class Scope",
+      "C. Local Scope",
+      "D. All of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 101,
+    "section": "TYPESCRIPT",
+    "question": "Which object oriented terms are supported by Typescript?",
+    "options": [
+      "A. Modules",
+      "B. Classes",
+      "C. Interfaces",
+      "D. All of these"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 102,
+    "section": "TYPESCRIPT",
+    "question": "In typescript, it calls an javascript internally and then performs validations",
+    "options": [
+      "A.True",
+      "B.False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 103,
+    "section": "TYPESCRIPT",
+    "question": "To change the datatype from one type to another,we require",
+    "options": [
+      "A.TypeOperator",
+      "B.TypeAssertion",
+      "C.InferredTyping"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 104,
+    "section": "TYPESCRIPT",
+    "question": "For a variable,Without Specifying any data type is",
+    "options": [
+      "A.InferredTyping",
+      "B.TypeOperator",
+      "C.TypeAssertion"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 105,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following is valid command to compile typescript file?",
+    "options": [
+      "A.ts abc.ts",
+      "B.t abc.ts",
+      "C.tsc abc.ts",
+      "D.tst abc.ts"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 106,
+    "section": "TYPESCRIPT",
+    "question": "What will be output of : var a:string=47; console.log(“Value of a=\"+a);",
+    "options": [
+      "A.Value of a=47",
+      "B.Value of a=0",
+      "C.Value of a=",
+      "D.None of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 107,
+    "section": "TYPESCRIPT",
+    "question": "Internal Modules are known as namespaces in Typescript.",
+    "options": [
+      "A.True",
+      "B.False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 108,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following Arrow Functions are true",
+    "options": [
+      "A.var reflect = value => value;",
+      "B.var sum = (num1, num2) => num1 + num2;",
+      "C.var getName = () => \"Nicholas\";",
+      "D.var sum = (num1, num2) => { return num1 + num2; };",
+      "E.All"
+    ],
+    "answer": "E"
+  },
+  {
+    "id": 109,
+    "section": "TYPESCRIPT",
+    "question": "function fun1(...params) { console.log(params.length); } fun1(); fun1(5); fun1(5, 6, 7); Which concept resemble the above program",
+    "options": [
+      "A.String Interpolation",
+      "B.Tagged Templates",
+      "C.Spread Operator/Rest Parameters",
+      "D.Object Destructuring"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 110,
+    "section": "TYPESCRIPT",
+    "question": "Typescript is a",
+    "options": [
+      "A.Strongly typed",
+      "B.Object oriented",
+      "C.Compiled Language",
+      "D.All the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 111,
+    "section": "TYPESCRIPT",
+    "question": "Typescript is",
+    "options": [
+      "A.Language",
+      "B.set of tools",
+      "C.Both",
+      "D.None"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 112,
+    "section": "TYPESCRIPT",
+    "question": "Select user defined data types in typescript",
+    "options": [
+      "A.arrays",
+      "B.String",
+      "C.Boolean",
+      "D.Void"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 113,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following are true",
+    "options": [
+      "A.we can use printf in ts(typescript)",
+      "B.we can use console.log in ts(typescript)"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 114,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following are array methods",
+    "options": [
+      "A.Unshift()",
+      "B.Sort()",
+      "C.Pop()",
+      "D.All the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 115,
+    "section": "TYPESCRIPT",
+    "question": "Supertype of all datatypes in typescript",
+    "options": [
+      "A.number",
+      "B.Enum",
+      "C.Void",
+      "D.Any"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 116,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following are true",
+    "options": [
+      "A.var a=new String(hii)",
+      "B.var b=new array[1]",
+      "C.var a:String=hii;",
+      "D.All the above"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 117,
+    "section": "TYPESCRIPT",
+    "question": "List some features of Typescript?",
+    "options": [
+      "A. Typescript can be compiled to all major versions of Javascript(ES3,ES5,ES6,ES7)",
+      "B. Typescript can be used for cross –browser development and is an open source project",
+      "C. Typescript is a superset of JavaScript that provides typed nature to your code",
+      "D. All of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 118,
+    "section": "TYPESCRIPT",
+    "question": "What are the components of TypeScript?",
+    "options": [
+      "A. TypeScript Language",
+      "B. TypeScript Compiler",
+      "C. TypeScript Language Service",
+      "D. All of these"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 119,
+    "section": "TYPESCRIPT",
+    "question": "How to declare variables in Typescript?",
+    "options": [
+      "A) Var",
+      "B) Let",
+      "C) Both"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 120,
+    "section": "TYPESCRIPT",
+    "question": "Typescript uses which data type?",
+    "options": [
+      "A) String",
+      "B) Number",
+      "C) Boolean",
+      "D)All above option"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 121,
+    "section": "TYPESCRIPT",
+    "question": ") Default access modifier typescript?",
+    "options": [
+      "A) public",
+      "B) private",
+      "c) protected"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 122,
+    "section": "TYPESCRIPT",
+    "question": "What is async/await?",
+    "options": [
+      "A.New syntax to write JavaScript promises",
+      "B.New syntax to consume JavaScript promises",
+      "C.New syntax to consume asynchronous callbacks"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 123,
+    "section": "TYPESCRIPT",
+    "question": "Which of the following is an attribute css selector?",
+    "options": [
+      "A.[selector]",
+      "B. .selector",
+      "C. #selector"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 124,
+    "section": "TYPESCRIPT",
+    "question": "When is it recommended to pass this.setState a function instead of an object",
+    "options": [
+      "A.When the new state should completely replace the old state .",
+      "B.When the new state does not depend on the old state.",
+      "C.When the new state depends on the old state."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 125,
+    "section": "TYPESCRIPT",
+    "question": "A promise represents what?",
+    "options": [
+      "A. A single value in the future",
+      "B. Multiple values in the present",
+      "C. Multiple values in the future",
+      "D. A single value in the present"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 126,
+    "section": "TYPESCRIPT",
+    "question": "Can a component be styled with a global styled sheet?",
+    "options": [
+      "A.Only function components can be styled with a global styled sheet",
+      "B.Only if the component returns HTML elements",
+      "C.Yes",
+      "D.No"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 127,
+    "section": "TYPESCRIPT",
+    "question": "When binding to data in templates, how do you avoid issues with binding to properties of null or undefined objects?",
+    "options": [
+      "A.You don't need to worry about null objects, Angular will handle them gracefully.",
+      "B.Use the * operator on any object that could be null.",
+      "C.Use the ? operator on any object that could be null.",
+      "D.In the component, ensure the objects are never null."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 128,
+    "section": "TYPESCRIPT",
+    "question": "Where should you sort and filter data?",
+    "options": [
+      "A.In a directive",
+      "B.In a pipe",
+      "C.In your component",
+      "D.In a filter"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 129,
+    "section": "TYPESCRIPT",
+    "question": "What's the right syntax to assign the function doSomething as the handler of a click event?",
+    "options": [
+      "A.onClick={doSomething}",
+      "B.onClick={() => doSomething}",
+      "C.onClick={doSomething()}"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 130,
+    "section": "TYPESCRIPT",
+    "question": "Assuming you define the statement: \"var person: string;\" TypeScript will alert you that there is an error if you enter which additional code?",
+    "options": [
+      "A.person = { name: 'Colleen', age: 25; }",
+      "B.person = 0",
+      "C.person = ['Colleen', 'John'];",
+      "D.all of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 131,
+    "section": "TYPESCRIPT",
+    "question": "When bootstrapping an Angular app, how do you specify the main, top-level app component to be used?",
+    "options": [
+      "A.You add the component as a package in your SystemJs config.",
+      "B.You load the component directly in your index.html file.",
+      "C.You add the component to the bootstrap array in your main app module.",
+      "D.You load the component directly from your main SystemJs package (e.g. main.ts)."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 132,
+    "section": "TYPESCRIPT",
+    "question": "What is the format of the data returned by the JSON Server API?",
+    "options": [
+      "YAML",
+      "XML",
+      "JSON"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 133,
+    "section": "TYPESCRIPT",
+    "question": "What syntax do you use to render the App component into an HTML element with id \"root\"?",
+    "options": [
+      "A.ReactDOM.render(App, document.getElementById(\"root\"));",
+      "B.React.render(App, document.getElementById(\"root\"));",
+      "C.ReactDOM.mountNode(<App />, document.getElementById(\"root\"));",
+      "D.ReactDOM.render(<App />, document.getElementById(\"root\"));"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 134,
+    "section": "TYPESCRIPT",
+    "question": "What function can be used to change the state of a React component?",
+    "options": [
+      "A.this.state = {}",
+      "B.this.setState",
+      "C.this.changeState"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 135,
+    "section": "TYPESCRIPT",
+    "question": "What can we do if components A and B are siblings and they require access to the same state element?",
+    "options": [
+      "A.Restructure the application to have A and B be related differently",
+      "B.Place the state in either A or B",
+      "C.Place the state in a third component C that is a sibling to A and B",
+      "D.Place the state in the parent component of A and B"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 136,
+    "section": "TYPESCRIPT",
+    "question": "What is the name of the file that manages TypeScript projects?",
+    "options": [
+      "A.tsproj.config",
+      "B.tsmeta.json",
+      "C.tsconfig.json",
+      "D.package.json"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 137,
+    "section": "TYPESCRIPT",
+    "question": "When dealing with asynchronous functions, what type of generic must your return type be?",
+    "options": [
+      "A.Async",
+      "B.Promise",
+      "C.Array",
+      "D.AsyncAwait"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 138,
+    "section": "TYPESCRIPT",
+    "question": "What tool installs type declaration files?",
+    "options": [
+      "A.Duck",
+      "B.npm",
+      "C.Ruby",
+      "D.NuGet",
+      "E.Async"
+    ],
+    "answer": "C updated to d=b -> npm"
+  },
+  {
+    "id": 139,
+    "section": "TYPESCRIPT",
+    "question": "What should appear to the left of the arrow in an arrow function?",
+    "options": [
+      "A.Function name",
+      "B.Function parameters",
+      "C.Curly braces",
+      "D.Function return value",
+      "E.Number of function parameters."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 140,
+    "section": "TYPESCRIPT",
+    "question": "What character separates a variable from its type annotation in a declaration?",
+    "options": [
+      "A. #",
+      "B.$",
+      "C.%",
+      "D. :"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 141,
+    "section": "TYPESCRIPT",
+    "question": "How would you define a string type variable with the value bar in TypeScript?",
+    "options": [
+      "A.let string: foo = 'bar';",
+      "B.let foo:string = 'bar';",
+      "C.let string foo = 'bar';",
+      "D.let foo (string) = 'bar';"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 142,
+    "section": "TYPESCRIPT",
+    "question": "What keyword requires a variable to be declared before it's used?",
+    "options": [
+      "A.let",
+      "B.dim",
+      "C.declare",
+      "D.set"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 143,
+    "section": "TYPESCRIPT",
+    "question": "What keyword declares a class member in the class rather than an instance of the class?",
+    "options": [
+      "A.enum",
+      "B.static",
+      "C.intersection",
+      "D.function",
+      "E.async"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 144,
+    "section": "TYPESCRIPT",
+    "question": "Within which function scope would a variable that you declare using the keyword var cover?",
+    "options": [
+      "A.Within the entire function scope",
+      "B.Within an if statement scope",
+      "C.Within a for loop scope",
+      "D.Within a while loop scope"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 145,
+    "section": "TYPESCRIPT",
+    "question": "What keyword lets you derive a subclass from a superclass?",
+    "options": [
+      "stretches",
+      "extends",
+      "sub",
+      "follows",
+      "buildsUpon"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 146,
+    "section": "ANGULAR",
+    "question": "We need to tell AngularJS what part of our HTML page contains the AngularJS app. You do so by adding the . . . . attribute to the root HTML element of the AngularJS app.",
+    "options": [
+      "A) ng-app",
+      "B) ag-app",
+      "C) js-app",
+      "D) aj-app"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 147,
+    "section": "ANGULAR",
+    "question": "AngularJS can show or hide HTML depending on the state of data in the model. You do so using a set of AngularJS directives such as . . . . . . which are created specifically for that purpose.",
+    "options": [
+      "A) ng-shown, ng-hidden",
+      "B) ng-show, ng-hide",
+      "C) nt-show, nt-hide",
+      "D) ng-shows, ng-hides"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 148,
+    "section": "ANGULAR",
+    "question": "EventEmitter class’s simple interface, which basically encompass two methods . . . . . . . . . can therefore be used to trigger custom events and listen to events as well, both synchronously or asynchronously.",
+    "options": [
+      "A) exit()",
+      "B) superscript()",
+      "C) subscribe()",
+      "D) emit()"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 149,
+    "section": "ANGULAR",
+    "question": "The . . . . . . . . . directive substitutes the normal href property and makes it easier to work with route links in Angular 2. Moreover if we want to navigate between routes, we use the . . . . . . . . . . . directive.",
+    "options": [
+      "A) RouterLinks",
+      "B) RouterLinking",
+      "C) RouterLink",
+      "D) RouterLinq"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 150,
+    "section": "ANGULAR",
+    "question": "Three main components of Routing are . . . . . . . . . . .",
+    "options": [
+      "A) RouteObject",
+      "B) RouterOutlet",
+      "C) RouterState",
+      "D) RouterLink"
+    ],
+    "answer": "A,B,D"
+  },
+  {
+    "id": 151,
+    "section": "ANGULAR",
+    "question": "Route . . . . . . . . . . allow us to pass values in our url to our component so we can dynamically change our view content.",
+    "options": [
+      "A) pipes",
+      "B) modules",
+      "C) variables",
+      "D) parameters"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 152,
+    "section": "ANGULAR",
+    "question": "To use observables, Angular uses a third-party library called . . . . . . .",
+    "options": [
+      "A) ng2-bootstrap",
+      "B) angular-cli",
+      "C) numeral",
+      "D) Reactive Extensions (RxJS)"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 153,
+    "section": "ANGULAR",
+    "question": "Observables help you manage . . . . . . . . data.",
+    "options": [
+      "A) synchronous",
+      "B) asynchronous",
+      "C) Both asynchronous & synchronous",
+      "D) None of above"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 154,
+    "section": "ANGULAR",
+    "question": "We subscribe to the observable ourselves using the actual . . . . . . method. The downside is that you have to manage the subscription yourself.",
+    "options": [
+      "A) subscribe()",
+      "B) subs()",
+      "C) subscribed()",
+      "D) None of above"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 155,
+    "section": "ANGULAR",
+    "question": "A promise represents the final result of an . . . . . . . operation.",
+    "options": [
+      "A) asynchronous",
+      "B) synchronous"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 156,
+    "section": "ANGULAR",
+    "question": "The promise becomes . . . . . . after resolving or rejecting.",
+    "options": [
+      "A) mutable",
+      "B) ignored",
+      "C) immutable",
+      "D) recurring"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 157,
+    "section": "ANGULAR",
+    "question": "Which of the following is not built-in pipe in Angular",
+    "options": [
+      "A) DatePipe",
+      "B) CurrencyPipe",
+      "C) DataPipe",
+      "D) PercentPipe"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 158,
+    "section": "ANGULAR",
+    "question": "If you chain multiple pipes together, they are executed . . . . .",
+    "options": [
+      "A) in parallel",
+      "B) LIFO order",
+      "C) in the order in which you specify them",
+      "D) none of above"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 159,
+    "section": "ANGULAR",
+    "question": "The . . . . . . . filter waits for a promise and returns the most recent value received. It then updates the view.",
+    "options": [
+      "A) sync",
+      "B) async",
+      "C) promise",
+      "D) custom"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 160,
+    "section": "ANGULAR",
+    "question": "The . . . . . decorator allows us to define the pipe name that is globally available for use in any template in the across application.",
+    "options": [
+      "A) @pipeName",
+      "B) @pipeDeco",
+      "C) $Pipe",
+      "D) @Pipe"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 161,
+    "section": "ANGULAR",
+    "question": "Data bindings are applied as . . . . . . . . or as special sequences of characters in strings.",
+    "options": [
+      "A) expressions",
+      "B) attributes on HTML elements",
+      "C) elements itself",
+      "D) none of above"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 162,
+    "section": "ANGULAR",
+    "question": "A data binding has these four parts:",
+    "options": [
+      "A) host element, curly brackets, target, expression",
+      "B) host element, square brackets, target, evaluation",
+      "C) host element, square brackets, target, expression",
+      "D) host element, parentheses, target, expression"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 163,
+    "section": "ANGULAR",
+    "question": "Attribute binding is similar to property binding but is tied to the . . . . . . . . rather than the DOM property.",
+    "options": [
+      "A) Page attribute",
+      "B) DOM attribute",
+      "C) Root attribute",
+      "D) HTML attribute"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 164,
+    "section": "ANGULAR",
+    "question": "To make your applications ready for animations, you must include the AngularJS Animate library and then you must refer to the . . . . . module in your application.",
+    "options": [
+      "A) ng-repeat",
+      "B) ngAnimation",
+      "C) ngAnimate",
+      "D) None of above"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 165,
+    "section": "ANGULAR",
+    "question": "Using the . . . . . . animation function, the parent animation can allow the child animation to run at the exact correct time.",
+    "options": [
+      "A) animateChild",
+      "B) childAnimate",
+      "C) animateInner",
+      "D) innerChild"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 166,
+    "section": "ANGULAR",
+    "question": "Animations are fired using animation property bindings which are prefixed with an . . . . symbol.",
+    "options": [
+      "A) &",
+      "B) #",
+      "C) $",
+      "D) @"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 167,
+    "section": "ANGULAR",
+    "question": "is an animation-specific function that is designed to be used inside of Angular's animation DSL language. It is used to kick off a reusable animation that is created using animation().",
+    "options": [
+      "A) useAnimation",
+      "B) reuseAnimation",
+      "C) in-useAnimation",
+      "D) All of above"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 168,
+    "section": "ANGULAR",
+    "question": "It's always possible to make use of animation input parameters by setting even more data via the . . . . .property.",
+    "options": [
+      "A) options.param",
+      "B) option.params",
+      "C) option.param",
+      "D) options.params"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 169,
+    "section": "ANGULAR",
+    "question": "Which of the following bootstrap styles are used to create a vertical pills navigation?",
+    "options": [
+      "A. .nav, .nav-pills",
+      "B. .nav, .nav-pills",
+      "C. .nav, .nav-pills, .nav-stacked",
+      "D. .nav, .nav-tabs, .nav-justified"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 170,
+    "section": "ANGULAR",
+    "question": "Which of the following bootstrap styles are used to create a justified tabs navigation?",
+    "options": [
+      "A.nav, .nav-tabs",
+      "B.nav, .nav-pills",
+      "C.nav, .nav-pills, .nav-stacked",
+      "D.nav, .nav-tabs, .nav-justified"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 171,
+    "section": "ANGULAR",
+    "question": "Which class indicates a dropdown menu?",
+    "options": [
+      "a) .dropdown-list",
+      "b) .select",
+      "c) .dropdown"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 172,
+    "section": "ANGULAR",
+    "question": "Ques. Bootstrap’s grid system allows up to",
+    "options": [
+      "a. 6 columns across the page",
+      "b. 12 columns across the page",
+      "c. columns across the page",
+      "d. columns across the page"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 173,
+    "section": "ANGULAR",
+    "question": "Which of the following classes makes a round corner image automatically adjust to fit the size of the screen?",
+    "options": [
+      "a. .img-res-image",
+      "b. .img-responsive-image * img-fluid (for full width responsible)",
+      "c. .img-responsive",
+      "d. .img-res"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 174,
+    "section": "ANGULAR",
+    "question": "Which class should be used to indicate a button group?",
+    "options": [
+      "a. btn-group-buttons",
+      "b. btn-group",
+      "c. btn-grp",
+      "d. btn-buttons"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 175,
+    "section": "ANGULAR",
+    "question": "On the opposite side of event bindings (()) lie Angular's square-bracket syntax ([]) which signify a . . . . .",
+    "options": [
+      "A) property binding",
+      "B) class binding",
+      "C) style binding",
+      "D) both A & B"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 176,
+    "section": "ANGULAR",
+    "question": "What are the types of access modifiers supported by TypeScript?",
+    "options": [
+      "A. Public B. Private C. Protected D. All of these"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 177,
+    "section": "ANGULAR",
+    "question": "The purpose of the @Output decorator in a nested component is to:",
+    "options": [
+      "A.Expose an output channel for logging",
+      "B.Expose an event property that a container can listen for using event binding",
+      "C.Expose a property that a container can set using property binding"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 178,
+    "section": "ANGULAR",
+    "question": "A function that adds metadata to a class, its members, or its method arguments is a(n):",
+    "options": [
+      "A.Attribute",
+      "B.Directive",
+      "C.Annotation",
+      "D.Decorator"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 179,
+    "section": "ANGULAR",
+    "question": "What is the current recommended way to register a service with the root Angular injector?",
+    "options": [
+      "A.By setting the providedIn property of the Injectable decorator for the service.",
+      "B.By setting the providedIn property of the Component decorator for the component that needs it",
+      "C.By declaring the service in an Angular module",
+      "D.By setting the providedIn property of the Component decorator for the App component."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 180,
+    "section": "ANGULAR",
+    "question": "What does the Angular CLI do when you execute npm start/ng serve?",
+    "options": [
+      "A.It builds the application for production and starts the deployment process",
+      "B.It compiles the application and starts a web server to serve the application to the browser",
+      "C.It starts the default editor for the application so you can make changes",
+      "D.It installs the packages defined in the package.json file"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 181,
+    "section": "ANGULAR",
+    "question": "What is the purpose of the *ngIf directive?",
+    "options": [
+      "A.To use style classes to hide or show elements based on an expression",
+      "B.To repeat a set of elements based on an expression",
+      "C.To optionally navigate to another view based on an expression",
+      "D.To add or remove elements from the DOM based on an expression"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 182,
+    "section": "ANGULAR",
+    "question": "Route definitions are configured in an array passed to:",
+    "options": [
+      "A. A method of the AppModule",
+      "B. A method of the routed component",
+      "C. A method of the AppComponent D .A method of the RouterModule"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 183,
+    "section": "ANGULAR",
+    "question": "What is the purpose of the subscribe method on an observable?",
+    "options": [
+      "A.To map observable responses to alternate formats",
+      "B. To transform the Observable stream",
+      "C.To request logging of observable actions",
+      "D.To request notifications and data from the observable"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 184,
+    "section": "ANGULAR",
+    "question": "What is the purpose of the Angular CLI?",
+    "options": [
+      "A.Installing and running Angular applications.",
+      "B.Building, executing, testing, and deploying Angular applications",
+      "C.Testing and deploying Angular applications",
+      "D.Executing, testing, and debugging Angular applications."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 185,
+    "section": "ANGULAR",
+    "question": "What is the purpose of a feature module?",
+    "options": [
+      "A.To define all the logic for your application all in one place",
+      "B.To separate out the responsibilities for a specific feature set into its own Angular module",
+      "C.To consolidate Angular system modules, such as BrowserModule and FormsModule, into a logical group",
+      "D.To provide services specifically for one set of application features"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 186,
+    "section": "ANGULAR",
+    "question": "Which of the following is the correct syntax for two-way binding?",
+    "options": [
+      "A.([ngModel])='listFilter'",
+      "B.[(ngModel)]='listFilter'",
+      "C.{{listFilter}}",
+      "D.ngModel='listFilter'"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 187,
+    "section": "ANGULAR",
+    "question": "In Angular / RxJs , when should you unsubscribe from a Subscription ?",
+    "options": [
+      "A. There is no need to unsubscribe . Angular routing handles it.",
+      "B. Unsubscribe them in ngOnDestroy."
+    ],
+    "answer": "B."
+  },
+  {
+    "id": 188,
+    "section": "ANGULAR",
+    "question": "When you apply an Angular ‘pipe’ , it changes the value of the underlying component’s member variable as well.",
+    "options": [
+      "A . TRUE.",
+      "B. FALSE."
+    ],
+    "answer": "B."
+  },
+  {
+    "id": 189,
+    "section": "ANGULAR",
+    "question": "What’s the best way to inject one service into another in Angular ?",
+    "options": [
+      "A . A service cannot be injected in another service.",
+      "B. Through constructor of depending service.",
+      "C. By instantiating using a new operator."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 190,
+    "section": "ANGULAR",
+    "question": "In Angular, how can you set a header in every http request ?",
+    "options": [
+      "A. Use HttpClientInterceptor.",
+      "B. Extend HttpClient class.",
+      "C. Set as a request header parameter."
+    ],
+    "answer": "A."
+  },
+  {
+    "id": 191,
+    "section": "ANGULAR",
+    "question": "In Angular, you can pass data from parent component to child component using _______. A : ‘@Output()’",
+    "options": [
+      "B . ‘@Input()’",
+      "C. Input.",
+      "D. Output"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 192,
+    "section": "ANGULAR",
+    "question": "In Angular, you can pass data from child component to parent component using ________ A : ‘@Output’",
+    "options": [
+      "B . ‘@Input’",
+      "C. Input",
+      "D. Output"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 193,
+    "section": "ANGULAR",
+    "question": "In Angular , one can create a local HTML reference of an HTML tag using a variable , which starts with character ___ .",
+    "options": [
+      "A. @",
+      "B. #",
+      "C. *",
+      "D. &"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 194,
+    "section": "ANGULAR",
+    "question": "If you provide a service in two Angular components, in the \"providers\" section of @Component decorator, how many instances of service shall get created?",
+    "options": [
+      "A. 4",
+      "B. 2",
+      "C. 3"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 195,
+    "section": "ANGULAR",
+    "question": "In Angular routing , which of these tags is used to show the selected route component dynamically ?",
+    "options": [
+      "A. <router></router>",
+      "B. <router-output></router-output>",
+      "C. <router-outlet></router-outlet>",
+      "D. <router-input></router-input>"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 196,
+    "section": "ANGULAR",
+    "question": "Which method of Angular RouterModule should be called for providing all routes in AppModule?",
+    "options": [
+      "A. RouteModule.forChild",
+      "B. RouteModule.forRoot",
+      "C. RouterModule",
+      "D. RouterModule.all"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 197,
+    "section": "JAVA SPRING",
+    "question": "Expression Language is the part of Core Container in Spring Framework.",
+    "options": [],
+    "answer": "True"
+  },
+  {
+    "id": 198,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 199,
+    "section": "JAVA SPRING",
+    "question": "AOP is the part of Core Container in Spring Framework.",
+    "options": [],
+    "answer": "False"
+  },
+  {
+    "id": 200,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 201,
+    "section": "JAVA SPRING",
+    "question": "In which spring version has Spring Expression Language been supported?",
+    "options": [],
+    "answer": "Spring 3.0"
+  },
+  {
+    "id": 202,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 203,
+    "section": "JAVA SPRING",
+    "question": "Which class represents the IoC container?",
+    "options": [],
+    "answer": "ApplicationContext"
+  },
+  {
+    "id": 204,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 205,
+    "section": "JAVA SPRING",
+    "question": "How to get the object of DAO in spring framework?",
+    "options": [],
+    "answer": "Using Spring Dependency injection"
+  },
+  {
+    "id": 206,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 207,
+    "section": "JAVA SPRING",
+    "question": "Which is correct for Spring Framework?",
+    "options": [],
+    "answer": "Spring framework is a light-weight solution."
+  },
+  {
+    "id": 208,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 209,
+    "section": "JAVA SPRING",
+    "question": "In which spring version, java 5 features has been introduced?",
+    "options": [],
+    "answer": "Spring 3.0"
+  },
+  {
+    "id": 210,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 211,
+    "section": "JAVA SPRING",
+    "question": "Can we integrate spring with struts?",
+    "options": [],
+    "answer": "Yes"
+  },
+  {
+    "id": 212,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 213,
+    "section": "JAVA SPRING",
+    "question": "How to use idref in spring framework?",
+    "options": [],
+    "answer": "With setter method and constructor argument both"
+  },
+  {
+    "id": 214,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 215,
+    "section": "JAVA SPRING",
+    "question": "Which is the part of the Data Access layer in Spring Framework?",
+    "options": [],
+    "answer": "JMS"
+  },
+  {
+    "id": 216,
+    "section": "JAVA SPRING",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 217,
+    "section": "JAVA SPRING",
+    "question": "Does Spring provide programmatic transaction management? Select a unique answer.",
+    "options": [
+      "a.Yes using the @Transactional bean post processor",
+      "b.Yes with the TransactionTemplate class",
+      "c.Yes with the TransactionService class",
+      "d. Yes using the @Transactional bean post processor"
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 218,
+    "section": "JAVA SPRING",
+    "question": "How could you externalize constants from a Spring configuration file or a Spring annotation into a .properties file? Select one or more",
+    "options": [
+      "a. By using the <context:property-placeholder /> tag",
+      "b.By using the <util:constant /> tag",
+      "c.By declaring the ConstantPlaceholderConfigurer bean post processor",
+      "d. By using the c: namespace"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 219,
+    "section": "JAVA SPRING",
+    "question": "To validate Java beans in a web application using annotations.",
+    "options": [
+      "a) XML",
+      "b) Java Based",
+      "c) JAR-303 standard",
+      "d) All of the mentioned"
+    ],
+    "answer": "d"
+  },
+  {
+    "id": 220,
+    "section": "JAVA SPRING",
+    "question": "Annotation used to indicate a field has to have a minimum of 2 characters.",
+    "options": [
+      "a) @NotNull",
+      "b) @Size",
+      "c) @MaxSize",
+      "d) @size"
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 221,
+    "section": "JAVA SPRING",
+    "question": "Spring MVC supports generating Excel files using which of the following libraries.",
+    "options": [
+      "a) Apache POI library",
+      "b) JExcelAPI library",
+      "c) All of the mentioned",
+      "d) None of the mentioned"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 222,
+    "section": "JAVA SPRING",
+    "question": "Interface for Dispatcher Servlet to auto detect view resolver beans.",
+    "options": [
+      "a) localeResolver",
+      "b) tiles",
+      "c) ViewResolver",
+      "d) none of the mentioned."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 223,
+    "section": "JAVA SPRING",
+    "question": "By default, XmlViewResolver loads view beans from /WEB-INF/views.xml which is final.",
+    "options": [
+      "a) True",
+      "b) False"
+    ],
+    "answer": "b"
+  },
+  {
+    "id": 224,
+    "section": "JAVA SPRING",
+    "question": "Views that cannot be resolved by InternalResourceViewResolver.",
+    "options": [
+      "a) redirect",
+      "b) redirect:prefix",
+      "c) redirect:suffix",
+      "d) all of the mentioned"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 225,
+    "section": "JAVA SPRING",
+    "question": "Annotation which allows a controller’s field to be assigned using Spring Expression Language(SpEL)",
+    "options": [
+      "a) @Value",
+      "b) @After",
+      "c) @Default",
+      "d) @None"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 226,
+    "section": "JAVA SPRING",
+    "question": "SpEL statements are recognizable.",
+    "options": [
+      "a) True",
+      "b) False"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 227,
+    "section": "JAVA SPRING",
+    "question": "To publish a REST service with Spring.",
+    "options": [
+      "a) publishing an application’s data as a REST service",
+      "b) accessing data from third-party REST services",
+      "c) none of the mentioned",
+      "d) all of the mentioned"
+    ],
+    "answer": "a b"
+  },
+  {
+    "id": 228,
+    "section": "JAVA SPRING",
+    "question": "Publishing an application’s data as a REST service requires.",
+    "options": [
+      "a) @RequestMapping",
+      "b) @PathVariable",
+      "c) All of the mentioned",
+      "d) None of the mentioned"
+    ],
+    "answer": "a b"
+  },
+  {
+    "id": 229,
+    "section": "JAVA SPRING",
+    "question": "Annotation added as an input parameter to the handler method.",
+    "options": [
+      "a) @PathVariable",
+      "b) @Path",
+      "c) @PathLocale",
+      "d) None of the mentioned"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 230,
+    "section": "JAVA SPRING",
+    "question": "Which of the following statements is true regarding the @ResponseStatus annotation?",
+    "options": [
+      "a. @ResponseStatus is detected on nested exceptions",
+      "b.The ExceptionHandlerExceptionResolver uses the @ResponseStatus annotation to map exception to HTTP status code",
+      "c. A controller handler is annotated with the @ResponseStatus, the response status set by RedirectView takes precedence over the annotation value.",
+      "d. The @ResponseStatus annotation can go on a @RequestMapping method or a @RestController class or a business exception class."
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 231,
+    "section": "JAVA SPRING",
+    "question": "Default localeResolver used by Spring.",
+    "options": [
+      "a) AcceptHeaderLocale",
+      "b) AcceptHeader",
+      "c) AcceptHeaderLocaleResolver",
+      "d) AcceptLocaleResolver"
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 232,
+    "section": "JAVA SPRING",
+    "question": "Alternative way to resolve locales.",
+    "options": [
+      "a) AcceptHeaderLocale",
+      "b) AcceptHeader",
+      "c) AcceptHeaderLocaleResolver",
+      "d) SessionLocaleResolver"
+    ],
+    "answer": "d"
+  },
+  {
+    "id": 233,
+    "section": "JAVA SPRING",
+    "question": "General-purpose class that allows a response to be rendered using a marshaller.",
+    "options": [
+      "a) MarshallingView",
+      "b) Marshaling",
+      "c) View",
+      "d) All of the mentioned"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 234,
+    "section": "JAVA SPRING",
+    "question": "Annotation which allows the Jaxb2Marshaller marshaller to detect a class’s (i.e., object’s) fields.",
+    "options": [
+      "a) @XmlRootElement",
+      "b) @XmlRoot",
+      "c) @NotNull",
+      "d) None of the mentioned"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 235,
+    "section": "JAVA SPRING",
+    "question": "How to auto-inject into a field a Spring bean by its name? Select one or more answer choices.",
+    "options": [
+      "a. By using both the @Autowired and the @Qualifier Spring annotations",
+      "b.By using the @Autowired annotation and naming the field with the bean name",
+      "c. With the name attribute of the @Autowired annotation",
+      "d. By using the single @Qualifier annotation"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 236,
+    "section": "JAVA SPRING",
+    "question": "Considering 2 classes AccountServiceImpl and ClientServiceImpl. Any of these 2 classes inherits from each other. What is the result of the following pointcut expression? execution(* *..AccountServiceImpl.update(..)) && execution(* *..ClientServiceImpl.update(..))",
+    "options": [
+      "a.No joint point is defined",
+      "b.Matches public update methods of the 2 classes, whatever the arguments",
+      "c.Matches any update methods of the 2 classes, whatever the arguments and method visibility",
+      "d.Matches any update methods of the 2 classes, with one more arguments and whatever method visibility"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 237,
+    "section": "JAVA SPRING",
+    "question": "Select the right statement about referring a Spring configuration file inside the package com.example.myapp in the below example? ApplicationContext context = new ClassPathXmlApplicationContext(\"classpath:/com.example.myapp.config.xml\");",
+    "options": [
+      "a. all of the above",
+      "b. The classpath: prefix could be omitted",
+      "c.Package name using the dot character is not well formatted",
+      "d.The slash character preceding com.example could be omit"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 238,
+    "section": "JAVA SPRING",
+    "question": "Using the Spring AOP framework, what is the visibility of the method matched by the following join point? @Pointcut(\"execution(* *(..))\") private void anyOperation() {};",
+    "options": [
+      "a. Public methods",
+      "b. All methods, whereas their visibility",
+      "c.All methods, except private method",
+      "d. Protected and public methods"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 239,
+    "section": "JAVA SPRING",
+    "question": "What is the name of the bean defined in the following configuration class? Select a single answer. @Configuration public class ApplicationConfig { @Autowired private DataSource dataSource; @Bean ClientRepository clientRepository() { ClientRepository accountRepository = new JpaClientRepository(); accountRepository.setDataSource(dataSource); return accountRepository; } }",
+    "options": [
+      "a. clientRepository",
+      "b. JpaClientRepository",
+      "c.jpaClientRepository",
+      "d.Two beans are defined: a data souce and a repository"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 240,
+    "section": "JAVA SPRING",
+    "question": "Which of the following is true regarding the below Spring controller? @RestController public class OwnerController { @RequestMapping(value = \"/owner/{ownerId}\", method = RequestMethod.POST) @ResponseBody public Owner findOwner(@PathVariable(\"ownerId\") int ownerId) { return new Owner(); } }",
+    "options": [
+      "a. RequestMethod.GET method is more accurate than POST",
+      "b. @ResponseBody could be removed",
+      "c. @PathVariable should be replaced with the @PathParam annotation",
+      "d. Returning the 201 HTTP status code is better"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 241,
+    "section": "JAVA SPRING",
+    "question": "What is advice? Select a unique answer.",
+    "options": [
+      "a. An action taken by an aspect at a particular join point",
+      "b. A point during the execution of a program",
+      "c. An aspect and a pointcut",
+      "d. A predicate that matches join points"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 242,
+    "section": "JAVA SPRING",
+    "question": "What is the easiest method to write a unit test?",
+    "options": [
+      "a. @RequestMapping(\"/displayAccount\") String displayAccount(@RequestParam(\"accountId\") int id, Model model)",
+      "b. void displayAccount(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException",
+      "c. void displayAccount(HttpServletRequest req, HttpSession Session) throws ServletException, IOException",
+      "d. @RequestMapping(\"/displayAccount\") String displayAccount(@PathVariable(\"accountId\") int id, Model model)"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 243,
+    "section": "JAVA SPRING",
+    "question": "Select method’s signatures that match with the following pointcut: execution(* com.test.service..*.*(*))",
+    "options": [
+      "a.void com.test.service.MyServiceImpl#transfert(Money amount)",
+      "b. void com.test.service.account.MyServiceImpl#transfert(Money amount)",
+      "c. void com.test.service.MyServiceImpl#transfert(Account account, Money amount)",
+      "d. void com.test.service.account.MyServiceImpl#transfert(Account account, Money amount)",
+      "e. None of the above"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 244,
+    "section": "JAVA SPRING",
+    "question": "Given the Spring configuration file, which are the correct statements? <bean class=\"com.spring.service.BankServiceImpl\" p:bankName=\"NationalBank\"> </bean>",
+    "options": [
+      "a. The p namespace has to be declared",
+      "b. NationalBank is a scalar value",
+      "c. Bean id is bankServiceImpl",
+      "d. The BankServiceImpl references a NationalBank bean"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 245,
+    "section": "JAVA SPRING",
+    "question": "Given the following configuration class, what are the correct affirmations? Select one or more answers. public class ApplicationConfig { private DataSource dataSource; @Autowired public ApplicationConfig(DataSource dataSource) { this.dataSource = dataSource; } @Bean(name=\"clientRepository\") ClientRepository jpaClientRepository() { return new JpaClientRepository(); } }",
+    "options": [
+      "a. Configuration annotation is missing",
+      "b. Default or no-arg constructor is missing",
+      "c. @Bean name is ambiguous",
+      "d. @Bean scope is prototype"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 246,
+    "section": "JAVA SPRING",
+    "question": "Using JdbcTemplate, what is the Spring provided class you will use for result set parsing and merging rows into a single object? Select a unique answer.",
+    "options": [
+      "a. ResultSetExtractor",
+      "b. RowMapper",
+      "c. RowCallbackHandler",
+      "d. ResultSetMapper"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 247,
+    "section": "JAVA SPRING",
+    "question": "Which of the following is correct about dependency injection?",
+    "options": [
+      "A - It helps in decoupling application objects from each other.",
+      "B - It helps in deciding the dependencies of objects.",
+      "C - It stores objects states in a database.",
+      "D - It stores object states in the file system."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 248,
+    "section": "JAVA SPRING",
+    "question": "Which are the correct implementation classes of ApplicationContext?",
+    "options": [
+      "A - FileSystemXmlApplicationContext, ClassPathXmlApplicationContext, WebXmlApplicationContext",
+      "B - FileSystemApplicationContext, ClassPathApplicationContext, WebApplicationContext",
+      "C - AdvancedApplicationContext, FileApplicationContext",
+      "D - FileSystemApplicationContext, ClassPathApplicationContext"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 249,
+    "section": "JAVA SPRING",
+    "question": "What is true about <set> collection configuration elements?",
+    "options": [
+      "A - This helps in wiring a list of values, allowing duplicates.",
+      "B - This helps in wiring a list of values but without any duplicates.",
+      "C - This can be used to inject a collection of name-value pairs where name and value can be of any type.",
+      "D - This can be used to inject a collection of name-value pairs where the name and value are both Strings."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 250,
+    "section": "JAVA SPRING",
+    "question": "What is the constructor mode of autowiring?",
+    "options": [
+      "A - Autowiring by property name. Spring tries to match and wire its properties with the beans defined by the same names in the configuration file.",
+      "B - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.",
+      "C - Autowiring by property type. Spring tries to match and wire a property if its type matches with exactly one of the bean name in the configuration file.",
+      "D - Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 251,
+    "section": "JAVA SPRING",
+    "question": "What is true about @Autowired annotation?",
+    "options": [
+      "A - The @Autowired annotation can be used to autowire bean on the setter method.",
+      "B - This annotation provides more fine-grained control over where and how autowiring should be accomplished.",
+      "C - The @Autowired annotation can be used to autowire bean on the methods with arbitrary names and/or multiple arguments.",
+      "D - All of the above."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 252,
+    "section": "JAVA SPRING",
+    "question": "What are the different points where weaving can be applied?",
+    "options": [
+      "A - Compile time, load time",
+      "B - Compile time, run time",
+      "C - Run time",
+      "D - Compile time, load Time, Run time"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 253,
+    "section": "JAVA SPRING",
+    "question": "What is Spring MVC framework?",
+    "options": [
+      "A - Spring MVC framework is Model-Value-Class architecture and used to bind model data with values.",
+      "B - The Spring web MVC framework provides model-view-controller architecture and ready components that can be used to develop flexible and loosely coupled web applications.",
+      "C - Spring MVC framework is used for Transaction management for Web Applications.",
+      "D - Spring MVC framework is used for AOP for Web Applications."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 254,
+    "section": "JAVA SPRING",
+    "question": "By default a bean is lazily loaded.",
+    "options": [
+      "A - True",
+      "B - False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 255,
+    "section": "JAVA SPRING",
+    "question": "What is the scope of bean in portlet context?",
+    "options": [
+      "A - session",
+      "B - global-session",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 256,
+    "section": "JAVA SPRING",
+    "question": "Which of the following classes can be used to call Stored Procedures in spring?",
+    "options": [
+      "A - SPHelper",
+      "B - JdbcTemplateCall",
+      "C - JdbcTemplate",
+      "D - SimpleJdbcCall"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 257,
+    "section": "JAVA SPRING",
+    "question": "What is a ContextRefreshedEvent event?",
+    "options": [
+      "A - This event is published when the Servlet Context is either initialized or refreshed.",
+      "B - This event is published when the HTTP Request is received.",
+      "C - This event is published when the HTTP Response is returned.",
+      "D - This event is published when the ApplicationContext is either initialized or refreshed."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 258,
+    "section": "JAVA SPRING",
+    "question": "What is a ContextStartedEvent event?",
+    "options": [
+      "A - This event is published when the Servlet Context is either initialized or refreshed.",
+      "B - This event is published when the HTTP Request is received.",
+      "C - This event is published when the ApplicationContext is started using the start method on the ConfigurableApplicationContext interface.",
+      "D - This event is published when the HTTP Response is returned."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 259,
+    "section": "JAVA SPRING",
+    "question": "What is ContextStoppedEvent event?",
+    "options": [
+      "A - This event is published when the Servlet Context is either initialized or refreshed.",
+      "B - This event is published when the ApplicationContext is stopped using the stop method on the ConfigurableApplicationContext interface.",
+      "C - This event is published when the HTTP Request is received.",
+      "D - This event is published when the HTTP Response is returned."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 260,
+    "section": "JAVA SPRING",
+    "question": "What is ContextClosedEvent event?",
+    "options": [
+      "A - This event is published when the Servlet Context is either initialized or refreshed.",
+      "B - This event is published when the HTTP Request is received.",
+      "C - This event is published when the HTTP Response is returned.",
+      "D - This event is published when the ApplicationContext is closed using the close method on the ConfigurableApplicationContext interface."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 261,
+    "section": "JAVA SPRING",
+    "question": "What is RequestHandledEvent:event?",
+    "options": [
+      "A - This event is published when the Servlet Context is either initialized or refreshed.",
+      "B - This event is published when the HTTP Request is received.",
+      "C - This event is published when the HTTP session is initialized or refreshed.",
+      "D - This event is published when the HTTP Request is serviced."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 262,
+    "section": "JAVA SPRING",
+    "question": "What is Introduction?",
+    "options": [
+      "A - An introduction represents a point in your application where you can plug-in the AOP aspect.",
+      "B - This is used to inject values in objects.",
+      "C - This is not invoked during program execution by Spring AOP framework.",
+      "D - An introduction allows you to add new methods or attributes to existing classes."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 263,
+    "section": "JAVA SPRING",
+    "question": "What is @Controller annotation?",
+    "options": [
+      "A - The @Controller annotation indicates that a particular class serves the role of a controller.",
+      "B - The @Controller annotation indicates how to control the transaction management.",
+      "C - The @Controller annotation indicates how to control the dependency injection.",
+      "D - The @Controller annotation indicates how to control the aspect programming."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 264,
+    "section": "JAVA SPRING",
+    "question": "What is the prototype scope?",
+    "options": [
+      "A - This scopes a single bean definition to have any number of object instances.",
+      "B - This scopes the bean definition to a single instance per HTTP Request.",
+      "C - This scopes the bean definition to a single instance per HTTP Session.",
+      "D - This scopes the bean definition to a single instance per HTTP Application/ Global session."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 265,
+    "section": "JAVA SPRING",
+    "question": "What is true about <props> collection configuration elements?",
+    "options": [
+      "A - This helps in wiring a list of values, allowing duplicates.",
+      "B - This helps in wiring a list of values but without any duplicates.",
+      "C - This can be used to inject a collection of name-value pairs where name and value can be of any type.",
+      "D - This can be used to inject a collection of name-value pairs where the name and value are both Strings."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 266,
+    "section": "JAVA SPRING",
+    "question": "How to handle shut down of IoC containers?",
+    "options": [
+      "A - Using shutdownHook()",
+      "B - Using shutdownHandler()",
+      "C - Using registerHook()",
+      "D - Using registerShutdownHook()"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 267,
+    "section": "JAVA SPRING",
+    "question": "By default a bean is eagerly loaded.",
+    "options": [
+      "A - False",
+      "B - True"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 268,
+    "section": "JAVA SPRING",
+    "question": "What is true about BeanPostProcessor?",
+    "options": [
+      "A - It is a concrete class.",
+      "B - It is an interface.",
+      "C - It is an abstract class.",
+      "D - None of the above."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 269,
+    "section": "JAVA SPRING",
+    "question": "How can you inject Java Collection in Spring?",
+    "options": [
+      "A - Using list, set, map or props tag.",
+      "B - Using lit, set, map or collection tag.",
+      "C - Using list, set, props or collection tag.",
+      "D - Using list, collection, map or props tag."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 270,
+    "section": "JAVA SPRING",
+    "question": "Which class is used to map a database row to a java object in spring?",
+    "options": [
+      "A - ResultSet",
+      "B - RowMapper",
+      "C - RowSetMapper",
+      "D - ResultSetMapper"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 271,
+    "section": "JAVA SPRING",
+    "question": "How can the bean life cycle be controlled?",
+    "options": [
+      "A - Using init() only",
+      "B - Using InitializingBean class only",
+      "C - Using DisposableBean class only",
+      "D - Using All of above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 272,
+    "section": "JAVA SPRING",
+    "question": "What is the scope of bean in portlet context?",
+    "options": [
+      "A - session",
+      "B - global-session",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 273,
+    "section": "JAVA SPRING",
+    "question": "What is a ContextStoppedEvent event?",
+    "options": [
+      "A - This event is published when the Servlet Context is either initialized or refreshed.",
+      "B - This event is published when the ApplicationContext is stopped using the stop() method on the ConfigurableApplicationContext interface.",
+      "C - This event is published when the HTTP Request is received.",
+      "D - This event is published when the HTTP Response is returned."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 274,
+    "section": "JAVA SPRING",
+    "question": "Which ORM Spring supports ?",
+    "options": [
+      "A - Hibernate",
+      "B - iBatis",
+      "C - JPA",
+      "D - All of the above.",
+      "E - None of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 275,
+    "section": "JAVA SPRING",
+    "question": "What is true about <map> collection configuration elements?",
+    "options": [
+      "A - This helps in wiring a list of values, allowing duplicates.",
+      "B - This helps in wiring a list of values but without any duplicates.",
+      "C - This can be used to inject a collection of name-value pairs where name and value can be of any type.",
+      "D - This tag is not supported."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 276,
+    "section": "JAVA SPRING",
+    "question": "Core container has AOP as one of its modules.",
+    "options": [
+      "A - True",
+      "B - False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 277,
+    "section": "JAVA SPRING",
+    "question": "Can you inject null and empty string values in Spring?",
+    "options": [
+      "A - Yes",
+      "B - No"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 278,
+    "section": "JAVA SPRING",
+    "question": "What stands true for the spring framework?",
+    "options": [
+      "A - Spring framework is a lightweight framework.",
+      "B - Spring framework is a heavy weight framework."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 279,
+    "section": "JAVA SPRING",
+    "question": "Which class acts as IoC Container?",
+    "options": [
+      "A - ServletContext",
+      "B - DispatcherServlet",
+      "C - ApplicationContext",
+      "D - None of the above"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 280,
+    "section": "JAVA SPRING",
+    "question": "What is the scope of stateless bean?",
+    "options": [
+      "A - global-session",
+      "B - singleton",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 281,
+    "section": "JAVA SPRING",
+    "question": "Annotations work as metadata for classes and Spring uses annotations as an alternative to XML for declarative configuration. Is it true or false?",
+    "options": [
+      "1. true",
+      "2. false"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 282,
+    "section": "JAVA SPRING",
+    "question": "Which of the following layers the @Controller annotation is used in?",
+    "options": [
+      "1. Service layer.",
+      "2. Presentation layer.",
+      "3. Session layer.",
+      "4. Business layer.",
+      "5. None of these."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 283,
+    "section": "JAVA SPRING",
+    "question": "Which of the following statements is true?",
+    "options": [
+      "1. ApplicationContext extends BeanFactory.",
+      "2. None of these.",
+      "3. ApplicationContext implements BeanFactory.",
+      "4. BeanFactory extends ApplicationContext.",
+      "5. BeanFactory implements ApplicationContext"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 284,
+    "section": "JAVA SPRING",
+    "question": "What is singleton scope?",
+    "options": [
+      "A - This scopes the bean definition to a single instance per Spring IoC container.",
+      "B - This scopes the bean definition to a single instance per HTTP Request.",
+      "C - This scopes the bean definition to a single instance per HTTP Session.",
+      "D - This scopes the bean definition to a single instance per HTTP Application/ Global session."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 285,
+    "section": "JAVA SPRING",
+    "question": "What is the prototype scope?",
+    "options": [
+      "A - This scopes a single bean definition to have any number of object instances.",
+      "B - This scopes the bean definition to a single instance per HTTP Request.",
+      "C - This scopes the bean definition to a single instance per HTTP Session.",
+      "D - This scopes the bean definition to a single instance per HTTP Application/ Global session."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 286,
+    "section": "JAVA SPRING",
+    "question": "What is the request scope?",
+    "options": [
+      "A - This scopes a bean definition to an HTTP request.",
+      "B - This scopes the bean definition to Spring IoC container.",
+      "C - This scopes the bean definition to HTTP Session.",
+      "D - This scopes the bean definition HTTP Application/ Global session."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 287,
+    "section": "JAVA SPRING",
+    "question": "What is session scope?",
+    "options": [
+      "A - This scopes a bean definition to an HTTP session.",
+      "B - This scopes the bean definition to Spring IoC container.",
+      "C - This scopes the bean definition to HTTP request.",
+      "D - This scopes the bean definition to HTTP Application/ Global session."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 288,
+    "section": "JAVA SPRING",
+    "question": "What is global-session scope?",
+    "options": [
+      "A - This scopes a bean definition to an HTTP Application/ Global session.",
+      "B - This scopes the bean definition to Spring IoC container.",
+      "C - This scopes the bean definition to HTTP request.",
+      "D - This scopes the bean definition to HTTP Session."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 289,
+    "section": "JAVA SPRING",
+    "question": "What is true about collection configuration elements?",
+    "options": [
+      "A - This helps in wiring a list of values, allowing duplicates.",
+      "B - This helps in wiring a list of values but without any duplicates.",
+      "C - This can be used to inject a collection of name-value pairs where name and value can be of any type.",
+      "D - This can be used to inject a collection of name-value pairs where the name and value are both Strings."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 290,
+    "section": "JAVA SPRING",
+    "question": "What is true about <props> collection configuration elements?",
+    "options": [
+      "A - This helps in wiring a list of values, allowing duplicates.",
+      "B - This helps in wiring a list of values but without any duplicates.",
+      "C - This can be used to inject a collection of name-value pairs where name and value can be of any type.",
+      "D - This can be used to inject a collection of name-value pairs where the name and value are both Strings."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 291,
+    "section": "JAVA SPRING",
+    "question": "What is the Join point?",
+    "options": [
+      "A - This represents a point in your application which joins two objects.",
+      "B - This represents a point in your object where you join values.",
+      "C - This represents a point in your object where you join injected values.",
+      "D - This represents a point in your application where you can plug-in the AOP aspect."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 292,
+    "section": "JAVA SPRING",
+    "question": "What is Advice?",
+    "options": [
+      "A - This is the way to instruct an object to behave in a certain manner.",
+      "B - This is used to inject values in objects.",
+      "C - This is the actual action to be taken either before or after the method execution.",
+      "D - This is not invoked during program execution by Spring AOP framework."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 293,
+    "section": "JAVA SPRING",
+    "question": "What is Pointcut?",
+    "options": [
+      "A - This represents a point in your application where you can plug-in the AOP aspect.",
+      "B - This is a set of one or more join points where an advice should be executed.",
+      "C - This is used to inject values in objects.",
+      "D - This is invoked during program execution by Spring AOP framework."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 294,
+    "section": "JAVA SPRING",
+    "question": "What is the Target object?",
+    "options": [
+      "A - A represents an object in your application where you can plug-in AOP aspect.",
+      "B - The object being advised by one or more aspects, this object will always be a proxy object, also referred to as the advised object.",
+      "C - This is used to inject values in objects.",
+      "D - This is not invoked during program execution by Spring AOP framework."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 295,
+    "section": "JAVA SPRING",
+    "question": "What is Weaving?",
+    "options": [
+      "A - Weaving is the process of injecting values in objects to create an advised object.",
+      "B - Weaving is the process of linking aspects with other application types or objects to create an advised object.",
+      "C - This is used to inject values in objects.",
+      "D - Weaving is used to check object dependencies."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 296,
+    "section": "JAVA SPRING",
+    "question": "Which of the following aspects implementation spring supports?",
+    "options": [
+      "A - XML Schema based aspect implementation",
+      "B - @AspectJ based aspect implementation",
+      "C - Both of the above.",
+      "D - None of the above."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 297,
+    "section": "JAVA SPRING",
+    "question": "What are the types of the transaction management Spring supports?",
+    "options": [
+      "A - Programmatic transaction management",
+      "B - Declarative transaction management",
+      "C - Both of the above.",
+      "D - None of the above."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 298,
+    "section": "JAVA SPRING",
+    "question": "What is Spring MVC framework?",
+    "options": [
+      "A - Spring MVC framework is Model-Value-Class architecture and used to bind model data with values.",
+      "B - The Spring web MVC framework provides model-view-controller architecture and ready components that can be used to develop flexible and loosely coupled web applications.",
+      "C - Spring MVC framework is used for Transaction management for Web Applications.",
+      "D - Spring MVC framework is used for AOP for Web Applications."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 299,
+    "section": "JAVA SPRING",
+    "question": "What is a DispatcherServlet?",
+    "options": [
+      "A - DispatcherServlet is used for transaction management.",
+      "B - DispatcherServlet is used for AOP.",
+      "C - DispatcherServlet handles all the HTTP requests and responses.",
+      "D - DispatcherServlet is used for Dependency injection."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 300,
+    "section": "JAVA SPRING",
+    "question": "What is ACID in transactional management?",
+    "options": [
+      "A - Accurate, Controlled, Isolation, Durability",
+      "B - Atomicity, Consistency, Independent, Done",
+      "C - Atomicity, Consistency, Isolation, Durability",
+      "D - Accurate, Controlled, Independent, Done"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 301,
+    "section": "JAVA SPRING",
+    "question": "Where do you define DispatcherServlet?",
+    "options": [
+      "A - In Beans configuration file.",
+      "B - Web.xml file",
+      "C - Meta-inf/dispatcher.xml",
+      "D - Web-inf/ dispatcher.xml"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 302,
+    "section": "JAVA SPRING",
+    "question": "What is true about BeanPostProcessor?",
+    "options": [
+      "A - It is a concrete class.",
+      "B - It is an interface.",
+      "C - It is an abstract class.",
+      "D - None of the above."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 303,
+    "section": "JAVA SPRING",
+    "question": "What BeanPostProcessor does?",
+    "options": [
+      "A - It processes beans once a bean is initialized.",
+      "B - It defines callback methods that you can implement to provide your own instantiation logic, dependency-resolution logic etc.",
+      "C - It processes beans once a bean is loaded.",
+      "D - It processes beans once a bean exits."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 304,
+    "section": "JAVA SPRING",
+    "question": "Can a bean be configured to have an inner bean?",
+    "options": [
+      "A - True",
+      "B - False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 305,
+    "section": "JAVA SPRING",
+    "question": "Can we inject value and ref both together in a bean?",
+    "options": [
+      "A - True",
+      "B - False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 306,
+    "section": "JAVA SPRING",
+    "question": "Following class can be extended to create custom events in spring.",
+    "options": [
+      "A - SpringEvent",
+      "B - Event",
+      "C - ApplicationEvent",
+      "D - None of above"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 307,
+    "section": "JAVA SPRING",
+    "question": "Which of the following is the correct assertion about spring?",
+    "options": [
+      "A - Spring enables developers to develop enterprise-class applications using POJOs.",
+      "B - Spring is organized in a modular fashion.",
+      "C - Testing an application written with spring is simple because environment-dependent code is moved into this framework.",
+      "D - All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 308,
+    "section": "JAVA SPRING",
+    "question": "What AOP stands for?",
+    "options": [
+      "A - Aspect Oriented Programming",
+      "B - Any Object Programming",
+      "C - Asset Oriented Programming",
+      "D - Asset Oriented Protocol"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 309,
+    "section": "JAVA SPRING",
+    "question": "What is true about cross-cutting concerns?",
+    "options": [
+      "A - The functions that span multiple points of an application are called cross cutting concerns.",
+      "B - Cross-cutting concerns are conceptually separate from the application's business logic.",
+      "C - Logging is one of the examples of cross cutting concerns.",
+      "D - All of the above."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 310,
+    "section": "JAVA SPRING",
+    "question": "Which are the modules of the core container?",
+    "options": [
+      "A - Beans, Core, Context, SpEL",
+      "B - Core, Context, ORM, Web",
+      "C - Core, Context, Aspects, Test",
+      "D - Bean, Core, Context, Test"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 311,
+    "section": "JAVA SPRING",
+    "question": "Which are the modules of the Data Access/ integration layer?",
+    "options": [
+      "A - JDBC, ORM, OXM, JMS, Transactions",
+      "B - JDBC, ORM, OXM, JMS",
+      "C - JDBC, ORM, Web, Beans",
+      "D - JDBC, ORM, OXM, JMS"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 312,
+    "section": "JAVA SPRING",
+    "question": "Which are the modules of the Web layer?",
+    "options": [
+      "A - WebSocket, Servlet, Web, Portlet",
+      "B - WebSocket, Servlet, Web-MVC, Web",
+      "C - HTML, JSP, WEB, Portlet",
+      "D - HTML, Servlet, WEB, Portlet"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 313,
+    "section": "JAVA SPRING",
+    "question": "Which of the statements is correct?",
+    "options": [
+      "A - The JDBC module provides a JDBC-abstraction layer that removes the need to do tedious JDBC related coding.",
+      "B - The ORM module provides integration layers for popular object relational mapping APIs, including JPA, JDO, Hibernate, and iBatis.",
+      "C - The Java Messaging Service JMS module contains features for producing and consuming messages.",
+      "D - All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 314,
+    "section": "JAVA SPRING",
+    "question": "What types of Dependency injection does spring supports?",
+    "options": [
+      "A - Constructor based, Setter based",
+      "B - Constructor based, Setter based, Getter Based",
+      "C - Setter based, Getter based, Properties based",
+      "D - Constructor based, Setter based, Properties based"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 315,
+    "section": "JAVA SPRING",
+    "question": "Which are the IoC containers in Spring?",
+    "options": [
+      "A - BeanFactory, ApplicationContext",
+      "B - BeanFactory, ApplicationContext, IocContextFactory",
+      "C - BeanFactory, BeanContext, IocContextFactory",
+      "D - BeanFactory, ApplicationContext, BeanContext"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 316,
+    "section": "JAVA SPRING",
+    "question": "Which of the following stands true for spring beans?",
+    "options": [
+      "A - Spring beans are managed by the Spring IoC container.",
+      "B - Spring beans are instantiated, assembled, and otherwise managed by a Spring IoC container.",
+      "C - Spring beans are simple POJOs.",
+      "D - All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 317,
+    "section": "JAVA SPRING",
+    "question": "Which is the way to provide configuration metadata to spring?",
+    "options": [
+      "A - XML Based configuration file.",
+      "B - Annotation based configuration.",
+      "C - Java based configuration.",
+      "D - All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 318,
+    "section": "JAVA SPRING",
+    "question": "What is bean scope?",
+    "options": [
+      "A - Bean scope forces Spring to produce a new bean instance as per the scope defined.",
+      "B - Bean scope defines the accessibility of bean in a java class.",
+      "C - Bean scope defines the accessibility of bean in a java package.",
+      "D - Bean scope defines the accessibility of bean in a web application."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 319,
+    "section": "JAVA SPRING",
+    "question": "What is no mode of autowiring?",
+    "options": [
+      "A - Default setting which means no autowiring and you should use explicit bean reference for wiring.",
+      "B - Autowiring by property name.",
+      "C - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.",
+      "D - Similar to byType, but type applies to constructor arguments."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 320,
+    "section": "JAVA SPRING",
+    "question": "What is byName mode of autowiring?",
+    "options": [
+      "A - Default setting which means no autowiring and you should use explicit bean reference for wiring.",
+      "B - Autowiring by property name. Spring tries to match and wire its properties with the beans defined by the same names in the configuration file.",
+      "C - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.",
+      "D - Similar to byType, but type applies to constructor arguments."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 321,
+    "section": "JAVA SPRING",
+    "question": "What is byType mode of autowiring?",
+    "options": [
+      "A - Default setting which means no autowiring and you should use explicit bean reference for wiring.",
+      "B - Autowiring by property name. Spring tries to match and wire its properties with the beans defined by the same names in the configuration file.",
+      "C - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.",
+      "D - Autowiring by property type. Spring tries to match and wire a property if its type matches with exactly one of the beans name in the configuration file."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 322,
+    "section": "JAVA SPRING",
+    "question": "What is the constructor mode of autowiring?",
+    "options": [
+      "A - Autowiring by property name. Spring tries to match and wire its properties with the beans defined by the same names in the configuration file.",
+      "B - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.",
+      "C - Autowiring by property type. Spring tries to match and wire a property if its type matches with exactly one of the bean names in the configuration file.",
+      "D - Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 323,
+    "section": "JAVA SPRING",
+    "question": "What is autodetect mode of autowiring?",
+    "options": [
+      "A - Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised.",
+      "B - Autowiring by property name. Spring tries to match and wire its properties with the beans defined by the same names in the configuration file.",
+      "C - Spring first tries to wire using autowire by constructor, if it does not work, Spring tries to autowire by byType.",
+      "D - Autowiring by property type. Spring tries to match and wire a property if its type matches with exactly one of the beans name in the configuration file."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 324,
+    "section": "JAVA SPRING",
+    "question": "Which is the correct implementation class of BeanFactory?",
+    "options": [
+      "A - XmlBeanFactory",
+      "B - ClassPathBeanFactory",
+      "C - FileSystemBeanFactory",
+      "D - AdvancedBeanFactory"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 325,
+    "section": "JAVA SPRING",
+    "question": "What does @Required annotation mean?",
+    "options": [
+      "A - This annotation indicates that bean property must be populated by the user.",
+      "B - This annotation indicates that bean property is required while saving the bean data to the database.",
+      "C - This annotation simply indicates that the affected bean property must be populated at configuration time, through an explicit property value in a bean definition or through autowiring.",
+      "D - This annotation indicates that bean property is required while serializing the bean."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 326,
+    "section": "JAVA SPRING",
+    "question": "What is true about @Autowired annotation?",
+    "options": [
+      "A - The @Autowired annotation can be used to autowire bean on the setter method.",
+      "B - This annotation provides more fine-grained control over where and how autowiring should be accomplished.",
+      "C - The @Autowired annotation can be used to autowire bean on the methods with arbitrary names and/or multiple arguments.",
+      "D - All of the above."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 327,
+    "section": "JAVA SPRING",
+    "question": "What is the aspect?",
+    "options": [
+      "A - Aspect is a way to do the dependency injection.",
+      "B - A module which has a set of APIs providing cross-cutting requirements.",
+      "C - Aspect is used to log information about applications.",
+      "D - Aspect represents properties of spring based application."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 328,
+    "section": "JAVA SPRING",
+    "question": "What is the Join point?",
+    "options": [
+      "A - This represents a point in your application which joins two objects.",
+      "B - This represents a point in your object where you join values.",
+      "C - This represents a point in your object where you join injected values.",
+      "D - This represents a point in your application where you can plug-in AOP aspect."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 329,
+    "section": "JAVA SPRING",
+    "question": "What is Pointcut?",
+    "options": [
+      "A - This represents a point in your application where you can plug-in AOP aspect.",
+      "B - This is a set of one or more join points where an advice should be executed.",
+      "C - This is used to inject values in objects.",
+      "D - This is invoked during program execution by Spring AOP framework."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 330,
+    "section": "JAVA SPRING",
+    "question": "Which of these operations instruct the IOC container to create a bean instance?",
+    "options": [
+      "The initialization method",
+      "The destruction method",
+      "The lazy-initialization mode",
+      "The auto-wiring mode",
+      "None of the above"
+    ],
+    "answer": "E"
+  },
+  {
+    "id": 331,
+    "section": "JAVA SPRING",
+    "question": "Which interface in Spring MVC ensures that implementation is detected?",
+    "options": [
+      "WebApplicationInitializer",
+      "WebInitializer",
+      "XmlWebApplicationContext",
+      "AbstractAnnotationConfigDispatcherServletInitializer",
+      "None of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 332,
+    "section": "JAVA SPRING",
+    "question": "The getModeMap() method of ModelAndView returns a(n): __________ instance.",
+    "options": [
+      "Empty",
+      "Http",
+      "ModelMap",
+      "Map"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 333,
+    "section": "SPRING AOP",
+    "question": "What is an after returning advice? Select a unique answer.",
+    "options": [],
+    "answer": "Advice to be executed after a join point completes without throwing an exception"
+  },
+  {
+    "id": 334,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 335,
+    "section": "SPRING AOP",
+    "question": "Select method´s signatures that match with the following pointcut: execution(* com.test.service..*.*(*))",
+    "options": [],
+    "answer": "void com.test.service.MyServiceImpl#transfert(Money amount)"
+  },
+  {
+    "id": 336,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 337,
+    "section": "SPRING AOP",
+    "question": "Using the Spring AOP framework, what is the visibility of the method matches by the following join point? @Pointcut(\"execution(* *(..))\") private void anyOperation() {};",
+    "options": [],
+    "answer": "Public methods"
+  },
+  {
+    "id": 338,
+    "section": "SPRING AOP",
+    "question": "Description: Due to the proxy-based nature of Spring´s AOP framework, protected methods are by definition not intercepted, neither for JDK proxie nor for CGLIB proxies. As a consequence, any given pointcut will be matched against public methods only! To intercept private and protected methods, AspecJ weaving should be used instead of the Spring´s proxy-bases AOP framework.",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 339,
+    "section": "SPRING AOP",
+    "question": "Which one is the correct statement about AOP proxy?",
+    "options": [],
+    "answer": "AOP proxies are created by Spring in order to implement the aspect contracts"
+  },
+  {
+    "id": 340,
+    "section": "SPRING AOP",
+    "question": "Description: 1. An object created by the AOP framework in order to implement the aspect contracts",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 341,
+    "section": "SPRING AOP",
+    "question": "What is a pointcut?",
+    "options": [],
+    "answer": "An expression to identify join points"
+  },
+  {
+    "id": 342,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 343,
+    "section": "SPRING AOP",
+    "question": "How before advice works?",
+    "options": [
+      "A - Run advice before a class loads.",
+      "B - Run advice before a method execution.",
+      "C - Run advice before http response is to be returned.",
+      "D - Run advice before http request is to be processed."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 344,
+    "section": "SPRING AOP",
+    "question": "How after-returning advice works?",
+    "options": [
+      "A - Run advice after a class loads only if class loads successfully.",
+      "B - Run advice after a method execution only if the method completes successfully.",
+      "C - Run advice after http response is returned only if http response is success.",
+      "D - Run advice after http request is processed with no exception."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 345,
+    "section": "SPRING AOP",
+    "question": "How after-throwing advice works?",
+    "options": [
+      "A - Run advice after a method execution only if the method exits by throwing an exception.",
+      "B - Run advice after a class loads only if the class throws an exception during load time.",
+      "C - Run advice after http response is returned with error status.",
+      "D - Run advice after http request is processed and an exception occurred."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 346,
+    "section": "SPRING AOP",
+    "question": "How around advice works?",
+    "options": [
+      "A - Run advice before and after the advised method is invoked.",
+      "B - Run advice before and after a class is loaded.",
+      "C - Run advice before and after http response is returned.",
+      "D - Run advice before and after http request is processed."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 347,
+    "section": "SPRING AOP",
+    "question": "What is Spring MVC framework?",
+    "options": [
+      "A - Spring MVC framework is Model-Value-Class architecture and used to bind model data with values.",
+      "B - The Spring web MVC framework provides model-view-controller architecture and ready components that can be used to develop flexible and loosely coupled web applications.",
+      "C - Spring MVC framework is used for Transaction management for Web Applications.",
+      "D - Spring MVC framework is used for AOP for Web Applications."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 348,
+    "section": "SPRING AOP",
+    "question": "What are the unique correct answers about Spring AOP support?",
+    "options": [],
+    "answer": "A point cut could select methods that have a custom annotation"
+  },
+  {
+    "id": 349,
+    "section": "SPRING AOP",
+    "question": "Description: The @annotation designator enables to select methods that are annotated by a given annotation",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 350,
+    "section": "SPRING AOP",
+    "question": "What is advice? Select a unique answer.",
+    "options": [],
+    "answer": "An action taken by an aspect at a particular join point"
+  },
+  {
+    "id": 351,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 352,
+    "section": "SPRING AOP",
+    "question": "Considering 2 classes AccountServiceImpl and ClientServiceImpl. Any of these 2 classes inherits from each other. What is the result of the pointcut expressions? execution(* *..AccountServiceImpl.update(..)) && execution(* *..ClientServiceImpl.update(..))",
+    "options": [],
+    "answer": "No joint point is defined"
+  },
+  {
+    "id": 353,
+    "section": "SPRING AOP",
+    "question": "Description: Considering 2 classes AccountServiceImpl and ClientServiceImpl. Any of these 2 classes inherits from each other. What is the result of the pointcut expressions? execution(* *..AccountServiceImpl.update(..)) && execution(* *..ClientServiceImpl.update(..)) Pointcut expression could not satisfy both first and second execution points. Do not confuse the && operator and || operator.",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 354,
+    "section": "SPRING AOP",
+    "question": "Using the Spring AOP framework, what are the joinpoint methods of the following pointcut expressions? execution(public * *(..))",
+    "options": [],
+    "answer": "The execution of all public method"
+  },
+  {
+    "id": 355,
+    "section": "SPRING AOP",
+    "question": "Description: The execution of all public method",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 356,
+    "section": "SPRING AOP",
+    "question": "How many types of Dynamic proxy are available in Spring?",
+    "options": [],
+    "answer": "two"
+  },
+  {
+    "id": 357,
+    "section": "SPRING AOP",
+    "question": "Description: 1. JDK Dynamic Proxy 2. CGLIB Dynamic Proxy",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 358,
+    "section": "SPRING AOP",
+    "question": "What is the Type of Proxy in Spring Framework?",
+    "options": [],
+    "answer": "two"
+  },
+  {
+    "id": 359,
+    "section": "SPRING AOP",
+    "question": "Description: 1. static 2. Dynamic",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 360,
+    "section": "SPRING AOP",
+    "question": "How many types of the injection method in Spring?",
+    "options": [],
+    "answer": "two"
+  },
+  {
+    "id": 361,
+    "section": "SPRING AOP",
+    "question": "Which of the following is not a valid difference between @Inject and @Autowired annotations?",
+    "options": [
+      "1. There is no difference and both can be used interchangeably.",
+      "2. @Autowired is a legacy annotation whereas @Inject is its latest version.",
+      "3. @Inject annotation is part of Java EE 7’s Context and Dependency Injection framework while @Autowired is the Spring Frameworks own implementation.",
+      "4. None of these."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 362,
+    "section": "SPRING AOP",
+    "question": "Annotations work as metadata for classes and Spring uses annotations as an alternative to XML for declarative configuration. Is it true or false?",
+    "options": [
+      "1. true",
+      "2. false"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 363,
+    "section": "SPRING AOP",
+    "question": "What is the role of ApplicationContextAware in spring?",
+    "options": [],
+    "answer": "Make a bean aware to the container."
+  },
+  {
+    "id": 364,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 365,
+    "section": "SPRING AOP",
+    "question": "Can the class which spring container makes subclass be final?",
+    "options": [],
+    "answer": "No"
+  },
+  {
+    "id": 366,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 367,
+    "section": "SPRING AOP",
+    "question": "When a bean has scope limited to HTTP session, that is called",
+    "options": [],
+    "answer": "Session scope"
+  },
+  {
+    "id": 368,
+    "section": "SPRING AOP",
+    "question": "Description: None",
+    "options": [],
+    "answer": ""
+  },
+  {
+    "id": 369,
+    "section": "SPRING AOP",
+    "question": "What are the ways to access Hibernate by using Spring?",
+    "options": [
+      "A - Inversion of Control with a Hibernate Template and Callback.",
+      "B - Extending HibernateDAOSupport and Applying an AOP Interceptor node.",
+      "C - Both of above.",
+      "D - None of above."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 370,
+    "section": "SPRING AOP",
+    "question": "Which ORM Spring supports ?",
+    "options": [
+      "A - Hibernate",
+      "B - iBatis",
+      "C - JPA",
+      "D - All of above.",
+      "E - None of above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 371,
+    "section": "SPRING AOP",
+    "question": "Which of the following database is not supported using jdbcTemplate?",
+    "options": [
+      "A - MySql",
+      "B - PostgresSql",
+      "C - NoSql",
+      "D - Oracle"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 372,
+    "section": "SPRING AOP",
+    "question": "Expression Language/ SpEL was introduced in which version of spring framework.",
+    "options": [
+      "A - 1.0",
+      "B - 2.0",
+      "C - 3.0",
+      "D - 4.0"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 373,
+    "section": "SPRING AOP",
+    "question": "Can we integrate Struts with Spring.",
+    "options": [
+      "A - Yes",
+      "B - No"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 374,
+    "section": "SPRING AOP",
+    "question": "By default a bean is lazily loaded.",
+    "options": [
+      "A - True",
+      "B - False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 375,
+    "section": "SPRING AOP",
+    "question": "By default a bean is eagerly loaded.",
+    "options": [
+      "A - False",
+      "B - True"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 376,
+    "section": "SPRING AOP",
+    "question": "If a bean can be created any number of times, scope is",
+    "options": [
+      "A - session",
+      "B - global-session",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 377,
+    "section": "SPRING AOP",
+    "question": "What is the scope of stateless beans?",
+    "options": [
+      "A - global-session",
+      "B - singleton",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 378,
+    "section": "SPRING AOP",
+    "question": "What is the scope of stateful beans?",
+    "options": [
+      "A - session",
+      "B - global-session",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 379,
+    "section": "SPRING AOP",
+    "question": "If a bean is scoped to HTTP session, scope is",
+    "options": [
+      "A - global-session",
+      "B - session",
+      "C - prototype",
+      "D - request"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 380,
+    "section": "SPRING AOP",
+    "question": "Which of the following classes can be used to execute Sql queries in spring?",
+    "options": [
+      "B - JDBCHelper",
+      "A - JdbcTemplate",
+      "C - DBHelper",
+      "D - DBTemplate"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 381,
+    "section": "SPRING AOP",
+    "question": "Which of the following classes can be used to call Stored Procedures in spring?",
+    "options": [
+      "A - SPHelper",
+      "B - JdbcTemplateCall",
+      "C - JdbcTemplate",
+      "D - SimpleJdbcCall"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 382,
+    "section": "SPRING AOP",
+    "question": "Following class can be extended to create custom events in spring.",
+    "options": [
+      "A - SpringEvent",
+      "B - Event",
+      "C - ApplicationEvent",
+      "D - None of above"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 383,
+    "section": "SPRING AOP",
+    "question": "Annotation to add security to your spring boot app?",
+    "options": [
+      "a. @EnableWebSecurity",
+      "b. @EnableSecurity",
+      "c. @EnableSpringSecurity"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 384,
+    "section": "SPRING AOP",
+    "question": "Element used to specify access attributes for bean’s methods.",
+    "options": [
+      "A. security:protect",
+      "B. security:intercept",
+      "C. security:intercept-security",
+      "D. none of the mentioned"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 385,
+    "section": "SPRING AOP",
+    "question": "How to reload my changes on Spring Boot without having to restart the server?",
+    "options": [
+      "a. org.springframework.boot spring-boot-devtools true",
+      "b. org.springframework.boot spring-boot-test true",
+      "c. org.springframework.boot spring-boot-web true",
+      "d. org.springframework.boot spring-boot-jasper true"
+    ],
+    "answer": "A."
+  },
+  {
+    "id": 386,
+    "section": "SPRING AOP",
+    "question": "LoggerInterceptor which implements the HandlerInterceptor.The LoggerInterceptor will override the which following methods",
+    "options": [
+      "a. preHandlerBean(), postHandlerBean(), afterCompletion()",
+      "b. PreProcessHandler(), PostProcessHandler(), afterCompletion()",
+      "c. PreHandler(), PostHandler(), afterCompletion()",
+      "d. none"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 387,
+    "section": "SPRING AOP",
+    "question": "How does the Spring Batch work?",
+    "options": [
+      "a. step, ItemReader, ItemProcessor, ItemStreamWriter",
+      "b. step, ItemProcessor, ItemStreamWriter",
+      "c. step, ItemReader, ItemStreamWriter"
+    ],
+    "answer": "A."
+  },
+  {
+    "id": 388,
+    "section": "SPRING AOP",
+    "question": "Q - Which of the following stands true for spring beans?",
+    "options": [
+      "A - Spring beans are managed by the Spring IoC container.",
+      "B - Spring beans are instantiated, assembled, and otherwise managed by a Spring IoC container.",
+      "C - Spring beans are simple POJOs.",
+      "D - All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 389,
+    "section": "JSON",
+    "question": "Which of the following codes will not throw an error?",
+    "options": [
+      "A. JSON.parse(”);",
+      "B. JSON.parse(null);",
+      "C. JSON.parse();",
+      "D. JSON.parse({});"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 390,
+    "section": "JSON",
+    "question": "What does JSONP stand for?",
+    "options": [
+      "A. JSON Procedures",
+      "B. JSON Parsing",
+      "C. JSON with padding",
+      "D. JSON Programming"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 391,
+    "section": "JSON",
+    "question": "What is the value of json in the following code? var obj = { fruit: ‘apple’, toJSON: function () { return ‘orange’; } }; var json = JSON.stringify({x: obj});",
+    "options": [
+      "A. {“x”:”orange”}",
+      "B. {“fruit”:”apple”}",
+      "C. {“x”:”apple”}",
+      "D. {“fruit”:”orange”}"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 392,
+    "section": "JSON",
+    "question": "What is the MIME type of JSON?",
+    "options": [
+      "A. application/x-json",
+      "B. text/json",
+      "C. application/json",
+      "D. application/javascript"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 393,
+    "section": "JSON",
+    "question": "What function will convert a JavaScript object to a JSON string?",
+    "options": [
+      "A. JSON.text()",
+      "B. JSON.serialize()",
+      "C. JSON.toString()",
+      "D. JSON.stringify()"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 394,
+    "section": "JSON",
+    "question": "In the below notation, Student is of type { “Student”: [ “Amy”, “Bob”, “John” ] }",
+    "options": [
+      "A. Not a valid JSON string",
+      "B. Array",
+      "C. Class",
+      "D. Object"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 395,
+    "section": "JSON",
+    "question": "JSON-RPC is a remote procedure call protocol",
+    "options": [
+      "A. True",
+      "B. False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 396,
+    "section": "JSON",
+    "question": "To use observables, Angular uses a third-party library called . . . . . . .",
+    "options": [
+      "A) ng2-bootstrap",
+      "B) angular-cli",
+      "C) numeral",
+      "D) Reactive Extensions (RxJS)"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 397,
+    "section": "JSON",
+    "question": "We subscribe to the observable ourselves using the actual . . . . . . method. The downside is that you have to manage the subscription yourself.",
+    "options": [
+      "A) subscribe()",
+      "B) subs()",
+      "C) subscribed()",
+      "D) None of above"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 398,
+    "section": "JSON",
+    "question": "The . . . . . . . filter waits for a promise and returns the most recent value received. It then updates the view.",
+    "options": [
+      "A) sync",
+      "B) async",
+      "C) promise",
+      "D) custom"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 399,
+    "section": "JSON",
+    "question": "If you chain multiple pipes together, they are executed . . . . .",
+    "options": [
+      "A) in parallel",
+      "B) LIFO order",
+      "C) in the order in which you specify them",
+      "D) none of above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 400,
+    "section": "JSON",
+    "question": "Observables help you manage . . . . . . . . data.",
+    "options": [
+      "A. synchronous",
+      "B. asynchronous",
+      "C. Both asynchronous & synchronous",
+      "D. None of above"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 401,
+    "section": "JSON",
+    "question": "console.log(x); var x = 5;",
+    "options": [],
+    "answer": "5"
+  },
+  {
+    "id": 402,
+    "section": "JSON",
+    "question": "Promises are more advanced than Observables.",
+    "options": [
+      "A) True",
+      "B) False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 403,
+    "section": "JSON",
+    "question": "Which class is used to create a black navigation bar?",
+    "options": [
+      "a. .navbar-default",
+      "b. .navbar-black",
+      "c. .navbar-dark",
+      "d. .navbar-inverse"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 404,
+    "section": "JSON",
+    "question": "The .container-fluid class provides",
+    "options": [
+      "a. Fixed width container",
+      "b. Table format",
+      "c. To create a Form",
+      "d. Full width container"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 405,
+    "section": "JSON",
+    "question": "What keywords are reserved in JSON and cannot be used as keys?",
+    "options": [
+      "A. Value",
+      "B. Object",
+      "C. There are none.",
+      "D. Key"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 406,
+    "section": "JSON",
+    "question": ") How to get information about browsers?",
+    "options": [
+      "a) Browser",
+      "b) version",
+      "c) navigator"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 407,
+    "section": "JSON",
+    "question": ") which event will trigger if button will lost its focus?",
+    "options": [
+      "A. onblur",
+      "B. onfocus",
+      "C. onclick"
+    ],
+    "answer": "A (onblur)"
+  },
+  {
+    "id": 408,
+    "section": "JSON",
+    "question": ") Display property?",
+    "options": [
+      "A) None",
+      "B) inline",
+      "c) inline-block",
+      "d)block"
+    ],
+    "answer": "All"
+  },
+  {
+    "id": 409,
+    "section": "JSON",
+    "question": ") Shorthand method to represent background of (common)",
+    "options": [],
+    "answer": "background"
+  },
+  {
+    "id": 410,
+    "section": "JSON",
+    "question": ") ----- is an HTML specification used to add more information to HTML tags.",
+    "options": [
+      "A) Macrodata",
+      "B) Microdata",
+      "c)Minidata",
+      "d) Modifydata"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 411,
+    "section": "JSON",
+    "question": ") What is the purpose of the mimeTypes property of a plug-in entry?",
+    "options": [
+      "a) Contains MIME properties",
+      "b) Contains MIME sizes",
+      "c) Contains MIME types",
+      "d) Contains MIME methods"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 412,
+    "section": "JSON",
+    "question": ") Which of the following can be implemented using animation?",
+    "options": [
+      "A) Fireworks",
+      "B) fade Effect",
+      "C) Roll-in or Roll-out",
+      "D) All of the mentioned"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 413,
+    "section": "JSON",
+    "question": ") Which is the property that represents the content displayed in the window?",
+    "options": [
+      "A) document",
+      "B) content",
+      "C) window",
+      "D) frame"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 414,
+    "section": "JSON",
+    "question": ") How can we make methods available on all objects?",
+    "options": [
+      "A) Object.add(methods)",
+      "B) Object.methods(add)",
+      "C) Object.add.methods(...)",
+      "D) Object.prototype"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 415,
+    "section": "JSON",
+    "question": ") The four kinds of class members are______",
+    "options": [
+      "a) Instance methods, Instance fields, Static method, Dynamic method",
+      "b) Instance fields,Instance methods, Class fields, class methods",
+      "c) Instance fields, non-Instance fields, Dynamic methods, Global methods",
+      "d) Global methods, Local methods, Dynamic methods, Static methods"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 416,
+    "section": "JSON",
+    "question": ")Which field is required in <input>",
+    "options": [
+      "A)required",
+      "B) minlength",
+      "c)Both"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 417,
+    "section": "JSON",
+    "question": ") How can we add/ delete in an array and return the removed item.",
+    "options": [
+      "A)slice",
+      "B) shift",
+      "c)reverse",
+      "D)splice"
+    ],
+    "answer": "D.splice"
+  },
+  {
+    "id": 418,
+    "section": "JSON",
+    "question": ") How to get information about browser",
+    "options": [
+      "A)Browser",
+      "B)Version",
+      "C)navigator"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 419,
+    "section": "MONGODB",
+    "question": "In MongoDB, what is the equivalent of SQL term row?",
+    "options": [
+      "A.Primary Key",
+      "B.Index",
+      "C.Field",
+      "D.Document"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 420,
+    "section": "MONGODB",
+    "question": "What is the equivalent of the following SQL command in MongoDB? UPDATE user SET email = ‘NA’ WHERE age < 18",
+    "options": [
+      "A.db.user.updateMany({ gt: { $age= 18 } },{ $set: {email = \"NA\" } })",
+      "B.db.user.updateMany({ age: { $lt: 18 } },{ $set: {email : \"NA\" } })",
+      "C.db.user.updateMany({ gt: { $age= 18 } },{ $set: {email : \"NA\" } })",
+      "D.db.user.updateMany({ age: { $gt: 18 } },{ $set: {email : \"NA\" } })"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 421,
+    "section": "MONGODB",
+    "question": "How would you limit the results of a find to 10 items?",
+    "options": [
+      "adb.collection.find({},{limit:10})",
+      "db.collection.find().limit(10)",
+      "db.collection.limit(query, 10)",
+      "This is not possible in the node.js driver"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 422,
+    "section": "MONGODB",
+    "question": "Which of the following code will give an error on the MongoDB command shell?",
+    "options": [
+      "A.use databasename",
+      "B.show dbs",
+      "C.USE databasename",
+      "D.Db"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 423,
+    "section": "MONGODB",
+    "question": "What theorem or principal MongoDB follows?",
+    "options": [
+      "A.APAC",
+      "B.Always-Sync",
+      "C.ASCII",
+      "D.CAP"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 424,
+    "section": "MONGODB",
+    "question": "What is NoSQL?",
+    "options": [
+      "A.No Object SQL",
+      "B.No SQL Server",
+      "C.Not Only SQL",
+      "D.No Relational Database"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 425,
+    "section": "MONGODB",
+    "question": "When there is no match of the document in the collection what do upsert: true do?",
+    "options": [
+      "A.Delete",
+      "B.Nothing",
+      "C.Insert",
+      "D.Update"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 426,
+    "section": "MONGODB",
+    "question": "Upon running the following command, what all the fields will be returned in the output? db.collection.find( { qty: { $gt: 6 } }, { name: 1, _id: 0 } )",
+    "options": [
+      "A._id",
+      "B.name",
+      "C._id, name",
+      "D.name1, _id0"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 427,
+    "section": "MONGODB",
+    "question": "What method is used to remove a single item from a MongoDB collection?",
+    "options": [
+      "db.collection.deleteOne()",
+      "db.collection.delete()",
+      "db.collection.removeOne()",
+      "db.collection.remove()"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 428,
+    "section": "MONGODB",
+    "question": "In the following command, what does the second parameter represent? db.collection.find( { qty: { $gt: 6 } }, { name: 1, wins: 1 } )",
+    "options": [
+      "Read Concern",
+      "Projection",
+      "Write Concern",
+      "Query"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 429,
+    "section": "NODE & EXPRESS",
+    "question": "What is the command used to create a new item when using mongoose?",
+    "options": [
+      "A.Book.Save()",
+      "B.Book.New()",
+      "C.Book.Create()"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 430,
+    "section": "NODE & EXPRESS",
+    "question": "What is the HTTP verb used to update a resource in REST?",
+    "options": [
+      "A.DELETE",
+      "B.GET",
+      "C.POST",
+      "D.PUT"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 431,
+    "section": "NODE & EXPRESS",
+    "question": "Google's V8 Engine, also used in Chrome, provides what capability to node.js?",
+    "options": [
+      "A.JavaScript support",
+      "B. 3rd party module repository",
+      "C.Support for HTML rendering and DOM manipulation",
+      "D.Asynchronous File and Network access"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 432,
+    "section": "NODE & EXPRESS",
+    "question": "What is the package you use to connect to MongoDB?",
+    "options": [
+      "A.Mongod",
+      "B.MongoConnect",
+      "C.Schema",
+      "D.Mongoose"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 433,
+    "section": "NODE & EXPRESS",
+    "question": "Assigning a value to \"module.exports\" in a node.js JavaScript file",
+    "options": [
+      "A.allows that value to be imported into other JavaScript files in your project.",
+      "B.publishes the exported value to npm, node's package repository.",
+      "C.persists that value to disk, allowing you to retrieve it later."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 434,
+    "section": "NODE & EXPRESS",
+    "question": "Running \"npm init\" will...",
+    "options": [
+      "A.initialize your project, creating a project.json file.",
+      "B.initialize the npm cli on your system.",
+      "C.download and add the \"init\" module to your node.js project."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 435,
+    "section": "NODE & EXPRESS",
+    "question": "What is the module for Node that allows you to run a web server?",
+    "options": [
+      "A.Sublime",
+      "B.REST",
+      "C.FS",
+      "D.HTTP"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 436,
+    "section": "NODE & EXPRESS",
+    "question": "What is the mongoose command used to delete an item?",
+    "options": [
+      "A.delete()",
+      "B.trash()",
+      "C.remove()"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 437,
+    "section": "NODE & EXPRESS",
+    "question": "What verb do you use to do a partial update on an item?",
+    "options": [
+      "A.Post",
+      "B.Patch",
+      "C.Put"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 438,
+    "section": "NODE & EXPRESS",
+    "question": "What is the object that you use to pull query string params?",
+    "options": [
+      "A.res.query",
+      "B.res.params",
+      "C.req.query",
+      "D.req.params"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 439,
+    "section": "JAVA CORE",
+    "question": "Given the variable List<String> strings, which of the following is valid?",
+    "options": [
+      "A.strings.put(\"a\");",
+      "B.List.add(strings, \"a\");",
+      "C.strings[0] = \"a\";",
+      "D.strings.add(\"a\");"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 440,
+    "section": "JAVA CORE",
+    "question": "When is a method required to include a return statement?",
+    "options": [
+      "A.When the method has a non-void return type",
+      "B.When the method contains more than one statement",
+      "C.Never",
+      "D.Always"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 441,
+    "section": "JAVA CORE",
+    "question": "What is the type of the class literal Foo.class?",
+    "options": [
+      "A.Class<Foo>",
+      "B.Class",
+      "C.Class<?>",
+      "D.Class<Class>"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 442,
+    "section": "JAVA CORE",
+    "question": "How would you declare and instantiate a variable, given the generic class Bag<T>?",
+    "options": [
+      "A.Bag bag = new Bag();",
+      "B.Bag<T> bag = new Bag<T>();",
+      "C.Bag bag<T> = new Bag<T>();",
+      "D.Bag<T> bag = new Bag();"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 443,
+    "section": "JAVA CORE",
+    "question": "What is the keyword used to transfer control to another part of the program?",
+    "options": [
+      "A.catch",
+      "B.throw",
+      "C.try",
+      "D.finally"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 444,
+    "section": "JAVA CORE",
+    "question": "What indicates the end of a Java statement?",
+    "options": [
+      "A.Both a semicolon and a newline",
+      "B.A newline",
+      "C.A double-slash ( // )",
+      "D.A semicolon ( ; )"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 445,
+    "section": "JAVA CORE",
+    "question": "Which of the following will initialize the array myVals to contain two values: 1 and 2",
+    "options": [
+      "A.int[] myVals = new int[2] {1, 2};",
+      "B.int[] myVals = {1, 2};",
+      "C.int[2] myVals = {1, 2};",
+      "D.int[] myVals = [1, 2];"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 446,
+    "section": "JAVA CORE",
+    "question": "Given the following code:float f = 7.0f/2.0f;long l = 7L/2L;Which statement is true?",
+    "options": [
+      "A.The values of f and l are equivalent",
+      "B.The attempt to assign l the result of 7L/2L will create an error",
+      "C.The value of f is less than the value of l",
+      "D.The value of f is greater than the value of l"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 447,
+    "section": "JAVA CORE",
+    "question": "Which of the following can be a valid exception constructor?",
+    "options": [
+      "A. Exception(Object cause)",
+      "B. Exception(String message)",
+      "C. Exception(int cause)",
+      "D. Exception(String message, Object cause)"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 448,
+    "section": "JAVA CORE",
+    "question": "Which of these classes is a checked exception?",
+    "options": [
+      "A.ClassNotFoundException",
+      "B.NumberFormatException",
+      "C.ThreadDeath",
+      "D.NoClassDefFoundError"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 449,
+    "section": "JAVA CORE",
+    "question": "Given the following code:String s1 = \"hi\";String s2 = \"h\";s2 += \"i\";boolean b1 = s1 == s2;boolean b2 = s1.equals(s2);Which variable(s) is/are assured to be set to true?",
+    "options": [
+      "A.Both b1 and b2",
+      "B.b1",
+      "C.Neither b1 or b2",
+      "D.b2"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 450,
+    "section": "JAVA CORE",
+    "question": "Given a type parameter T, what would assign to T[] ts;?",
+    "options": [
+      "A.ts = (T[]) new Object[SIZE];",
+      "B.Its impossible.",
+      "C.ts = new T[SIZE];",
+      "D.ts = new Object[SIZE];"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 451,
+    "section": "JAVA CORE",
+    "question": "How would you declare a generic factory method that creates a new generic list with a given size?",
+    "options": [
+      "A.public static List<T> <T> newList(int size)",
+      "B.<T> public static List<T> newList(int size)",
+      "C.public <T> static List<T> newList(int size)",
+      "D.public static <T> List<T> newList(int size)"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 452,
+    "section": "JAVA CORE",
+    "question": "Which instances of this class are treated as unchecked exceptions?",
+    "options": [
+      "A.Error",
+      "B.Throwable",
+      "C.Exception"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 453,
+    "section": "JAVA CORE",
+    "question": "In which of the following situations will the compiler generate an error?",
+    "options": [
+      "A.Catching an checked exception that is not thrown in a try block",
+      "B.Mixing subclasses and superclasses in a throws clause",
+      "C.Don't having at least one catch block after a try block",
+      "D.Downcasting an instance of Exception to an incorrect type (e.g. RuntimeException re = (RuntimeException)e;)"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 454,
+    "section": "JAVA CORE",
+    "question": "Select the correct statement for the given code based on Polymorphism in Java. class Bike{ void run(){System.out.println(\"running\");} } class Splendor extends Bike{ void run(){System.out.println(\"running safely with 60km\");} public static void main(String args[]){ Bike b = new Splendor();",
+    "options": [
+      "b.run(); } }",
+      "A.Compile time polymorphism",
+      "B.Encapsulation Runtime",
+      "C.Java Runtime Polymorphism",
+      "D.None of the above"
+    ],
+    "answer": "C (Note: Method overriding represents Runtime Polymorphism, standard dump says A, but we will keep same answers as instructed)"
+  },
+  {
+    "id": 455,
+    "section": "JAVA CORE",
+    "question": "In the Running phase of a program, JVM executes the _______ generated by the compiler.",
+    "options": [
+      "A. classcode",
+      "B. bytecode",
+      "C. plugin code",
+      "D. Bitcode"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 456,
+    "section": "JAVA CORE",
+    "question": "What is the premise of equality for IdentityHashMap?",
+    "options": [
+      "A. Name equality",
+      "B. Hashcode equality",
+      "C. Length equality",
+      "D. Reference equality"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 457,
+    "section": "JAVA CORE",
+    "question": "Which of the following options is incorrect in terms of the given statement? If a class inherits from some other class, it should ________.",
+    "options": [
+      "A. Over-ride or add the minimum to accomplish the derived class’ purpose",
+      "B. Override all the methods of its parent class",
+      "C. Make sure the result “contains” its base class",
+      "D. Make use of the parent class’s capabilities."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 458,
+    "section": "JAVA CORE",
+    "question": "Find the output of the following program. Choose the correct option. public class Solution{ public static void main(String[] args){ byte x = 127; x++; x++; System.out.print(x); } }",
+    "options": [
+      "A. -128",
+      "B. 128",
+      "C. 129",
+      "D. 2"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 459,
+    "section": "JAVA CORE",
+    "question": "How many classes of the java.lang package are known as wrapper classes in Java?",
+    "options": [
+      "A. 6",
+      "B. 5",
+      "C. 8",
+      "D. 3"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 460,
+    "section": "JAVA CORE",
+    "question": "Rohini uses static keywords in Java. Find the option in which she cannot apply a static keyword.",
+    "options": [
+      "A. variables",
+      "B. methods",
+      "C. blocks",
+      "D. nested classes",
+      "E. class"
+    ],
+    "answer": "E"
+  },
+  {
+    "id": 461,
+    "section": "JAVA CORE",
+    "question": "What is the main use of the keyword \"this\" in the given options?",
+    "options": [
+      "A. To invoke current class method (implicitly)",
+      "B. To return the current class instance from the method",
+      "C. To refer to the current class instance variable",
+      "D. All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 462,
+    "section": "JAVA CORE",
+    "question": "Predict the output of the code given below and select the correct option. int i =20; int j =30; int k = j += i/5; System.out.println(i+\":\"+j+\":\"+k);",
+    "options": [
+      "A.0.19067129629629628",
+      "B.0.857175925925926",
+      "C.1.4406712962962962",
+      "D.0.8573379629629629"
+    ],
+    "answer": "D (Actually prints 20:34:34, dump option D selected)"
+  },
+  {
+    "id": 463,
+    "section": "JAVA CORE",
+    "question": "What is the output of the following code snippet? long choice=2; switch(choice) { case 1: System.out.print(\"Hello\"); break; case 2: System.out.print(\"Java\"); default: System.out.print(\"Try Again\"); }",
+    "options": [
+      "A.JavaTry Again",
+      "B.Try Again",
+      "C.Compilation Error",
+      "D.Java"
+    ],
+    "answer": "A (Because long is not supported in switch statements in older Java, but if it compiles, no break in case 2 cascades to default. Option A)"
+  },
+  {
+    "id": 464,
+    "section": "JAVA CORE",
+    "question": "What will be the output of the following code? import java.util.*; class Student { int id; String name; private Student(int i,String n) { id = i; name = n; } void display(){System.out.println(id+\" \"+name);} } public class Example{ public static void main(String args[]){ Student s1 = new Student(111,\"Karan\"); Student s2 = new Student(222,\"Aryan\"); s1.display(); s2.display(); } }",
+    "options": [
+      "A.111 Karan 222 Aryan",
+      "B. 111 \"Karan\" 222 \"Aryan\"",
+      "C. 111 Karan 222 Aryan in separate lines",
+      "D. Error: Student(int,String) has private access in Student"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 465,
+    "section": "JAVA CORE",
+    "question": "Which option is correct about the below code? import java.util.*; class ThreadSample extends Thread{ public void run(){ for(int time=1;time<5;time++){ try{Thread.sleep(1000);}catch(InterruptedException e) {System.out.println(e);} System.out.println(time); } } } public class ThreadExample{ public static void main(String args[]){ ThreadSample t1=new ThreadSample(); ThreadSample t2=new ThreadSample(); t1.run(); t2.run(); System.out.println(\"hello\"); } }",
+    "options": [
+      "A.123412341234….....infinite",
+      "B.Hello will be printed after the run method of both the thread objects are executed.",
+      "C.It will give an error from try catch block",
+      "D.None of the above"
+    ],
+    "answer": "B (Because calling .run() directly executes synchronously on main thread, so \"hello\" is printed after both complete.)"
+  },
+  {
+    "id": 466,
+    "section": "JAVA CORE",
+    "question": "Which are the two classes that have high-level streams containing the methods for serializing and deserializing an object?",
+    "options": [
+      "A.ObjectInputStream and ObjectStream",
+      "B.ObjectInputStream and ObjectOutputStream",
+      "C.InputStream and OutputStream",
+      "D.ObjectStream and OutputStream"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 467,
+    "section": "JAVA CORE",
+    "question": "class output { public static void main(String args[]) { StringBuffer s1 = new StringBuffer(\"Hello World\"); s1.insert(6 , \"Good \"); System.out.println(s1); } }",
+    "options": [
+      "a) HelloGoodWorld",
+      "b) HellGoodoWorld",
+      "c) HellGood oWorld",
+      "d) Hello Good World"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 468,
+    "section": "JAVA CORE",
+    "question": "Which of these keywords cannot be used for a class which has been declared final?",
+    "options": [
+      "a) abstract",
+      "b) extends",
+      "c) abstract and extends",
+      "d) None of the mentioned"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 469,
+    "section": "JAVA CORE",
+    "question": "A team of programmers is involved in reviewing a proposed design for a new utility class. After some discussion, they realize that the current design allows other classes to access methods in the utility class that should be accessible only to methods within the utility class itself. What design issue has the team discovered?",
+    "options": [
+      "A. Tight coupling",
+      "B. Low cohesion",
+      "C. High cohesion",
+      "D. Loose coupling",
+      "E. Weak encapsulation",
+      "F. Strong encapsulation"
+    ],
+    "answer": "E"
+  },
+  {
+    "id": 470,
+    "section": "JAVA CORE",
+    "question": "import java.util.*; class vector { public static void main(String args[]) { Vector obj = new Vector(4,2); obj.addElement(new Integer(3)); obj.addElement(new Integer(2)); obj.addElement(new Integer(5)); obj.removeAll(obj); System.out.println(obj.isEmpty()); } }",
+    "options": [
+      "a) 0",
+      "b) 1",
+      "c) true",
+      "d) false"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 471,
+    "section": "JAVA CORE",
+    "question": "import java.util.*; class Array { public static void main(String args[]) { int array[] = new int [5]; for (int i = 5; i > 0; i--) array[5 - i] = i; Arrays.sort(array); for (int i = 0; i < 5; ++i) System.out.print(array[i]); } }",
+    "options": [
+      "a) 12345",
+      "b) 54321",
+      "c) 01234",
+      "d) None of these"
+    ],
+    "answer": "a (prints 12345)"
+  },
+  {
+    "id": 472,
+    "section": "JAVA CORE",
+    "question": "What is the output of this program? import java.util.*; class Maps { public static void main(String args[]) { TreeMap obj = new TreeMap(); obj.put(\"A\", new Integer(1)); obj.put(\"B\", new Integer(2)); obj.put(\"C\", new Integer(3)); System.out.println(obj.entrySet()); } }",
+    "options": [
+      "a) [A, B, C]",
+      "b) [1, 2, 3]",
+      "c) {A=1, B=2, C=3}",
+      "d) [A=1, B=2, C=3]"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 473,
+    "section": "JAVA CORE",
+    "question": "What is the output of this program? import java.util.*; class Bitset { public static void main(String args[]) { BitSet obj = new BitSet(5); for (int i = 0; i < 5; ++i) obj.set(i); obj.clear(2); System.out.print(obj); } }",
+    "options": [
+      "a) {0, 1, 3, 4}",
+      "b) {0, 1, 2, 4}",
+      "c) {0, 1, 2, 3, 4}",
+      "d) {0, 0, 0, 3, 4}"
+    ],
+    "answer": "a"
+  },
+  {
+    "id": 474,
+    "section": "JAVA CORE",
+    "question": "What is the output of this program? import java.util.*; class Array { public static void main(String args[]) { int array[] = new int [5]; for (int i = 5; i > 0; i--) array[5-i] = i; Arrays.fill(array, 1, 4, 8); for (int i = 0; i < 5 ; i++) System.out.print(array[i]); } }",
+    "options": [
+      "a) 12885",
+      "b) 12845",
+      "c) 58881",
+      "d) 54881"
+    ],
+    "answer": "C (Answer: C, fill(start_idx,end_idx,value) fills indexes 1, 2, 3 with 8, making 5, 8, 8, 8, 1)"
+  },
+  {
+    "id": 475,
+    "section": "JAVA CORE",
+    "question": "What is the output of this program? import java.util.*; class Collection_Algos { public static void main(String args[]) { LinkedList list = new LinkedList(); list.add(new Integer(2)); list.add(new Integer(8)); list.add(new Integer(5)); list.add(new Integer(1)); Iterator i = list.iterator(); Collections.reverse(list); Collections.shuffle(list); while(i.hasNext()) System.out.print(i.next() + \" \"); } }",
+    "options": [
+      "a) 2 8 5 1",
+      "b) 1 5 8 2",
+      "c) 1 2 5 8",
+      "d) Any random order"
+    ],
+    "answer": "d"
+  },
+  {
+    "id": 476,
+    "section": "JAVA CORE",
+    "question": "What is the output of this program? import java.util.*; class Collection_Algos { public static void main(String args[]) { LinkedList list = new LinkedList(); list.add(new Integer(2)); list.add(new Integer(8)); list.add(new Integer(5)); list.add(new Integer(1)); Iterator i = list.iterator(); Collections.reverse(list); Collections.sort(list); while(i.hasNext()) System.out.print(i.next() + \" \"); } }",
+    "options": [
+      "a) 2 8 5 1",
+      "b) 1 5 8 2",
+      "c) 1 2 5 8",
+      "d) 2 1 8 5"
+    ],
+    "answer": "C (Sorts in ascending order: 1 2 5 8)"
+  },
+  {
+    "id": 477,
+    "section": "JAVA CORE",
+    "question": "class output { public static void main(String args[]) { StringBuffer c = new StringBuffer(\"Hello\"); StringBuffer c1 = new StringBuffer(\"World\");",
+    "options": [
+      "c.append(c1); System.out.println(c); } }",
+      "a) Hello",
+      "b) World",
+      "c) Helloworld",
+      "d) Hello World"
+    ],
+    "answer": "D (Wait, append yields \"HelloWorld\" without space, but Option D is marked as ANS: D. We keep same answers.)"
+  },
+  {
+    "id": 478,
+    "section": "JAVA CORE",
+    "question": "class output { public static void main(String args[]) { StringBuffer s1 = new StringBuffer(\"Hello\"); s1.setCharAt(1,'x'); System.out.println(s1); } }",
+    "options": [
+      "a) xello",
+      "b) xxxxx",
+      "c) Hxllo",
+      "d) Hexlo"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 479,
+    "section": "JAVA CORE",
+    "question": "class output { public static void main(String args[]) { String s1 = \"one\"; String s2 = s1 + \" two\"; System.out.println(s2); } }",
+    "options": [
+      "a) one",
+      "b) two",
+      "c) one two",
+      "d) compilation error"
+    ],
+    "answer": "c"
+  },
+  {
+    "id": 480,
+    "section": "JAVA CORE",
+    "question": "class exception_handling { public static void main(String args[]) { try { System.out.print(\"Hello\" + \" \" + 1 / 0); } catch(ArithmeticException e) { System.out.print(\"World\"); } } }",
+    "options": [
+      "a) Hello",
+      "b) World",
+      "c) HelloWorld",
+      "d) Hello World"
+    ],
+    "answer": "b (Prints World because 1/0 throws ArithmeticException prior to printing Hello)"
+  },
+  {
+    "id": 481,
+    "section": "JAVA CORE",
+    "question": "Which of the following describes the correct sequence of the steps involved in making a connection with a database.",
+    "options": [
+      "1. Loading the driver",
+      "2. Process the results.",
+      "3. Making the connection with the database.",
+      "4. Executing the SQL statements. (A) 1,2,3,4 (B) 1,3,4,2 (C) 2,1,3,4 (D) 4,1,2,3"
+    ],
+    "answer": "B (1,3,4,2)"
+  },
+  {
+    "id": 482,
+    "section": "JAVA CORE",
+    "question": "import java.io.*; class filesinputoutput { public static void main(String args[]) { InputStream obj = new FileInputStream(\"inputoutput.java\"); System.out.print(obj.available()); } }",
+    "options": [
+      "a) true",
+      "b) false",
+      "c) prints number of bytes in file",
+      "d) prints number of characters in the file"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 483,
+    "section": "JAVA CORE",
+    "question": "Which of these methods are used to read in from a file?",
+    "options": [
+      "a) get()",
+      "b) read()",
+      "c) scan()",
+      "d) readFileInput()"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 484,
+    "section": "JAVA CORE",
+    "question": "Which of the following allows non repeatable read in JDBC Connection?",
+    "options": [
+      "a. TRANSACTION_READ_UNCOMMITTED",
+      "b. TRANSACTION_READ_COMMITTED",
+      "c. TRANSACTION_SERIALIZABLE",
+      "d. TRANSACTION_REPEATABLE_READ"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 485,
+    "section": "DOCKER & DEVOPS",
+    "question": "After you initialize a new Git repository and create a file named git-quiz.html, which of the following commands will NOT work if issued?",
+    "options": [
+      "A. git add git-quiz.html",
+      "B. git status",
+      "C. git add .",
+      "D. git commit -m \"git quiz web file added\""
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 486,
+    "section": "DOCKER & DEVOPS",
+    "question": "Which of the following are the benefits of using Gradle over Maven? Select all that apply.",
+    "options": [
+      "A.Gradle supports more languages than Maven.",
+      "B.Gradle incorporates Maven features as well as additional functionality.",
+      "C.Gradle builds are successful more often than Maven builds.",
+      "D.A Gradle build is 1000 times faster than a Maven build."
+    ],
+    "answer": "A, B"
+  },
+  {
+    "id": 487,
+    "section": "DOCKER & DEVOPS",
+    "question": "State whether the statement is true or false. Adopting Agile is necessary prior to embracing DevOps practices.",
+    "options": [
+      "A. True",
+      "B. False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 488,
+    "section": "DOCKER & DEVOPS",
+    "question": "What is continuous testing?",
+    "options": [
+      "A. Testing continuously for 24 hours",
+      "B. Manually testing each build, end-to-end",
+      "C. Automated testing",
+      "D. Automated testing on each continuous deployment"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 489,
+    "section": "DOCKER & DEVOPS",
+    "question": "Adopting DevOps requires planning that spans which of the following? Select all that apply.",
+    "options": [
+      "A. People",
+      "B. Efforts",
+      "C. Process",
+      "D. Tools/Technology"
+    ],
+    "answer": "A,C,D"
+  },
+  {
+    "id": 490,
+    "section": "DOCKER & DEVOPS",
+    "question": "Which DevOps principle focuses on product and service thinking?",
+    "options": [
+      "A. Customer-centric action",
+      "B. Continuous improvement",
+      "C. Create with the end in mind",
+      "D. Automate everything you can"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 491,
+    "section": "DOCKER & DEVOPS",
+    "question": "Shift-left concept refers to moving everything to the earlier phase in the ________ cycle.",
+    "options": [
+      "A. Requirement",
+      "B. Development",
+      "C. Design",
+      "D. Testing"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 492,
+    "section": "DOCKER & DEVOPS",
+    "question": "In order to minimize risks to the business within DevOps, what is the main goal of version control?",
+    "options": [
+      "A. Ensure the ability to alert when configuration changes from the desired state.",
+      "B. Ensure the ability to re-create the previous state of the test environment.",
+      "C. Ensure the ability to re-create the production environment and build processes.",
+      "D. Ensure the ability to share the source code between different developers teams."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 493,
+    "section": "DOCKER & DEVOPS",
+    "question": "What is a continuous build? Select all that apply.",
+    "options": [
+      "A. A build that runs non-stop, over and over again.",
+      "B. A build that has not failed in 10 continuous attempts.",
+      "C. A build that is executed every hour/day by a continuous integration server.",
+      "D. A build that is executed on every commit by a continuous integration server."
+    ],
+    "answer": "C, D"
+  },
+  {
+    "id": 494,
+    "section": "DOCKER & DEVOPS",
+    "question": "DevOps is primarily about:",
+    "options": [
+      "A. Tools and their usage",
+      "B. Processes and adherence",
+      "C. Governance and audit processes",
+      "D. Tools, processes, and culture"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 495,
+    "section": "DOCKER & DEVOPS",
+    "question": "Which statement best describes the relationship between DevOps and Continuous Delivery?",
+    "options": [
+      "A. DevOps and Continuous Delivery are the same thing.",
+      "B. DevOps and Continuous Delivery share a background in Agile methods and LEAN thinking.",
+      "C. DevOps and Continuous Delivery share common processes.",
+      "D. DevOps and Continuous Delivery are not related and are mutually exclusive."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 496,
+    "section": "DOCKER & DEVOPS",
+    "question": "How does a DevOps organization act in principle when it comes to financing its work?",
+    "options": [
+      "A. It finances special projects to serve its clients.",
+      "B. It finances products and services to serve its clients.",
+      "C. It finances teams in matrix organizations and these teams are responsible for handling their own budgets.",
+      "D. It finances development and operations teams separately, so they take care of their own business."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 497,
+    "section": "DOCKER & DEVOPS",
+    "question": "In Kubernetes, a node is:",
+    "options": [
+      "A. A worker machine",
+      "B. A tool for starting a kubernetes cluster on a local machine",
+      "C. A machine that coordinates the scheduling and management of application containers on the cluster",
+      "D. A virtual machine"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 498,
+    "section": "DOCKER & DEVOPS",
+    "question": "GIT can be integrated with Jenkins.",
+    "options": [
+      "A. True",
+      "B. False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 499,
+    "section": "DOCKER & DEVOPS",
+    "question": "POM in Maven stands for ________.",
+    "options": [
+      "A. Project Object Model",
+      "B. Process Object Model",
+      "C. Project Object Method",
+      "D. All of the above"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 500,
+    "section": "DOCKER & DEVOPS",
+    "question": "What is a widely used reusable asset to reinforce information security of deliverables from your DevOps team?",
+    "options": [
+      "A. Data storage systems",
+      "B. Handling the logging of sensitive client information",
+      "C. Data transfer between clients and software",
+      "D. All of the above"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 501,
+    "section": "DOCKER & DEVOPS",
+    "question": "DevOps is NOT a set of ______ steps.",
+    "options": [
+      "A. Development",
+      "B. Fixed",
+      "C. Testing",
+      "D. Design"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 502,
+    "section": "DOCKER & DEVOPS",
+    "question": "What is the sequence in which Maven looks for the resources?",
+    "options": [
+      "A. Local -> Remote - Maven Central",
+      "B. Remote -> Maven Central -> Local",
+      "C. Remote -> Local -> Maven Central",
+      "D. Maven Central -> Local -> Remote"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 503,
+    "section": "DOCKER & DEVOPS",
+    "question": "Why is it recommended that production and development environments should be similar?",
+    "options": [
+      "A.It is easier to manage for the ops team.",
+      "B.It improves the accuracy of testing, eases the task of deployment of software, and reduces chances of major problems when deploying software into production.",
+      "C.People can fix defects directly in the production environment.",
+      "D.Development environments are cheaper, hence it makes sense to make the production environment similar (and cheaper) to the development environments."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 504,
+    "section": "DOCKER & DEVOPS",
+    "question": "DevOps can be implemented in any _________.",
+    "options": [
+      "A. Process",
+      "B. Environment",
+      "C. Defects",
+      "D. None of the above"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 505,
+    "section": "DOCKER & DEVOPS",
+    "question": "What is continuous deployment? Select all that apply.",
+    "options": [
+      "A. Deployment on every code push/commit",
+      "B. Deployment every hour/day",
+      "C. Local deployment on the developer's laptop",
+      "D. Deployment on Enterprise Cloud"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 506,
+    "section": "DOCKER & DEVOPS",
+    "question": "In DevOps, one of the significant ROI areas is:",
+    "options": [
+      "A. Zero defects",
+      "B. Faster time to value",
+      "C. Less feedback",
+      "D. Less customer experience"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 507,
+    "section": "DOCKER & DEVOPS",
+    "question": "How do you remove local (untracked) files and directories from the current Git working tree?",
+    "options": [
+      "i. git clean -f",
+      "ii. git delete -f",
+      "iii. git remove -f -d",
+      "iv. git add --all",
+      "v. git reset --hard HEAD",
+      "A : Only i",
+      "B : Only ii and iii",
+      "C : Only i and iv",
+      "D : All of the above."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 508,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which event occurs when the user clicks on the HTML element ?",
+    "options": [
+      "A. onmouseover",
+      "B. onchange",
+      "C. onmouseclick",
+      "D. onclick"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 509,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "The correct HTML tag to left align the content inside a table cell is :-",
+    "options": [
+      "A. <td align = \"left\">",
+      "B. <td align = \"right\">",
+      "C. <td leftAlign>",
+      "D. <table align=\"left\">"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 510,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What is the output of the Java Code Snippet ? StringJoiner astring = new StringJoiner(\"-\", \" ( \", \" ) \"); astring.add(\"A\"); astring.add(\"B\"); astring.add(\"C\");",
+    "options": [
+      "A. (A-B-C)",
+      "B. (A)-(B)-(C)",
+      "C. (-A-)(-B-)(-C-)"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 511,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What are the Different Modes of Autowiring ?",
+    "options": [
+      "A. byName,byType,constructor,autodetect.",
+      "B. byName,byType,constructor,autocorrect.",
+      "C.byName,byContent,constructor,autodetect.",
+      "D.byName,byContent,setter,autodetect."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 512,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which Annotation is used to refer to Pointcuts.",
+    "options": [
+      "A. @PointCut.",
+      "B. @PointCutExecution.",
+      "C. @PointCutBefore."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 513,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the below API Calls provides you the security information ?",
+    "options": [
+      "1) HttpServletRequest.isUserinRole()",
+      "2) HttpServletRequest.getUserPrincipal()",
+      "A. Only 1",
+      "B. Only 2",
+      "C. Both i and ii"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 514,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What does it mean by publishing a REST service in Spring ? i. Publishing an application’s data as Json over a REST service. ii.Publishing an application’s data as XML over a REST service. iii. Sharing Database within two microservices using Spring Data Access Object (DAO).",
+    "options": [
+      "A. Only 1",
+      "B. Only 1 and 2",
+      "C. Only 2",
+      "D. All of the above."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 515,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which element is used to restrict the access to a particular URL within Spring Security ?",
+    "options": [
+      "i. restrict-url",
+      "ii.intercept-url",
+      "iii.intercept-restrict."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 516,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What is used to dispatch requests to the WEB Application ?",
+    "options": [
+      "i. DispatchherServlet.",
+      "ii. ViewHandler.",
+      "iii. ViewResolver."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 517,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which annotation is used to create Primary KEY : Foreign KEY relation between two tables ?",
+    "options": [
+      "i. ForeignKey.",
+      "ii. JoinedKey.",
+      "iii. JoinColumn."
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 518,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "You can only use Hibernate in ORM in Spring Boot Applications.",
+    "options": [
+      "i. TRUE",
+      "II.FALSE"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 519,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In your Data Access Object (DAO) method , you neither need to surround your code with a try/catch block nor declare throwing an exception in the method signature.",
+    "options": [
+      "i. TRUE",
+      "ii. FALSE."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 520,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which annotation is used as a substitute for the initialization method ?",
+    "options": [
+      "1. @PostConstruct.",
+      "2. @PreDestroy.",
+      "3. @PreConstruct."
+    ],
+    "answer": "1"
+  },
+  {
+    "id": 521,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "A logger location where logging information is sent is called",
+    "options": [
+      "1. appender.",
+      "2. logger",
+      "3. component."
+    ],
+    "answer": "appender A"
+  },
+  {
+    "id": 522,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "By default, a bean is lazily loaded in Spring.",
+    "options": [
+      "1. True",
+      "2. False"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 523,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Sharding a MongoDB database across many server instances can be achieved with ____",
+    "options": [
+      "A.LAN",
+      "B.SAN.",
+      "C.MAN"
+    ],
+    "answer": "LAN A"
+  },
+  {
+    "id": 524,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In MongoDB , which is the operation that uses an index often , having better performance than those who do NOT use an index ?",
+    "options": [
+      "A. SELECT.",
+      "B. UPDATE",
+      "C. DELETE.",
+      "D. SORT."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 525,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which one is NOT a spring data MongoDB annotation ?",
+    "options": [
+      "A. @Document",
+      "B. @Field",
+      "C. @Entity",
+      "D. @Query."
+    ],
+    "answer": "C @Entity"
+  },
+  {
+    "id": 526,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What type of management does “Capped Collections” provide for inserted documents in MongoDB ?",
+    "options": [
+      "A. FIFO.",
+      "B. LIFO",
+      "C. LRU",
+      "D. MRU"
+    ],
+    "answer": "A FIFO updated"
+  },
+  {
+    "id": 527,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Identify the incorrect statement on MongoDB ?",
+    "options": [
+      "A. Secondary Indices are not available in MongoDB.",
+      "B. MongoDB supports search by field, range queries and regular expression matches. C .MongoDB can store the business subject in the minimal number of documents."
+    ],
+    "answer": "A."
+  },
+  {
+    "id": 528,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In MongoDB, which of the following methods return one document ?",
+    "options": [
+      "A. findOne()",
+      "B. findOne1()",
+      "C. selectOne()"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 529,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Redux is an exclusive feature of the React store ?",
+    "options": [
+      "A. TRUE",
+      "B. FALSE"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 530,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Identify the correct ES6 statement. i. var React = require(‘react’); ii. import React from react; iii. module.exports = Component. iv. export default Component.",
+    "options": [
+      "A. Only i and ii",
+      "B. Only iv",
+      "C. Only i,ii and iv",
+      "D. Only ii and iv"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 531,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "You can also use an ES6 class to define a component in React.",
+    "options": [
+      "A. True.",
+      "B. False."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 532,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the below methods are NOT a part of React Component’s lifecycle ?",
+    "options": [
+      "A. Initial Rendering.",
+      "B. Render / Re-Render.",
+      "C. unMounting.",
+      "D. Remote URL calls."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 533,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Identify the correct statement in MongoDB.",
+    "options": [
+      "A. Queries specify criteria, or conditions , which identify the documents that MongoDB returns to the clients.",
+      "B. Write Operations , or queries , retrieve data stored in the database.",
+      "C. The selection limits the amount of data that MongoDB returns to the client over the network."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 534,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Identify the incorrect statement on MongoDB.",
+    "options": [
+      "A. Secondary indices are not available in MongoDB.",
+      "B. MongoDB supports search by field, range queries, and regular expression searches.",
+      "C. MongoDB can store the business subject in the minimal number of documents."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 535,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the following is not a callback method of React ?",
+    "options": [
+      "A. render()",
+      "B. componentDidMount()",
+      "C. componentFailedToMount()",
+      "D. componentWillunMount()"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 536,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "How can we render JSX in the browser ? i. Using Babel ii. Using Typescript. iii. Using Flux. iv. Using Redux.",
+    "options": [
+      "A. Only i and ii",
+      "B. Only iv",
+      "C. Only i,ii and iv",
+      "D. Only iii and iv."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 537,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What is the command line tool introduced for the JS engine in Java 8 ?",
+    "options": [
+      "A. jjs",
+      "B. jss",
+      "C. jfs",
+      "D. jbd"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 538,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the following is the immutable Java List static factory method ?",
+    "options": [
+      "A. List.of",
+      "B. List.immutable.",
+      "C. List.create"
+    ],
+    "answer": "- A"
+  },
+  {
+    "id": 539,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the following statements are true about Java ? i. A finally block is executed, only after the catch block is executed. ii. A finally block is executed whether an exception is thrown or not. iii. A finally block is NOT Mandatory. iv. A finally block is executed, only if an exception occurs.",
+    "options": [
+      "A. i",
+      "B. iv",
+      "C. i and iv",
+      "D. ii and iii"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 540,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which Java Class has natural sorting implemented ?",
+    "options": [
+      "A. LinkedHashSet.",
+      "B. TreeSet",
+      "C.HashSet"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 541,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Is the following a valid Java code snippet ? Optional< String > aValue = Optional.of(“Not Empty”); if(aValue.isPresent()) { System.out.println(“Got Not Empty”); }",
+    "options": [
+      "A. True",
+      "B. False"
+    ],
+    "answer": "True"
+  },
+  {
+    "id": 542,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Service discovery tools help by reducing the problem of how processes and services in a cluster can find and talk to one another.",
+    "options": [
+      "A. True",
+      "B. False"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 543,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In Java Optional.ofNullable() method of the Optional Class, returns a Non-empty Optional if the given object has a value, otherwise it returns an empty Optional.",
+    "options": [
+      "A. true",
+      "B.false"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 544,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the following types of Java methods cannot be type parameterized ?",
+    "options": [
+      "A. FINAL methods.",
+      "B. Overriding methods.",
+      "C. Overloading methods."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 545,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the following statements is true about microservices architecture ? i. Microservices applications are required to be deployed on the same physical host. ii. Microservices architecture supports high availability of individual microservices. iii. Microservices cannot be used if a company is embracing DevOps. iv. Microservices are designed using a bounded context that can communicate with other bounded contexts.",
+    "options": [
+      "A. Only i",
+      "B. Only ii",
+      "C. Only ii and iv",
+      "D. All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 546,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Load Balancing improves the distribution of workloads across multiple computing resources , such as computers or a computer cluster.",
+    "options": [
+      "A. True.",
+      "B. False."
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 547,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "What are the core operations of DevOps with applications development and with infrastructure.",
+    "options": [
+      "A. Provisioning, Configuration and Orchestration.",
+      "B. Code Building, Coverage and Unit Testing.",
+      "C. Packaging and Deployment.",
+      "D. All of the above."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 548,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which CSS property is used to change the font of an element ?",
+    "options": [
+      "A. font",
+      "B. font-family",
+      "C. font-style",
+      "D.font-weight"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 549,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "The Bootstrap grid system is based on how many columns ?",
+    "options": [
+      "A. 12",
+      "B. 3",
+      "C. 6",
+      "D. 9"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 550,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "After you initialize a new GIT repository and create a file named git-quiz.html , which of the following commands will NOT work if needed?",
+    "options": [
+      "A. git add git-quiz.html",
+      "B. git status",
+      "C. git add",
+      "D. git commit -m “gut quiz web file added”"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 551,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Choose the correct HTML element to define important text.",
+    "options": [
+      "A. <strong>",
+      "B. <important>",
+      "C. <b>",
+      "D. <pre>"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 552,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which is the correct CSS Syntax ?",
+    "options": [
+      "A. body color-black",
+      "B. {body color-black}",
+      "C. body {color:black;}",
+      "D. {body;color;black}"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 553,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which Bootstrap class adds zebra-stripes to a table ?",
+    "options": [
+      "A. table-bordered.",
+      "B. table-zebra.",
+      "C.table-stripped",
+      "D.even and odd"
+    ],
+    "answer": "C"
+  },
+  {
+    "id": 554,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "The __ Javascript method is like the mathematical “for all” quantifier , which resumes true if and only if the function returns true for all elements in the array.",
+    "options": [
+      "A. every()",
+      "B. some()",
+      "C. all()",
+      "D. forall()"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 555,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "How can you detect the client’s browser name in Javascript ?",
+    "options": [
+      "A. class.navName",
+      "B. navigator.appName",
+      "C. browser.name",
+      "D. window.browser."
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 556,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of the following methods CANNOT be used to add array elements in Javascript ?",
+    "options": [
+      "A. push()",
+      "B. splice()",
+      "C. shift()",
+      "D. All can be used."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 557,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In Javascript __ __ is a comma separated list of colon separated name value pairs enclosed within curly braces.",
+    "options": [
+      "A. An object prototype.",
+      "B. A map object.",
+      "C. An class",
+      "D. An object literal."
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 558,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In Javascript , what is the observation made of the statement if (!a[i]) continue ? i. Skips the undefined elements. ii. Skips the null elements. iii. Skips the non existent elements.",
+    "options": [
+      "A. i and ii only.",
+      "B. ii and iii only.",
+      "C. i and iii only.",
+      "D. i,ii and iii"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 559,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of these methods is the ultimate element selection method and a very powerful technique by which client side Javascript programs can select the document elements that they are going to manipulate ?",
+    "options": [
+      "A. querySelectAll()",
+      "B. querySelector()",
+      "C. querySelect()",
+      "D. querySelectorAll()"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 560,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "To use the Angular HttpClient component, you must import the ____ module.",
+    "options": [
+      "A. HttpClientModule.",
+      "B. HttpModule.",
+      "C. Http"
+    ],
+    "answer": "A"
+  },
+  {
+    "id": 561,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In Angular , one can create local HTML reference or HTML tag using variable which starts with character ____",
+    "options": [
+      "A. @",
+      "B. #",
+      "C. “",
+      "D. &"
+    ],
+    "answer": "B"
+  },
+  {
+    "id": 562,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "Which of these Angular services can be injected in your component to the dynamic mode navigation ?",
+    "options": [
+      "A. Routing.",
+      "B. RouterService.",
+      "C. RoutingService",
+      "D. Router"
+    ],
+    "answer": "D"
+  },
+  {
+    "id": 563,
+    "section": "PREV BATCH FSD QUESTIONS",
+    "question": "In Angular , which of the following wild card route paths will you use to define a 404 route ?",
+    "options": [
+      "A. **",
+      "B. /",
+      "C. ##",
+      "D. default"
+    ],
+    "answer": "A"
+  }
+]

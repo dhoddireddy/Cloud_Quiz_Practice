@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X, Target, UserCircle, Download, GraduationCap, FileText } from 'lucide-react';
+import { Home, BookOpen, Send, Clock, Zap, Sun, Moon, Menu, X, Target, UserCircle, Download, GraduationCap, FileText, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
 
@@ -9,6 +9,8 @@ export const NavigationBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isStrategyOpen, setIsStrategyOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileAmerpetOpen, setIsMobileAmerpetOpen] = useState(false);
   const location = useLocation();
 
   const toggleStrategy = () => {
@@ -21,14 +23,19 @@ export const NavigationBar = () => {
     setIsStrategyOpen(false);
   };
 
-  const navItems = [
+  const topNavItems: Array<{ path: string; label: string; icon: React.ComponentType<any>; badge?: string }> = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/learning', label: 'Learning', icon: BookOpen },
-    { path: '/practice', label: 'Practice', icon: Send },
-    { path: '/assessment', label: 'Assessment', icon: Clock },
-    { path: '/test', label: 'Test', icon: Target },
-    { path: '/test-plus', label: 'Test+', icon: GraduationCap },
-    { path: '/questions-2025', label: '2025 Questions', icon: Zap },
+    { path: '/cloud-fsd', label: 'Cloud FSD', icon: FileText },
+    { path: '/practice-cloud', label: 'Practice Cloud', icon: BookOpen },
+    { path: '/examination', label: 'Examination', icon: Target },
+  ];
+
+  const dropdownItems = [
+    { path: '/learning', label: 'Learning', icon: BookOpen, desc: 'Conceptual study sets & PDF guide' },
+    { path: '/practice', label: 'Practice', icon: Send, desc: 'Untimed practice quizzes & memory test' },
+    { path: '/assessment', label: 'Assessment', icon: Clock, desc: 'Timed simulated mock tests' },
+    { path: '/test', label: 'Test Mode', icon: Target, desc: 'Standard quiz with exam interface' },
+    { path: '/questions-2025', label: '2025 Questions', icon: Zap, desc: 'High-accuracy calibrated release' },
   ];
 
   const activeDownloadQuiz = quizzes.find(quiz => quiz.id === activeDownloadQuizId) || null;
@@ -145,8 +152,8 @@ export const NavigationBar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 bg-zinc-100/50 dark:bg-zinc-800/50 p-1 rounded-xl">
-          {navItems.map((item) => (
+        <nav className="hidden md:flex items-center gap-1 bg-zinc-100/50 dark:bg-zinc-800/50 p-1 rounded-xl relative">
+          {topNavItems.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -158,8 +165,83 @@ export const NavigationBar = () => {
             >
               <item.icon size={14} />
               <span>{item.label}</span>
+              {item.badge && (
+                <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-black ml-0.5 transition-all ${
+                  location.pathname === item.path
+                    ? theme === 'dark' 
+                      ? 'bg-zinc-950 text-amber-450' 
+                      : 'bg-amber-100 text-amber-700'
+                    : theme === 'dark'
+                      ? 'bg-zinc-800 text-zinc-400'
+                      : 'bg-zinc-100 text-zinc-500'
+                }`}>
+                  {item.badge}
+                </span>
+              )}
             </Link>
           ))}
+
+          {/* Amerpet Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsDropdownOpen(true)}
+            onMouseLeave={() => setIsDropdownOpen(false)}
+          >
+            <button
+              onClick={() => setIsDropdownOpen(prev => !prev)}
+              className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                dropdownItems.some(item => location.pathname === item.path)
+                  ? 'bg-white dark:bg-amber-500 text-zinc-900 dark:text-zinc-950 shadow-sm' 
+                  : 'text-zinc-500 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-amber-400'
+              }`}
+            >
+              <GraduationCap size={14} />
+              <span>Amerpet</span>
+              <ChevronDown size={12} className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Dropdown panel */}
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.15 }}
+                  className={`absolute left-0 mt-2 w-72 rounded-2xl border p-3 shadow-2xl z-[60] ${
+                    theme === 'dark' ? 'bg-zinc-950 border-zinc-800 text-amber-50' : 'bg-white border-zinc-100 text-zinc-900 shadow-zinc-200/60'
+                  }`}
+                >
+                  <div className="space-y-1">
+                    {dropdownItems.map((subItem) => (
+                      <Link
+                        key={subItem.path}
+                        to={subItem.path}
+                        onClick={() => setIsDropdownOpen(false)}
+                        className={`flex items-start gap-3 p-2.5 rounded-xl transition-all ${
+                          location.pathname === subItem.path
+                            ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20'
+                            : 'hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-transparent'
+                        }`}
+                      >
+                        <div className={`p-2 rounded-lg mt-0.5 ${
+                          location.pathname === subItem.path
+                            ? 'bg-amber-500 text-zinc-950 shadow-sm'
+                            : 'bg-zinc-100 dark:bg-zinc-900 text-zinc-650 dark:text-amber-500/80'
+                        }`}>
+                          <subItem.icon size={14} />
+                        </div>
+                        <div className="space-y-0.5 text-left">
+                          <p className="text-xs font-black tracking-tight">{subItem.label}</p>
+                          <p className="text-[9px] font-bold text-zinc-400 dark:text-zinc-350 leading-tight">{subItem.desc}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </nav>
 
         {/* Desktop Actions */}
@@ -353,21 +435,82 @@ export const NavigationBar = () => {
             }`}
           >
             <div className="p-4 space-y-2">
-              {navItems.map((item) => (
+              {topNavItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center gap-4 p-4 rounded-2xl text-sm font-bold transition-all ${
+                  className={`flex items-center justify-between p-4 rounded-2xl text-sm font-bold transition-all ${
                     location.pathname === item.path 
                       ? 'bg-amber-500 text-zinc-950' 
                       : theme === 'dark' ? 'text-zinc-300 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
                   }`}
                 >
-                  <item.icon size={18} />
-                  {item.label}
+                  <div className="flex items-center gap-4">
+                    <item.icon size={18} />
+                    <span>{item.label}</span>
+                  </div>
+                  {item.badge && (
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-black ${
+                      location.pathname === item.path
+                        ? 'bg-zinc-950 text-amber-400 font-bold'
+                        : theme === 'dark'
+                          ? 'bg-zinc-800 text-zinc-400'
+                          : 'bg-zinc-100 text-zinc-500'
+                    }`}>
+                      {item.badge}
+                    </span>
+                  )}
                 </Link>
               ))}
+
+              {/* Mobile Accordion for Amerpet dropdown */}
+              <div className="border border-zinc-100 dark:border-zinc-805 rounded-2xl overflow-hidden bg-zinc-50/50 dark:bg-zinc-900/40">
+                <button
+                  onClick={() => setIsMobileAmerpetOpen(prev => !prev)}
+                  className={`flex w-full items-center justify-between p-4 text-sm font-bold transition-all ${
+                    dropdownItems.some(sub => location.pathname === sub.path)
+                      ? 'bg-amber-500/10 text-amber-500'
+                      : theme === 'dark' ? 'text-zinc-300 hover:bg-zinc-900' : 'text-zinc-600 hover:bg-zinc-50'
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <GraduationCap size={18} />
+                    <span>Amerpet</span>
+                  </div>
+                  <ChevronDown size={16} className={`transition-transform duration-300 ${isMobileAmerpetOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence>
+                  {isMobileAmerpetOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="pl-6 pr-4 pb-4 space-y-1 mt-2 text-left"
+                    >
+                      {dropdownItems.map((subItem) => (
+                        <Link
+                          key={subItem.path}
+                          to={subItem.path}
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setIsMobileAmerpetOpen(false);
+                          }}
+                          className={`flex items-center gap-3 p-3.5 rounded-xl text-xs font-bold transition-all ${
+                            location.pathname === subItem.path
+                              ? 'bg-amber-500 text-zinc-950 shadow-sm'
+                              : theme === 'dark' ? 'text-zinc-400 hover:bg-zinc-800' : 'text-zinc-500 hover:bg-zinc-100'
+                          }`}
+                        >
+                          <subItem.icon size={15} />
+                          {subItem.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               {location.pathname === '/learning' && (
                 <button
                   onClick={() => {

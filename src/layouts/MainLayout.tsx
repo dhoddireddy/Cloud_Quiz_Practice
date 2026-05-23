@@ -11,7 +11,7 @@ interface MainLayoutProps {
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const { isImmersive } = useAppContext();
   const location = useLocation();
-  const hideFooter = isImmersive || location.pathname === '/test' || location.pathname === '/test-plus';
+  const hideFooter = isImmersive || location.pathname === '/test';
 
   return (
     <div className="relative min-h-screen w-[90vw] max-w-[90vw] mx-auto flex flex-col items-center">
