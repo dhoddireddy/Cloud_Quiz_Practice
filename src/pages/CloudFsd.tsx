@@ -27,6 +27,7 @@ interface DumpQuestion {
 
 // --- STATIC JSON DUMP IMPORT ---
 import dumpCloudFSD from '../previous_year_dumps_json/Cloud FSD Questions.json';
+import dumpJavaContinuation from '../previous_year_dumps_json/Java Continuation.json';
 
 // --- CORRECT ANSWER PARSING UTILITY ---
 const parseCorrectAnswer = (options: string[], answerStr: string): number => {
@@ -38,41 +39,55 @@ const parseCorrectAnswer = (options: string[], answerStr: string): number => {
     baseAns = baseAns.substring(1).trim();
   }
 
-  let match = baseAns.match(/^(?:ans:\s*|option\s*)?([a-e])(?:\.|\)|$|\s)/i);
+  // 1. Try to match prefix letter or number (e.g. "a) reference", "a. reference", "3) run()")
+  let match = baseAns.match(/^(?:ans:\s*|option\s*)?([a-e1-9])(?:\.|\)|$|\s)/i);
   if (match) {
-    const letter = match[1].toLowerCase();
-    const index = letter.charCodeAt(0) - 97;
+    const char = match[1].toLowerCase();
+    let index = -1;
+    if (char >= '1' && char <= '9') {
+      index = parseInt(char, 10) - 1;
+    } else {
+      index = char.charCodeAt(0) - 97;
+    }
     if (index >= 0 && index < options.length) {
       return index;
     }
   }
 
+  // 2. Try exact or substring matches
   for (let i = 0; i < options.length; i++) {
     const optClean = options[i].trim().toLowerCase();
-    const optLetterMatch = optClean.match(/^([a-e])(?:\.|\)|\s)/i);
-    if (optLetterMatch) {
-      const optLetter = optLetterMatch[1];
-      if (baseAns === optLetter || baseAns.startsWith(optLetter + ' ') || baseAns === optLetter + '.' || baseAns === optLetter + ')') {
-        return i;
-      }
-      const afterPrefix = optClean.substring(optLetterMatch[0].length).trim();
-      if (baseAns === afterPrefix || afterPrefix.includes(baseAns) || baseAns.includes(afterPrefix)) {
-        if (baseAns.length > 2 && afterPrefix.length > 2) {
-          return i;
-        }
-      }
+    
+    // Check if the answer contains the option text, or the option text contains the answer
+    // Remove prefixes from option clean first to check core content
+    let optCore = optClean;
+    const optPrefixMatch = optClean.match(/^([a-e1-9])(?:\.|\)|\s)+/i);
+    if (optPrefixMatch) {
+      optCore = optClean.substring(optPrefixMatch[0].length).trim();
     }
-    if (optClean === baseAns || optClean.includes(baseAns) || baseAns.includes(optClean)) {
-      if (baseAns.length > 1 && optClean.length > 1) {
-        return i;
-      }
+    
+    let ansCore = baseAns;
+    const ansPrefixMatch = baseAns.match(/^([a-e1-9])(?:\.|\)|\s)+/i);
+    if (ansPrefixMatch) {
+      ansCore = baseAns.substring(ansPrefixMatch[0].length).trim();
+    }
+
+    if (optCore === ansCore || (optCore.length > 2 && ansCore.length > 2 && (optCore.includes(ansCore) || ansCore.includes(optCore)))) {
+      return i;
     }
   }
 
+  // 3. Fallback to basic character code index if it's just a single letter/number
   if (baseAns.length === 1) {
-    const code = baseAns.charCodeAt(0) - 97;
-    if (code >= 0 && code < options.length) {
-      return code;
+    const char = baseAns;
+    let index = -1;
+    if (char >= '1' && char <= '9') {
+      index = parseInt(char, 10) - 1;
+    } else {
+      index = char.charCodeAt(0) - 97;
+    }
+    if (index >= 0 && index < options.length) {
+      return index;
     }
   }
 
@@ -81,33 +96,55 @@ const parseCorrectAnswer = (options: string[], answerStr: string): number => {
 
 const CloudFsd: React.FC = () => {
   const { theme } = useAppContext();
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedDeckId, setSelectedDeckId] = useState<'cloud-fsd' | 'java-continuation' | null>(null);
   
   // Active Deck filters
   const [deckSection, setDeckSection] = useState<string>('All');
   const [deckSearchQuery, setDeckSearchQuery] = useState<string>('');
 
   const handleBack = () => {
-    setIsOpen(false);
+    setSelectedDeckId(null);
     setDeckSection('All');
     setDeckSearchQuery('');
   };
 
+  const currentDeck = useMemo(() => {
+    if (selectedDeckId === 'java-continuation') {
+      return {
+        id: 'java-continuation',
+        title: 'Java Continuation',
+        category: 'Backend',
+        questions: dumpJavaContinuation
+      };
+    }
+    return {
+      id: 'cloud-fsd',
+      title: 'Questions',
+      category: 'Fullstack',
+      questions: dumpCloudFSD
+    };
+  }, [selectedDeckId]);
+
   const questions: DumpQuestion[] = useMemo(() => {
-    return (dumpCloudFSD as any[]).map(q => {
-      const hasOptions = q.options && q.options.length > 0;
-      const ansStr = String(q.answer || q.correctAnswer || '').trim();
+    return (currentDeck.questions as any[]).map((q, idx) => {
+      const id = q.id !== undefined ? q.id : (q.num !== undefined ? q.num : idx + 1);
+      const questionText = q.question || q.q || 'Question text is missing';
+      const options = Array.isArray(q.options) ? q.options : [];
+      const ansStr = String(q.answer || q.correctAnswer || q.ans || '').trim();
+      
+      const hasOptions = options.length > 0;
       const hasAnswer = ansStr !== '' && ansStr.toLowerCase() !== 'n/a';
-      if (!hasOptions || !hasAnswer) {
-        return {
-          ...q,
-          options: ["No answer refer to main PDF"],
-          answer: "No answer refer to main PDF"
-        };
-      }
-      return q;
+      
+      return {
+        id,
+        section: q.section || (selectedDeckId === 'java-continuation' ? 'Java Continuation' : 'General'),
+        question: questionText,
+        options: hasOptions && hasAnswer ? options : [],
+        answer: hasAnswer ? ansStr : "No answer refer to main PDF",
+        explanation: q.explanation || ''
+      };
     });
-  }, []);
+  }, [currentDeck, selectedDeckId]);
 
   const deckSections = useMemo(() => {
     const sectionsSet = new Set<string>();
@@ -139,7 +176,7 @@ const CloudFsd: React.FC = () => {
       .replace(/'/g, '&#039;');
 
   const handleDownloadPdf = () => {
-    const confirmed = confirm('Download "Questions" study guide in PDF format?');
+    const confirmed = confirm(`Download "${currentDeck.title}" study guide in PDF format?`);
     if (!confirmed) return;
 
     const printable = window.open('', '_blank', 'width=900,height=700');
@@ -178,7 +215,7 @@ const CloudFsd: React.FC = () => {
       <!doctype html>
       <html>
         <head>
-          <title>Cloud FSD Questions Study Guide</title>
+          <title>${currentDeck.title} Study Guide</title>
           <style>
             body { font-family: Arial, sans-serif; color: #111827; margin: 10mm; line-height: 1.3; font-size: 11px; }
             header { border-bottom: 2px solid #f59e0b; margin-bottom: 12px; padding-bottom: 8px; position: relative; z-index: 1; }
@@ -217,8 +254,8 @@ const CloudFsd: React.FC = () => {
         <body>
           <div class="watermark">Built for Students</div>
           <header>
-            <h1>Cloud FSD Questions Study Guide</h1>
-            <div class="meta">Cloud FSD • ${questions.length} Questions • Study Guide Mode</div>
+            <h1>${currentDeck.title} Study Guide</h1>
+            <div class="meta">${selectedDeckId === 'java-continuation' ? 'Java Continuation' : 'Cloud FSD'} • ${questions.length} Questions • Study Guide Mode</div>
           </header>
           <div class="questions-container">
             ${questionsHtml}
@@ -242,7 +279,7 @@ const CloudFsd: React.FC = () => {
       exit={{ opacity: 0, x: -20 }}
       className="w-full max-w-7xl space-y-8 px-4 py-8"
     >
-      {!isOpen ? (
+      {!selectedDeckId ? (
         <div className="space-y-12">
           {/* Header */}
           <div className="text-center space-y-3 mb-4 pt-4">
@@ -251,19 +288,20 @@ const CloudFsd: React.FC = () => {
               <span>Auto-Revealed Study Guide</span>
             </div>
             <h2 className={`text-3xl font-sans font-black tracking-tight ${theme === 'dark' ? 'text-amber-50' : 'text-zinc-900'}`}>
-              Cloud FSD Questions
+              Cloud FSD Study Decks
             </h2>
             <p className={`${theme === 'dark' ? 'text-zinc-400' : 'text-zinc-500'} text-xs font-semibold max-w-xl mx-auto leading-relaxed`}>
-              Study FSD and Cloud questions with answers immediately highlighted for maximum revision efficiency.
+              Select a study deck to review questions and answers immediately highlighted for maximum revision efficiency.
             </p>
           </div>
 
-          {/* Grid with Single Card "questions" */}
-          <div className="flex justify-center">
+          {/* Grid with Multiple Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Card 1: Cloud FSD Questions */}
             <motion.div 
-              onClick={() => setIsOpen(true)}
+              onClick={() => setSelectedDeckId('cloud-fsd')}
               whileHover={{ y: -6, scale: 1.02 }}
-              className={`p-8 cursor-pointer transition-all border-2 rounded-[32px] group relative flex flex-col justify-between min-h-[240px] w-full max-w-md ${
+              className={`p-8 cursor-pointer transition-all border-2 rounded-[32px] group relative flex flex-col justify-between min-h-[240px] w-full ${
                 theme === 'dark' 
                   ? 'bg-zinc-900/40 border-zinc-800 hover:border-amber-500/30 shadow-2xl shadow-amber-500/5' 
                   : 'bg-white border-zinc-100 hover:border-zinc-200 shadow-xl shadow-zinc-200/20'
@@ -297,7 +335,56 @@ const CloudFsd: React.FC = () => {
 
               <div className="pt-6 flex items-center justify-between border-t border-zinc-100/50 dark:border-zinc-800/50 mt-6 mt-auto">
                 <div className="flex flex-col gap-0.5 text-[9px] font-black uppercase tracking-widest text-zinc-450 dark:text-zinc-400">
-                  <span>{questions.length} Modules</span>
+                  <span>{dumpCloudFSD.length} Questions</span>
+                  <span>Interactive Guide</span>
+                </div>
+                <div className={`p-2.5 rounded-xl transition-all group-hover:translate-x-1 ${
+                  theme === 'dark' ? 'bg-zinc-800 text-amber-500' : 'bg-zinc-50 text-zinc-900'
+                }`}>
+                  <ChevronRight size={16} />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 2: Java Continuation */}
+            <motion.div 
+              onClick={() => setSelectedDeckId('java-continuation')}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className={`p-8 cursor-pointer transition-all border-2 rounded-[32px] group relative flex flex-col justify-between min-h-[240px] w-full ${
+                theme === 'dark' 
+                  ? 'bg-zinc-900/40 border-zinc-800 hover:border-amber-500/30 shadow-2xl shadow-amber-500/5' 
+                  : 'bg-white border-zinc-100 hover:border-zinc-200 shadow-xl shadow-zinc-200/20'
+              }`}
+            >
+              <div>
+                <div className="flex justify-between items-start mb-6">
+                  <span className={`inline-block px-3 py-1 rounded-xl text-[9px] font-black uppercase tracking-widest ${
+                    theme === 'dark' ? 'bg-zinc-950 text-zinc-500' : 'bg-zinc-50 text-zinc-500'
+                  }`}>
+                    Backend
+                  </span>
+                  <div className={`p-2 rounded-xl ${
+                    theme === 'dark' ? 'bg-zinc-950 text-amber-500' : 'bg-zinc-50 text-zinc-650'
+                  }`}>
+                    <Layers size={16} />
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className={`text-xl font-heading font-black leading-tight uppercase tracking-tight group-hover:text-amber-500 transition-colors ${
+                    theme === 'dark' ? 'text-amber-50' : 'text-zinc-900'
+                  }`}>
+                    Java Continuation
+                  </h3>
+                  <p className={`text-xs font-semibold leading-relaxed ${theme === 'dark' ? 'text-zinc-550' : 'text-zinc-400'}`}>
+                    Study questions specifically tailored for Java Continuation and Project Loom concepts.
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-6 flex items-center justify-between border-t border-zinc-100/50 dark:border-zinc-800/50 mt-6 mt-auto">
+                <div className="flex flex-col gap-0.5 text-[9px] font-black uppercase tracking-widest text-zinc-450 dark:text-zinc-400">
+                  <span>{dumpJavaContinuation.length} Questions</span>
                   <span>Interactive Guide</span>
                 </div>
                 <div className={`p-2.5 rounded-xl transition-all group-hover:translate-x-1 ${
@@ -454,29 +541,50 @@ const CloudFsd: React.FC = () => {
 
                   {/* Options rendering */}
                   {hasOptions ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 md:pl-4">
-                      {q.options.map((option, optIdx) => {
-                        const isCorrect = optIdx === correctOptIdx;
-                        
-                        return (
-                          <div 
-                            key={optIdx}
-                            className={`p-3 rounded-xl border-2 text-xs md:text-sm font-medium flex items-center gap-3 transition-all ${
-                              isCorrect 
-                                ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-950/20 text-emerald-300 font-bold' : 'border-emerald-500 bg-emerald-50 text-emerald-900 font-bold' 
-                                : theme === 'dark' ? 'border-zinc-700/60 bg-zinc-900/80 text-zinc-300' : 'border-zinc-200 bg-white text-zinc-700'
-                            }`}
-                          >
-                            <span className={`flex-shrink-0 w-5 h-5 rounded-md ${theme === 'dark' ? 'bg-zinc-950' : 'bg-zinc-55'} border border-current flex items-center justify-center text-[10px] font-black uppercase`}>
-                              {String.fromCharCode(65 + optIdx)}
-                            </span>
-                            <span className="flex-1 leading-relaxed">{option}</span>
-                            {isCorrect && (
-                              <CheckCircle2 size={16} className="text-emerald-500 stroke-[2.5]" />
-                            )}
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pl-0 md:pl-4">
+                        {q.options.map((option, optIdx) => {
+                          const isCorrect = optIdx === correctOptIdx;
+                          
+                          return (
+                            <div 
+                              key={optIdx}
+                              className={`p-3 rounded-xl border-2 text-xs md:text-sm font-medium flex items-center gap-3 transition-all ${
+                                isCorrect 
+                                  ? theme === 'dark' ? 'border-emerald-500/50 bg-emerald-950/20 text-emerald-300 font-bold' : 'border-emerald-500 bg-emerald-50 text-emerald-900 font-bold' 
+                                  : theme === 'dark' ? 'border-zinc-700/60 bg-zinc-900/80 text-zinc-300' : 'border-zinc-200 bg-white text-zinc-700'
+                              }`}
+                            >
+                              <span className={`flex-shrink-0 w-5 h-5 rounded-md ${theme === 'dark' ? 'bg-zinc-950' : 'bg-zinc-55'} border border-current flex items-center justify-center text-[10px] font-black uppercase`}>
+                                {String.fromCharCode(65 + optIdx)}
+                              </span>
+                              <span className="flex-1 leading-relaxed">{option}</span>
+                              {isCorrect && (
+                                <CheckCircle2 size={16} className="text-emerald-500 stroke-[2.5]" />
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {/* Direct Key Answer Banner if no exact highlighted option was resolved */}
+                      {correctOptIdx === -1 && (
+                        <div className={`p-4 rounded-2xl border-2 flex items-start gap-3 pl-0 md:pl-4 mt-3 ${
+                          theme === 'dark' ? 'border-emerald-500/20 bg-emerald-950/10 text-emerald-300' : 'border-emerald-100 bg-emerald-50/50 text-emerald-900'
+                        }`}>
+                          <div className="p-1 rounded bg-emerald-500 text-white shrink-0 mt-0.5">
+                            <CheckCircle2 size={12} />
                           </div>
-                        );
-                      })}
+                          <div className="space-y-1 text-left flex-1 text-xs md:text-sm">
+                            <span className="font-black uppercase tracking-widest text-[9px] block text-emerald-500">
+                              Direct Key Answer
+                            </span>
+                            <p className="font-black leading-relaxed">
+                              {q.answer}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     /* Open ended answers display (Direct Answer Card) */
